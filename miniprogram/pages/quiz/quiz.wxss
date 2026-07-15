@@ -34,29 +34,7 @@
   filter: saturate(0.75) brightness(0.7);
 }
 
-/* 答题页：书主角 bg，重滤镜压进暗金皮 */
-.atmosphere-book-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.42;
-  filter: saturate(0.35) brightness(0.55) contrast(1.05);
-}
-
-.atmosphere-book-veil {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 7, 5, 0.55) 0%,
-      rgba(10, 7, 5, 0.72) 45%,
-      rgba(10, 7, 5, 0.88) 100%
-    ),
-    radial-gradient(ellipse at center, transparent 30%, rgba(10, 7, 5, 0.5) 100%);
-  pointer-events: none;
-}
+/* 答题页书 bg 已移入 .view-quiz，不再用 atmosphere 层 */
 
 .atmosphere-grain {
   position: absolute;
@@ -131,6 +109,40 @@
   overflow: hidden;
 }
 
+/* 答题页：书主角 bg 铺在面板之下 */
+.view-quiz {
+  position: relative;
+}
+
+.quiz-book-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  filter: saturate(0.45) brightness(0.62) contrast(1.05);
+}
+
+.quiz-book-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+.quiz-book-veil.has-bg {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 7, 5, 0.35) 0%,
+      rgba(10, 7, 5, 0.5) 50%,
+      rgba(10, 7, 5, 0.72) 100%
+    ),
+    radial-gradient(ellipse at center, transparent 25%, rgba(10, 7, 5, 0.4) 100%);
+}
+
 .panel-fill {
   flex: 1;
   min-height: 0;
@@ -145,12 +157,33 @@
   background: linear-gradient(165deg, rgba(28, 20, 16, 0.96) 0%, rgba(12, 9, 7, 0.98) 100%);
 }
 
-.view-quiz .panel-fill {
+.panel-quiz {
+  position: relative;
+  z-index: 2;
   background: linear-gradient(
     165deg,
-    rgba(28, 20, 16, 0.78) 0%,
-    rgba(12, 9, 7, 0.88) 100%
+    rgba(18, 14, 11, 0.42) 0%,
+    rgba(12, 9, 7, 0.55) 100%
   );
+}
+
+.view-quiz .option-btn {
+  background: rgba(12, 9, 7, 0.55);
+}
+
+.view-quiz .option-btn.is-selected {
+  background: linear-gradient(135deg, rgba(90, 60, 40, 0.92), rgba(40, 28, 20, 0.92));
+}
+
+.view-quiz .progress-row,
+.view-quiz .scene-quote {
+  background-color: rgba(12, 9, 7, 0.4);
+  border-radius: 16rpx;
+  padding: 12rpx 16rpx;
+}
+
+.view-quiz .progress-row {
+  margin-bottom: 28rpx;
 }
 
 .panel-start {

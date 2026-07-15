@@ -6,16 +6,6 @@
       src="{{snowUrl}}"
       mode="aspectFill"
     />
-    <image
-      wx:if="{{quizBgUrl && view === 'quiz'}}"
-      class="atmosphere-book-bg"
-      src="{{quizBgUrl}}"
-      mode="aspectFill"
-    />
-    <view
-      wx:if="{{quizBgUrl && view === 'quiz'}}"
-      class="atmosphere-book-veil"
-    ></view>
     <view class="atmosphere-glow atmosphere-glow-a"></view>
     <view class="atmosphere-glow atmosphere-glow-b"></view>
     <view class="atmosphere-vignette"></view>
@@ -69,7 +59,14 @@
 
     <!-- QUIZ -->
     <view class="view view-quiz" wx:if="{{view === 'quiz'}}">
-      <view class="panel panel-fill">
+      <image
+        wx:if="{{quizBgUrl}}"
+        class="quiz-book-bg"
+        src="{{quizBgUrl}}"
+        mode="aspectFill"
+      />
+      <view class="quiz-book-veil {{quizBgUrl ? 'has-bg' : ''}}"></view>
+      <view class="panel panel-fill panel-quiz">
         <view class="progress-row">
           <view class="progress-track">
             <view class="progress-fill" style="width: {{progressPercent}}%;"></view>

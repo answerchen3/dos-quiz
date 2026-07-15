@@ -212,16 +212,24 @@ Page({
       }),
     })
     var bgCloud = getBookQuizBgUrl(q.bookHint || q.quoteSource || '')
-    if (!bgCloud) return
+    if (!bgCloud) {
+      console.warn('[quiz] no book bg for', q.bookHint || q.quoteSource || '')
+      return
+    }
     var that = this
     var reqIndex = index
     toDisplayUrl(bgCloud)
       .then(function (url) {
+        var display = safeDisplayUrl(url)
         if (that.data.index !== reqIndex || that.data.view !== 'quiz') return
-        that.setData({ quizBgUrl: safeDisplayUrl(url) })
+        if (!display) {
+          console.warn('[quiz] book bg resolve empty', bgCloud)
+          return
+        }
+        that.setData({ quizBgUrl: display })
       })
       .catch(function (err) {
-        console.error('[quiz] resolve quiz bg', err)
+        console.error('[quiz] resolve quiz bg', bgCloud, err)
       })
   },
 
