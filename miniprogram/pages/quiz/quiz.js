@@ -16,6 +16,7 @@ const {
   getBookQuizBgUrl,
 } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
+const { toDisplayUrl, toDisplayUrls } = require('../../utils/cloud-url')
 
 const characters = require('../../utils/characters-data')
 const questions = require('../../utils/questions-data')
@@ -113,11 +114,24 @@ Page({
         map[c.id] = c
       })
       this.byId = map
-      this.setData({
-        ready: true,
-        startPortraitUrl: assetUrl('dostoevsky-start.jpg'),
-        snowUrl: getSnowUrl(),
-      })
+      var startSrc = assetUrl('dostoevsky-start.jpg')
+      var snowSrc = getSnowUrl()
+      var that = this
+      this.setData({ ready: true })
+      toDisplayUrls([startSrc, snowSrc])
+        .then(function (urls) {
+          that.setData({
+            startPortraitUrl: urls[0] || '',
+            snowUrl: urls[1] || '',
+          })
+        })
+        .catch(function (err) {
+          console.error(err)
+          that.setData({
+            startPortraitUrl: startSrc.indexOf('cloud://') === 0 ? '' : startSrc,
+            snowUrl: snowSrc.indexOf('cloud://') === 0 ? '' : snowSrc,
+          })
+        })
     } catch (e) {
       console.error(e)
       this.setData({ loadError: true, ready: false })
@@ -188,7 +202,7 @@ Page({
       currentScene: q.scene,
       currentQuote: q.quote || '',
       currentQuoteSource: quoteSource,
-      quizBgUrl: getBookQuizBgUrl(q.bookHint || q.quoteSource || ''),
+      quizBgUrl: '',
       currentOptions: q.options.map(function (opt, i) {
         return {
           text: opt.text,
@@ -198,6 +212,18 @@ Page({
         }
       }),
     })
+    var bgCloud = getBookQuizBgUrl(q.bookHint || q.quoteSource || '')
+    if (!bgCloud) return
+    var that = this
+    var reqIndex = index
+    toDisplayUrl(bgCloud)
+      .then(function (url) {
+        if (that.data.index !== reqIndex || that.data.view !== 'quiz') return
+        that.setData({ quizBgUrl: url })
+      })
+      .catch(function (err) {
+        console.error(err)
+      })
   },
 
   onSelectOption(e) {
@@ -238,22 +264,29 @@ Page({
     }
     var character = this.byId[flash.characterId]
     var isScene = isSceneFlash(flash)
-    this.setData({
-      flashVisible: true,
-      flashPhase: 'is-in',
-      flashWho: flash.who || (character && character.name) || '',
-      flashLine: flash.line || '',
-      flashImage: resolveFlashImage(flash, character),
-      flashIsScene: isScene,
-    })
+    var rawImage = resolveFlashImage(flash, character)
     var that = this
-    setTimeout(function () {
-      that.setData({ flashPhase: 'is-out' })
-      setTimeout(function () {
-        that.setData({ flashVisible: false, flashPhase: '', flashIsScene: false })
-        done()
-      }, 280)
-    }, 1100)
+    toDisplayUrl(rawImage)
+      .catch(function () {
+        return rawImage.indexOf('cloud://') === 0 ? '' : rawImage
+      })
+      .then(function (displayUrl) {
+        that.setData({
+          flashVisible: true,
+          flashPhase: 'is-in',
+          flashWho: flash.who || (character && character.name) || '',
+          flashLine: flash.line || '',
+          flashImage: displayUrl || '',
+          flashIsScene: isScene,
+        })
+        setTimeout(function () {
+          that.setData({ flashPhase: 'is-out' })
+          setTimeout(function () {
+            that.setData({ flashVisible: false, flashPhase: '', flashIsScene: false })
+            done()
+          }, 280)
+        }, 1100)
+      })
   },
 
   finishQuiz() {
@@ -321,12 +354,14 @@ Page({
     this.comicPack = comic
 
     var sessionMeetItems = buildDropItems(dropId, newlySet || {}, this.byId)
+    var resultCloud = characterImage(primary)
+    var that = this
 
     this.setData({
       resultEyebrow: isHidden ? '你解锁了隐藏角色' : '你的陀氏人格是',
       isHidden: isHidden,
       resultEpithet: primary.epithet || '',
-      resultImage: characterImage(primary),
+      resultImage: '',
       resultName: primary.name,
       resultBook: primary.bookTitle,
       resultTagline: primary.tagline,
@@ -348,7 +383,28 @@ Page({
         : shadow.tagline,
       shadowSummary: shadow.summary,
       sessionMeetItems: sessionMeetItems,
+      quizBgUrl: '',
     })
+
+    var dropCloud = sessionMeetItems.map(function (item) {
+      return item.image
+    })
+    toDisplayUrls([resultCloud].concat(dropCloud))
+      .then(function (urls) {
+        var meet = sessionMeetItems.map(function (item, i) {
+          return Object.assign({}, item, { image: urls[i + 1] || item.image })
+        })
+        that.setData({
+          resultImage: urls[0] || '',
+          sessionMeetItems: meet,
+        })
+      })
+      .catch(function (err) {
+        console.error(err)
+        that.setData({
+          resultImage: resultCloud.indexOf('cloud://') === 0 ? '' : resultCloud,
+        })
+      })
   },
 
   drawRadar() {
@@ -398,12 +454,31 @@ Page({
       wx.showToast({ title: '漫画暂不可用', icon: 'none' })
       return
     }
-    this.setData({
-      comicVisible: true,
-      comicPages: comic.pages,
-      comicBookTitle: comic.bookTitle,
-      comicPageIndex: 0,
+    var that = this
+    var rawPages = comic.pages
+    var cloudList = rawPages.map(function (p) {
+      return p.image || ''
     })
+    toDisplayUrls(cloudList)
+      .then(function (urls) {
+        that.setData({
+          comicVisible: true,
+          comicPages: rawPages.map(function (page, i) {
+            return Object.assign({}, page, { image: urls[i] || '' })
+          }),
+          comicBookTitle: comic.bookTitle,
+          comicPageIndex: 0,
+        })
+      })
+      .catch(function (err) {
+        console.error(err)
+        that.setData({
+          comicVisible: true,
+          comicPages: rawPages,
+          comicBookTitle: comic.bookTitle,
+          comicPageIndex: 0,
+        })
+      })
   },
 
   onCloseComic() {

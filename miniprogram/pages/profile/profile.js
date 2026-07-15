@@ -1,5 +1,6 @@
 const collection = require('../../utils/collection')
 const { characterImage } = require('../../utils/quiz')
+const { toDisplayUrl, toDisplayUrls } = require('../../utils/cloud-url')
 const characters = require('../../utils/characters-data')
 
 Page({
@@ -22,6 +23,7 @@ Page({
     var progress = collection.getProgress(characters.length)
     var state = collection.getState()
     var lastResult = null
+    var lastCloud = ''
     if (state.lastResult && state.lastResult.primaryId) {
       var primary = null
       for (var i = 0; i < characters.length; i += 1) {
@@ -31,13 +33,14 @@ Page({
         }
       }
       if (primary) {
+        lastCloud = characterImage(primary)
         lastResult = {
           id: primary.id,
           name: primary.name,
           epithet: primary.epithet || '',
           tagline: primary.tagline || '',
           bookTitle: primary.bookTitle || '',
-          image: characterImage(primary),
+          image: '',
         }
       }
     }
@@ -49,6 +52,18 @@ Page({
       hasCollection: progress.unlocked > 0,
       lastResult: lastResult,
     })
+
+    if (!lastResult || !lastCloud) return
+    var that = this
+    toDisplayUrl(lastCloud)
+      .then(function (url) {
+        that.setData({
+          lastResult: Object.assign({}, lastResult, { image: url }),
+        })
+      })
+      .catch(function (err) {
+        console.error(err)
+      })
   },
 
   onGoQuiz() {
@@ -59,11 +74,33 @@ Page({
     var items = collection.listForGallery(characters, {
       characterImage: characterImage,
     })
+    var that = this
     this.setData({
       galleryVisible: true,
-      galleryItems: items,
+      galleryItems: items.map(function (item) {
+        return Object.assign({}, item, {
+          image: item.unlocked ? '' : item.image,
+        })
+      }),
       galleryDetail: null,
     })
+    var cloudList = items.map(function (item) {
+      return item.unlocked ? item.image : ''
+    })
+    toDisplayUrls(cloudList)
+      .then(function (urls) {
+        that.setData({
+          galleryItems: items.map(function (item, i) {
+            return Object.assign({}, item, {
+              image: item.unlocked ? urls[i] || '' : '',
+            })
+          }),
+        })
+      })
+      .catch(function (err) {
+        console.error(err)
+        that.setData({ galleryItems: items })
+      })
   },
 
   onCloseGallery() {
