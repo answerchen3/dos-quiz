@@ -48,17 +48,8 @@
             <text>主人格入册，并随机掉落一张图鉴卡</text>
           </view>
         </view>
-        <view class="collection-chip" wx:if="{{hasCollection}}" bindtap="onGoProfile">
-          <text class="collection-chip-label">我的陀氏图鉴</text>
-          <text class="collection-chip-progress">{{collectionProgressText}}</text>
-        </view>
         <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
         <button class="btn btn-primary" bindtap="onStart">开始测试</button>
-        <button
-          wx:if="{{hasCollection}}"
-          class="btn btn-ghost start-gallery-btn"
-          bindtap="onGoProfile"
-        >打开「我的」</button>
       </view>
     </view>
 
@@ -203,7 +194,6 @@
         >
           <view class="session-meet-head">
             <view class="session-meet-title">本场掉落</view>
-            <view class="session-meet-sub">{{collectionProgressText}}</view>
           </view>
           <scroll-view class="session-meet-scroll" scroll-x enable-flex>
             <view
@@ -232,9 +222,6 @@
               bindtap="onOpenComic"
             >漫画速览</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
-          </view>
-          <view class="actions-row">
-            <button class="btn btn-secondary" bindtap="onGoProfile">打开「我的」图鉴</button>
           </view>
         </view>
       </view>

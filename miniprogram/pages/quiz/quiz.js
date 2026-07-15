@@ -84,10 +84,6 @@ Page({
     shadowTagline: '',
     shadowSummary: '',
     sessionMeetItems: [],
-    collectionUnlocked: 0,
-    collectionTotal: 0,
-    collectionProgressText: '',
-    hasCollection: false,
     revealPhase: 0,
     sharing: false,
     startPortraitUrl: '',
@@ -114,15 +110,10 @@ Page({
         map[c.id] = c
       })
       this.byId = map
-      var progress = collection.getProgress(characters.length)
       this.setData({
         ready: true,
         startPortraitUrl: assetUrl('dostoevsky-start.jpg'),
         snowUrl: getSnowUrl(),
-        collectionUnlocked: progress.unlocked,
-        collectionTotal: progress.total,
-        collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
-        hasCollection: progress.unlocked > 0,
       })
     } catch (e) {
       console.error(e)
@@ -134,25 +125,11 @@ Page({
     this.clearRevealTimers()
   },
 
-  onShow() {
-    if (this.data.ready) this.refreshCollectionProgress()
-  },
-
   clearRevealTimers() {
     ;(this.revealTimers || []).forEach(function (t) {
       clearTimeout(t)
     })
     this.revealTimers = []
-  },
-
-  refreshCollectionProgress() {
-    var progress = collection.getProgress(characters.length)
-    this.setData({
-      collectionUnlocked: progress.unlocked,
-      collectionTotal: progress.total,
-      collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
-      hasCollection: progress.unlocked > 0,
-    })
   },
 
   onStart() {
@@ -301,7 +278,6 @@ Page({
     })
 
     this.renderResult(newlySet, persist.dropId)
-    this.refreshCollectionProgress()
     this.setData({ view: 'result', revealPhase: 0 })
     this.scheduleReveal()
     wx.pageScrollTo({ scrollTop: 0, duration: 200 })
@@ -390,10 +366,6 @@ Page({
         ctx.scale(dpr, dpr)
         drawDualRadar(ctx, userAxes, charAxes, width, height)
       })
-  },
-
-  onGoProfile() {
-    wx.switchTab({ url: '/pages/profile/profile' })
   },
 
   onOpenComic() {
