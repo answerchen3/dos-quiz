@@ -2,17 +2,24 @@
 
 微信小程序 + 云开发。测验逻辑已从 `miniprogram-1` 迁入本仓库。
 
+## 包体积（重要）
+
+微信**主包 ≤ 2MB**。本仓库策略：
+
+- **进包**：代码 + `assets/placeholders/` + `assets/dostoevsky-start.jpg`（约几十 KB）
+- **上云**：肖像 / 闪卡场景 / 漫画 / 雪景 → `upload-to-cloud/quiz/`，运行时按 `CLOUD_ASSET_PREFIX` 拉取
+- 未配置云前缀时，大图一律回落占位图，保证能编译上传
+
 ## 本地预览
 
 1. 用微信开发者工具打开本目录（`WeChatProjects/dos-quiz`）
 2. 确认 AppID 为已开通云开发的账号
-3. 编译后应直接进入测验开场页
+3. **先上传云素材并配置 `config.js`**（见下），再编译
+4. 未配云时也能打开测验，但肖像/场景多为占位图
 
-未配置云图前，使用本地压缩图（`miniprogram/assets`），包体约 1.2MB。
+## 云存储高清图（必做）
 
-## 云存储高清图（推荐）
-
-高清原图已准备在：
+高清原图在（本地目录，**不进 git / 不进主包**）：
 
 ```
 upload-to-cloud/quiz/
@@ -63,15 +70,15 @@ env: 'env-xxxxx',
 
 ```
 dos-quiz/
-  miniprogram/          # 小程序代码
-    pages/quiz/         # 测验三态页
-    utils/              # 计分 / 雷达 / 分享 / 数据 / 云配置
-    assets/             # 本地压缩图兜底
-  cloudfunctions/       # 云函数（模板可保留）
-  upload-to-cloud/      # 待上传的高清资源（勿打进小程序包）
+  miniprogram/          # 小程序代码（主包应 <2MB）
+    pages/quiz/
+    utils/
+    assets/             # 仅占位 + 开场图
+  cloudfunctions/
+  upload-to-cloud/      # 高清资源，上传云存储，勿打进包
 ```
 
 ## 参考
 
-- 内容源站：`/Users/answerchen/MyApp/dostoevsky-quiz`
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+- [代码包限制](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html)

@@ -74,7 +74,28 @@
   "compileType": "miniprogram",
   "srcMiniprogramRoot": "miniprogram/",
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "value": "assets/portraits/**",
+        "type": "glob"
+      },
+      {
+        "value": "assets/scenes/**",
+        "type": "glob"
+      },
+      {
+        "value": "assets/scenery/**",
+        "type": "glob"
+      },
+      {
+        "value": "assets/comics/**",
+        "type": "glob"
+      },
+      {
+        "value": "assets/covers/**",
+        "type": "glob"
+      }
+    ],
     "include": []
   },
   "editorSetting": {
