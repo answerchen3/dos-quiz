@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+miniprogram_npm/
+**/node_modules/
+
+# 高清素材体积大，按 README 上传云存储，不进仓库
+upload-to-cloud/
+
+# 本地/编辑器
+.idea/
+.vscode/
+*.log
+.temp/
+.cli_tmp/

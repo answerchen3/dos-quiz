@@ -1,0 +1,243 @@
+<view class="page">
+  <view class="atmosphere">
+    <image
+      wx:if="{{snowUrl && view === 'start'}}"
+      class="atmosphere-snow"
+      src="{{snowUrl}}"
+      mode="aspectFill"
+    />
+    <view class="atmosphere-glow atmosphere-glow-a"></view>
+    <view class="atmosphere-glow atmosphere-glow-b"></view>
+    <view class="atmosphere-vignette"></view>
+    <view class="atmosphere-grain"></view>
+  </view>
+
+  <view class="shell" wx:if="{{ready}}">
+    <!-- START -->
+    <view class="view view-start" wx:if="{{view === 'start'}}">
+      <view class="panel panel-start">
+        <view class="start-portrait">
+          <image class="start-portrait-img" src="{{startPortraitUrl}}" mode="aspectFill" />
+          <view class="start-portrait-veil"></view>
+        </view>
+        <view class="ornament">
+          <view class="ornament-rule"></view>
+          <text class="ornament-dot">◆</text>
+          <view class="ornament-rule"></view>
+        </view>
+        <view class="eyebrow">Dostoevsky Character Quiz</view>
+        <view class="title">测测你的</view>
+        <view class="title title-accent">陀氏人格</view>
+        <view class="lead">人生抉择重现，这一刻，你站在哪边？</view>
+        <view class="meta-hint">答完你将获得</view>
+        <view class="meta-list">
+          <view class="meta-item">
+            <text class="meta-mark">Ⅰ</text>
+            <text>一个陀翁笔下与你最像的人</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-mark">Ⅱ</text>
+            <text>一份不专业的人格分析报告</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-mark">Ⅲ</text>
+            <text>一张专属分享图</text>
+          </view>
+        </view>
+        <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
+        <button class="btn btn-primary" bindtap="onStart">开始测试</button>
+      </view>
+    </view>
+
+    <!-- QUIZ -->
+    <view class="view view-quiz" wx:if="{{view === 'quiz'}}">
+      <view class="panel">
+        <view class="progress-row">
+          <view class="progress-track">
+            <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+          </view>
+          <text class="progress-label">{{progressLabel}}</text>
+        </view>
+        <view class="scene-head">
+          <text class="scene-kicker">{{sceneKicker}}</text>
+          <text class="scene-book" wx:if="{{sceneBook}}">{{sceneBook}}</text>
+        </view>
+        <view class="scene-quote" wx:if="{{currentQuote}}">
+          <view class="scene-quote-text">「{{currentQuote}}」</view>
+          <view class="scene-quote-source" wx:if="{{currentQuoteSource}}">—— {{currentQuoteSource}}</view>
+        </view>
+        <view class="scene">{{currentScene}}</view>
+        <view class="options">
+          <view
+            wx:for="{{currentOptions}}"
+            wx:key="index"
+            class="option-btn {{item.selected ? 'is-selected' : ''}} {{item.dimmed ? 'is-dimmed' : ''}}"
+            data-index="{{index}}"
+            bindtap="onSelectOption"
+          >
+            <text class="option-mark">{{item.mark}}</text>
+            <text class="option-text">{{item.text}}</text>
+          </view>
+        </view>
+        <button class="btn btn-ghost" bindtap="onBack" disabled="{{index === 0 || locking}}">← 上一题</button>
+      </view>
+    </view>
+
+    <!-- RESULT -->
+    <view class="view view-result" wx:if="{{view === 'result'}}">
+      <view class="panel">
+        <view class="result-header">
+          <view class="eyebrow">{{resultEyebrow}}</view>
+          <view class="hidden-badge" wx:if="{{isHidden}}">隐藏角色已解锁</view>
+          <view class="result-epithet">{{resultEpithet}}</view>
+          <view class="match-pill" wx:if="{{matchPercent}}">像 TA {{matchPercent}}%</view>
+          <view class="ornament-line"><view class="ornament-line-inner"></view></view>
+        </view>
+
+        <view class="result-hero">
+          <view class="portrait-frame">
+            <view class="portrait-glow"></view>
+            <image class="portrait" src="{{resultImage}}" mode="aspectFill" />
+          </view>
+          <view class="result-copy">
+            <view class="result-name">{{resultName}}</view>
+            <view class="result-book">《{{resultBook}}》</view>
+            <view class="result-tagline">{{resultTagline}}</view>
+            <view class="label-tags">
+              <text
+                wx:for="{{resultLabels}}"
+                wx:key="text"
+                class="label-tag {{item.soft ? 'label-tag-soft' : ''}}"
+              >{{item.text}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="trait-panel">
+          <view class="section-head">
+            <view class="trait-panel-title">特质分析</view>
+            <view class="section-sub">由你的抉择生成</view>
+          </view>
+          <view class="trait-analysis">{{resultTraitAnalysis}}</view>
+          <view class="radar-wrap">
+            <canvas type="2d" id="radarCanvas" class="radar-canvas"></canvas>
+            <view class="radar-legend">
+              <view class="radar-legend-item">
+                <view class="radar-swatch radar-swatch-you"></view>
+                <text>你的答卷</text>
+              </view>
+              <view class="radar-legend-item">
+                <view class="radar-swatch radar-swatch-char"></view>
+                <text>{{resultName}}</text>
+              </view>
+            </view>
+            <view class="axis-legend">
+              <view class="axis-item" wx:for="{{axisLegend}}" wx:key="name">
+                <view class="axis-row">
+                  <text class="axis-name">{{item.name}}</text>
+                  <text class="axis-value">{{item.value}}</text>
+                </view>
+                <view class="axis-bar">
+                  <view class="axis-bar-fill" style="width: {{item.value}}%;"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="analysis">
+          <view class="analysis-block">
+            <view class="analysis-title">整体画像</view>
+            <view class="analysis-body">{{resultSummary}}</view>
+          </view>
+          <view class="analysis-block">
+            <view class="analysis-title">你的锋芒</view>
+            <view class="analysis-body">{{resultStrengths}}</view>
+          </view>
+          <view class="analysis-block">
+            <view class="analysis-title">你的盲区</view>
+            <view class="analysis-body">{{resultBlindspot}}</view>
+          </view>
+          <view class="analysis-block">
+            <view class="analysis-title">在关系里</view>
+            <view class="analysis-body">{{resultRelation}}</view>
+          </view>
+          <view class="analysis-block">
+            <view class="analysis-title">可以怎么长</view>
+            <view class="analysis-body">{{resultGrowth}}</view>
+          </view>
+        </view>
+
+        <view class="shadow-card">
+          <view class="shadow-label">你的暗影搭档</view>
+          <view class="shadow-name">{{shadowName}}</view>
+          <view class="shadow-tagline">{{shadowTagline}}</view>
+          <view class="shadow-summary">{{shadowSummary}}</view>
+        </view>
+
+        <view class="actions">
+          <view class="actions-row">
+            <button class="btn btn-share" open-type="share">分享给好友</button>
+            <button class="btn btn-secondary actions-half" bindtap="onShare" loading="{{sharing}}">保存长图</button>
+          </view>
+          <view class="actions-row">
+            <button
+              wx:if="{{comicAvailable}}"
+              class="btn btn-secondary actions-half"
+              bindtap="onOpenComic"
+            >漫画速览</button>
+            <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="shell" wx:elif="{{loadError}}">
+    <view class="panel">
+      <view class="lead">加载失败，请重新打开小程序。</view>
+    </view>
+  </view>
+
+  <view class="flash-overlay {{flashVisible ? '' : 'hidden'}} {{flashPhase}}">
+    <view class="flash-burst"></view>
+    <view class="flash-card {{flashIsScene ? 'has-scene' : ''}}">
+      <view class="flash-portrait-ring {{flashIsScene ? 'is-scene' : ''}}">
+        <image class="flash-image" src="{{flashImage}}" mode="{{flashIsScene ? 'aspectFit' : 'aspectFill'}}" />
+      </view>
+      <view class="flash-kicker">这一刻像</view>
+      <view class="flash-who">{{flashWho}}</view>
+      <view class="flash-line">{{flashLine}}</view>
+    </view>
+  </view>
+
+  <view class="comic-overlay {{comicVisible ? '' : 'hidden'}}">
+    <view class="comic-sheet">
+      <view class="comic-top">
+        <text class="comic-heading">《{{comicBookTitle}}》速览</text>
+        <text class="comic-close" bindtap="onCloseComic">关闭</text>
+      </view>
+      <swiper
+        class="comic-swiper"
+        current="{{comicPageIndex}}"
+        bindchange="onComicChange"
+      >
+        <swiper-item wx:for="{{comicPages}}" wx:key="id">
+          <view class="comic-page">
+            <image
+              wx:if="{{item.image}}"
+              class="comic-image"
+              src="{{item.image}}"
+              mode="widthFix"
+            />
+            <view class="comic-narration" wx:if="{{item.narration}}">{{item.narration}}</view>
+            <view class="comic-empty" wx:if="{{!item.image}}">上传云端漫画资源后可看配图</view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="comic-pager">{{comicPageIndex + 1}} / {{comicPages.length}}</view>
+    </view>
+  </view>
+
+  <canvas type="2d" id="shareCanvas" class="share-canvas"></canvas>
+</view>

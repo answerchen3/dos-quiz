@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/quiz/quiz"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "测测你的陀氏人格",
+    "navigationBarBackgroundColor": "#0c0907",
+    "backgroundColor": "#0c0907",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

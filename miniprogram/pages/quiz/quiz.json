@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "测测你的陀氏人格",
+  "navigationBarBackgroundColor": "#0c0907",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#0c0907",
+  "disableScroll": false
+}

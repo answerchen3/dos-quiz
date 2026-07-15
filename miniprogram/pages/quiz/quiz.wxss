@@ -1,0 +1,948 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: #0a0705;
+  color: #f6ead4;
+  overflow-x: hidden;
+}
+
+.atmosphere {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(122, 46, 40, 0.22), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(212, 180, 131, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 45% at 10% 70%, rgba(90, 40, 30, 0.14), transparent 55%),
+    linear-gradient(180deg, #14100c 0%, #0a0705 55%, #080605 100%);
+}
+
+.atmosphere-snow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.28;
+  filter: saturate(0.75) brightness(0.7);
+}
+
+.atmosphere-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180rpx 180rpx;
+}
+
+.atmosphere-glow {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+.atmosphere-glow-a {
+  width: 420rpx;
+  height: 420rpx;
+  top: -80rpx;
+  left: -60rpx;
+  background: radial-gradient(circle, rgba(122, 46, 40, 0.5), transparent 70%);
+}
+
+.atmosphere-glow-b {
+  width: 360rpx;
+  height: 360rpx;
+  right: -40rpx;
+  top: 18%;
+  background: radial-gradient(circle, rgba(212, 180, 131, 0.28), transparent 70%);
+}
+
+.atmosphere-vignette {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: 92%;
+  margin: 0 auto;
+  padding: 40rpx 0 120rpx;
+  color: #f6ead4;
+}
+
+.panel {
+  position: relative;
+  padding: 56rpx 44rpx 48rpx;
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+  background: linear-gradient(165deg, rgba(36, 28, 22, 0.92) 0%, rgba(18, 14, 11, 0.94) 100%);
+  box-shadow: 0 28rpx 70rpx rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.panel-start {
+  overflow: hidden;
+}
+
+.start-portrait {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.start-portrait-img {
+  position: absolute;
+  top: -8%;
+  right: -12%;
+  width: 88%;
+  height: 116%;
+  opacity: 0.82;
+}
+
+.start-portrait-veil {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    92deg,
+    rgba(18, 14, 11, 0.98) 0%,
+    rgba(18, 14, 11, 0.94) 28%,
+    rgba(18, 14, 11, 0.72) 46%,
+    rgba(18, 14, 11, 0.38) 62%,
+    rgba(18, 14, 11, 0.12) 78%,
+    rgba(18, 14, 11, 0.04) 100%
+  );
+}
+
+.panel-start .ornament,
+.panel-start .eyebrow,
+.panel-start .title,
+.panel-start .lead,
+.panel-start .meta-hint,
+.panel-start .meta-list,
+.panel-start .disclaimer,
+.panel-start .btn {
+  position: relative;
+  z-index: 1;
+}
+
+.ornament {
+  margin: 0 0 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  color: #d4b483;
+  opacity: 0.75;
+}
+
+.ornament-dot {
+  font-size: 20rpx;
+}
+
+.ornament-rule {
+  width: 72rpx;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, rgba(212, 180, 131, 0.55), transparent);
+}
+
+.eyebrow {
+  margin: 0 0 22rpx;
+  color: #d4b483;
+  letter-spacing: 0.18em;
+  font-size: 24rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+}
+
+.title {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-weight: 600;
+  font-size: 72rpx;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.title-accent {
+  margin: 0 0 36rpx;
+  color: #d4b483;
+}
+
+.lead {
+  margin: 0 0 24rpx;
+  color: #b39a7a;
+  font-size: 30rpx;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+.meta-hint {
+  margin: 0 0 16rpx;
+  color: rgba(179, 154, 122, 0.8);
+  font-size: 24rpx;
+  letter-spacing: 0.08em;
+}
+
+.meta-list {
+  margin: 0 0 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 22rpx 28rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.18);
+  border-radius: 24rpx;
+  background: linear-gradient(90deg, rgba(212, 180, 131, 0.1), rgba(212, 180, 131, 0.03));
+  font-size: 28rpx;
+}
+
+.meta-mark {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+  color: #d4b483;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.disclaimer {
+  margin: 0 0 40rpx;
+  color: rgba(179, 154, 122, 0.75);
+  font-size: 22rpx;
+  line-height: 1.7;
+}
+
+.btn {
+  border: none;
+  border-radius: 999rpx;
+  padding: 24rpx 44rpx;
+  font-size: 30rpx;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e2c592 0%, #d4b483 45%, #b89055 100%);
+  color: #1a120c;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  margin-top: 20rpx;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f6ead4;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #b39a7a;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+}
+
+.btn[disabled] {
+  opacity: 0.35;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7a2e28, #d4b483);
+}
+
+.progress-label {
+  min-width: 90rpx;
+  text-align: right;
+  color: #b39a7a;
+  font-size: 28rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+}
+
+.scene-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin: 0 0 16rpx;
+}
+
+.scene-kicker {
+  margin: 0;
+  color: #9a7848;
+  font-size: 22rpx;
+  letter-spacing: 0.12em;
+}
+
+.scene-book {
+  color: rgba(212, 180, 131, 0.75);
+  font-size: 22rpx;
+  flex-shrink: 0;
+}
+
+.scene-quote {
+  margin: 0 0 22rpx;
+  padding: 20rpx 24rpx 16rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.16);
+  background: rgba(212, 180, 131, 0.05);
+}
+
+.scene-quote-text {
+  margin: 0 0 10rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 24rpx;
+  line-height: 1.65;
+  color: rgba(179, 154, 122, 0.92);
+  font-style: italic;
+}
+
+.scene-quote-source {
+  color: rgba(179, 154, 122, 0.65);
+  font-size: 20rpx;
+  text-align: right;
+}
+
+.scene {
+  margin: 0 0 40rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.option-btn {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+  width: 100%;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.2);
+  background: linear-gradient(135deg, rgba(40, 30, 24, 0.95), rgba(22, 17, 13, 0.92));
+  color: #f6ead4;
+  font-size: 28rpx;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.option-mark {
+  flex-shrink: 0;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+  color: #d4b483;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  margin-top: 4rpx;
+}
+
+.option-text {
+  flex: 1;
+  white-space: normal;
+}
+
+.option-btn.is-selected {
+  border-color: rgba(212, 180, 131, 0.55);
+  background: linear-gradient(135deg, rgba(90, 60, 40, 0.95), rgba(40, 28, 20, 0.95));
+  box-shadow: 0 10rpx 28rpx rgba(0, 0, 0, 0.28);
+}
+
+.option-btn.is-dimmed {
+  opacity: 0.45;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 12rpx;
+}
+
+.hidden-badge {
+  display: inline-block;
+  margin: 0 0 24rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.55);
+  background: linear-gradient(135deg, rgba(122, 46, 40, 0.55), rgba(90, 30, 28, 0.35));
+  color: #d4b483;
+  font-size: 22rpx;
+  letter-spacing: 0.12em;
+}
+
+.result-epithet {
+  margin: 0 0 28rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 64rpx;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  color: #d4b483;
+}
+
+.ornament-line {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 40rpx;
+}
+
+.ornament-line-inner {
+  width: 55%;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, #d4b483, transparent);
+}
+
+.result-hero {
+  display: flex;
+  gap: 32rpx;
+  margin: 0 0 40rpx;
+  align-items: center;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 240rpx;
+  flex-shrink: 0;
+}
+
+.portrait-glow {
+  position: absolute;
+  left: -24rpx;
+  right: -24rpx;
+  top: -24rpx;
+  bottom: -24rpx;
+  border-radius: 40rpx;
+  background: radial-gradient(circle at 50% 40%, rgba(212, 180, 131, 0.28), transparent 65%);
+  z-index: 0;
+}
+
+.portrait {
+  position: relative;
+  z-index: 1;
+  width: 240rpx;
+  height: 300rpx;
+  border-radius: 28rpx;
+  border: 2rpx solid rgba(196, 165, 116, 0.45);
+}
+
+.result-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-name {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.result-book {
+  color: #d4b483;
+  font-size: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.result-tagline {
+  color: #b39a7a;
+  font-size: 26rpx;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.label-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.label-tag {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.35);
+  color: #d4b483;
+  font-size: 20rpx;
+  background: rgba(212, 180, 131, 0.08);
+}
+
+.label-tag-soft {
+  color: #b39a7a;
+  border-color: rgba(179, 154, 122, 0.25);
+}
+
+.trait-panel {
+  margin: 0 0 36rpx;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.16);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.section-head {
+  margin-bottom: 16rpx;
+}
+
+.trait-panel-title {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.section-sub {
+  color: #b39a7a;
+  font-size: 22rpx;
+  margin-top: 6rpx;
+}
+
+.trait-analysis {
+  color: #b39a7a;
+  font-size: 26rpx;
+  line-height: 1.75;
+  margin-bottom: 24rpx;
+}
+
+.radar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.radar-canvas {
+  width: 100%;
+  height: 520rpx;
+}
+
+.axis-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.axis-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.axis-name {
+  color: #f6ead4;
+  font-size: 24rpx;
+}
+
+.axis-value {
+  color: #d4b483;
+  font-size: 24rpx;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+}
+
+.axis-bar {
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.axis-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7a2e28, #d4b483);
+}
+
+.analysis {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+  margin-bottom: 36rpx;
+}
+
+.analysis-title {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #d4b483;
+  margin-bottom: 12rpx;
+}
+
+.analysis-body {
+  color: #f6ead4;
+  font-size: 28rpx;
+  line-height: 1.8;
+  opacity: 0.92;
+}
+
+.shadow-card {
+  margin: 0 0 40rpx;
+  padding: 32rpx;
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(122, 46, 40, 0.45);
+  background: linear-gradient(145deg, rgba(122, 46, 40, 0.22), rgba(20, 14, 12, 0.7));
+}
+
+.shadow-label {
+  color: #d4b483;
+  font-size: 22rpx;
+  letter-spacing: 0.12em;
+  margin-bottom: 12rpx;
+}
+
+.shadow-name {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.shadow-tagline {
+  color: #b39a7a;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.shadow-summary {
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: rgba(246, 234, 212, 0.88);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.actions-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: stretch;
+}
+
+.actions-row .btn {
+  margin-top: 0;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24rpx 20rpx;
+  font-size: 28rpx;
+}
+
+.btn-share {
+  flex: 1.35;
+  padding: 28rpx 24rpx;
+  border-radius: 999rpx;
+  border: none;
+  background: linear-gradient(135deg, #f0d7a4 0%, #e2c592 28%, #d4b483 62%, #c49a55 100%);
+  color: #1a120c;
+  font-weight: 700;
+  font-size: 32rpx;
+  letter-spacing: 0.08em;
+  box-shadow:
+    0 12rpx 32rpx rgba(196, 154, 85, 0.38),
+    0 0 0 2rpx rgba(242, 220, 170, 0.35),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.35);
+}
+
+.actions-half {
+  flex: 1;
+}
+
+.actions-row .btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f6ead4;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+}
+
+.flash-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 6, 5, 0.72);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.flash-overlay.hidden {
+  display: none;
+}
+
+.flash-overlay.is-in {
+  opacity: 1;
+}
+
+.flash-overlay.is-out {
+  opacity: 0;
+}
+
+.flash-burst {
+  position: absolute;
+  width: 520rpx;
+  height: 520rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 180, 131, 0.28), transparent 70%);
+}
+
+.flash-card {
+  position: relative;
+  width: 78%;
+  max-width: 560rpx;
+  padding: 40rpx 36rpx;
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.35);
+  background: linear-gradient(165deg, rgba(40, 30, 24, 0.96), rgba(16, 12, 10, 0.96));
+  text-align: center;
+}
+
+.flash-portrait-ring {
+  width: 140rpx;
+  height: 174rpx;
+  margin: 0 auto 24rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(212, 180, 131, 0.45);
+  overflow: hidden;
+  background: #1a1410;
+}
+
+.flash-portrait-ring.is-scene {
+  width: 100%;
+  height: 0;
+  padding-bottom: 62.5%;
+  position: relative;
+  border-radius: 28rpx;
+}
+
+.flash-portrait-ring.is-scene .flash-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flash-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.flash-kicker {
+  color: #d4b483;
+  font-size: 22rpx;
+  letter-spacing: 0.16em;
+  margin-bottom: 10rpx;
+}
+
+.flash-who {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+
+.flash-line {
+  color: #b39a7a;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.share-canvas {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 750px;
+  height: 2000px;
+}
+
+.match-pill {
+  display: inline-block;
+  margin: 0 0 20rpx;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.4);
+  background: rgba(212, 180, 131, 0.1);
+  color: #d4b483;
+  font-size: 22rpx;
+  letter-spacing: 0.08em;
+}
+
+.radar-legend {
+  display: flex;
+  gap: 28rpx;
+  justify-content: center;
+  margin: 8rpx 0 20rpx;
+}
+
+.radar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  color: #b39a7a;
+  font-size: 22rpx;
+}
+
+.radar-swatch {
+  width: 28rpx;
+  height: 8rpx;
+  border-radius: 999rpx;
+}
+
+.radar-swatch-you {
+  background: #d4b483;
+}
+
+.radar-swatch-char {
+  background: repeating-linear-gradient(
+    90deg,
+    #b45a52 0,
+    #b45a52 6rpx,
+    transparent 6rpx,
+    transparent 10rpx
+  );
+}
+
+.comic-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 120;
+  background: rgba(6, 4, 3, 0.92);
+  display: flex;
+  align-items: flex-end;
+}
+
+.comic-overlay.hidden {
+  display: none;
+}
+
+.comic-sheet {
+  width: 100%;
+  max-height: 88vh;
+  border-radius: 36rpx 36rpx 0 0;
+  background: linear-gradient(180deg, #1a1410, #0c0907);
+  border: 1rpx solid rgba(212, 180, 131, 0.22);
+  padding: 28rpx 24rpx 48rpx;
+  box-sizing: border-box;
+}
+
+.comic-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding: 0 8rpx;
+}
+
+.comic-heading {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 30rpx;
+  color: #f3e6d0;
+}
+
+.comic-close {
+  color: #d4b483;
+  font-size: 26rpx;
+  padding: 8rpx 12rpx;
+}
+
+.comic-swiper {
+  height: 68vh;
+}
+
+.comic-page {
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 8rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.comic-image {
+  width: 100%;
+  border-radius: 16rpx;
+  display: block;
+  background: #120e0b;
+}
+
+.comic-narration {
+  margin-top: 20rpx;
+  padding: 20rpx 22rpx;
+  border-radius: 20rpx;
+  background: rgba(212, 180, 131, 0.08);
+  border: 1rpx solid rgba(212, 180, 131, 0.16);
+  color: #e8d7b8;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.comic-empty {
+  margin-top: 40rpx;
+  text-align: center;
+  color: #a89478;
+  font-size: 24rpx;
+}
+
+.comic-pager {
+  text-align: center;
+  color: #a89478;
+  font-size: 22rpx;
+  margin-top: 12rpx;
+}
+
