@@ -43,9 +43,22 @@
             <text class="meta-mark">Ⅲ</text>
             <text>一张专属分享图</text>
           </view>
+          <view class="meta-item">
+            <text class="meta-mark">Ⅳ</text>
+            <text>本场遇见回顾，写入你的图鉴</text>
+          </view>
+        </view>
+        <view class="collection-chip" wx:if="{{hasCollection}}" bindtap="onOpenGallery">
+          <text class="collection-chip-label">我的陀氏图鉴</text>
+          <text class="collection-chip-progress">{{collectionProgressText}}</text>
         </view>
         <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
         <button class="btn btn-primary" bindtap="onStart">开始测试</button>
+        <button
+          wx:if="{{hasCollection}}"
+          class="btn btn-ghost start-gallery-btn"
+          bindtap="onOpenGallery"
+        >打开图鉴</button>
       </view>
     </view>
 
@@ -86,7 +99,7 @@
     <!-- RESULT -->
     <view class="view view-result" wx:if="{{view === 'result'}}">
       <view class="panel">
-        <view class="result-header">
+        <view class="result-header reveal-block {{revealPhase >= 1 ? 'is-in' : ''}}">
           <view class="eyebrow">{{resultEyebrow}}</view>
           <view class="hidden-badge" wx:if="{{isHidden}}">隐藏角色已解锁</view>
           <view class="result-epithet">{{resultEpithet}}</view>
@@ -94,7 +107,7 @@
           <view class="ornament-line"><view class="ornament-line-inner"></view></view>
         </view>
 
-        <view class="result-hero">
+        <view class="result-hero reveal-block {{revealPhase >= 1 ? 'is-in' : ''}}">
           <view class="portrait-frame">
             <view class="portrait-glow"></view>
             <image class="portrait" src="{{resultImage}}" mode="aspectFill" />
@@ -113,7 +126,7 @@
           </view>
         </view>
 
-        <view class="trait-panel">
+        <view class="trait-panel reveal-block {{revealPhase >= 2 ? 'is-in' : ''}}">
           <view class="section-head">
             <view class="trait-panel-title">特质分析</view>
             <view class="section-sub">由你的抉择生成</view>
@@ -145,7 +158,7 @@
           </view>
         </view>
 
-        <view class="analysis">
+        <view class="analysis reveal-block {{revealPhase >= 3 ? 'is-in' : ''}}">
           <view class="analysis-block">
             <view class="analysis-title">整体画像</view>
             <view class="analysis-body">{{resultSummary}}</view>
@@ -168,14 +181,46 @@
           </view>
         </view>
 
-        <view class="shadow-card">
+        <view
+          class="next-step-card reveal-block {{revealPhase >= 4 ? 'is-in' : ''}}"
+          wx:if="{{resultNextStep}}"
+        >
+          <view class="next-step-label">今晚可以去感受</view>
+          <view class="next-step-body">{{resultNextStep}}</view>
+        </view>
+
+        <view class="shadow-card reveal-block {{revealPhase >= 5 ? 'is-in' : ''}}">
+          <view class="shadow-kicker">若命运再偏一点</view>
           <view class="shadow-label">你的暗影搭档</view>
           <view class="shadow-name">{{shadowName}}</view>
           <view class="shadow-tagline">{{shadowTagline}}</view>
           <view class="shadow-summary">{{shadowSummary}}</view>
         </view>
 
-        <view class="actions">
+        <view
+          class="session-meet reveal-block {{revealPhase >= 6 ? 'is-in' : ''}}"
+          wx:if="{{sessionMeetItems.length}}"
+        >
+          <view class="session-meet-head">
+            <view class="session-meet-title">本场遇见</view>
+            <view class="session-meet-sub">{{collectionProgressText}}</view>
+          </view>
+          <scroll-view class="session-meet-scroll" scroll-x enable-flex>
+            <view
+              class="session-meet-item"
+              wx:for="{{sessionMeetItems}}"
+              wx:key="id"
+            >
+              <view class="session-meet-avatar-wrap">
+                <image class="session-meet-avatar" src="{{item.image}}" mode="aspectFill" />
+                <text class="session-meet-new" wx:if="{{item.isNew}}">新</text>
+              </view>
+              <text class="session-meet-name">{{item.name}}</text>
+            </view>
+          </scroll-view>
+        </view>
+
+        <view class="actions reveal-block {{revealPhase >= 6 ? 'is-in' : ''}}">
           <view class="actions-row">
             <button class="btn btn-share" open-type="share">分享给好友</button>
             <button class="btn btn-secondary actions-half" bindtap="onShare" loading="{{sharing}}">保存长图</button>
@@ -187,6 +232,9 @@
               bindtap="onOpenComic"
             >漫画速览</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
+          </view>
+          <view class="actions-row">
+            <button class="btn btn-secondary" bindtap="onOpenGallery">打开图鉴</button>
           </view>
         </view>
       </view>
@@ -236,6 +284,61 @@
         </swiper-item>
       </swiper>
       <view class="comic-pager">{{comicPageIndex + 1}} / {{comicPages.length}}</view>
+    </view>
+  </view>
+
+  <view class="gallery-overlay {{galleryVisible ? '' : 'hidden'}}">
+    <view class="gallery-sheet">
+      <view class="gallery-top">
+        <view class="gallery-top-copy">
+          <text class="gallery-heading">我的陀氏图鉴</text>
+          <text class="gallery-progress">{{collectionProgressText}}</text>
+        </view>
+        <text class="gallery-close" bindtap="onCloseGallery">关闭</text>
+      </view>
+      <scroll-view class="gallery-scroll" scroll-y>
+        <view class="gallery-grid">
+          <view
+            class="gallery-cell {{item.unlocked ? 'is-unlocked' : 'is-locked'}}"
+            wx:for="{{galleryItems}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            data-unlocked="{{item.unlocked}}"
+            bindtap="onTapGalleryItem"
+          >
+            <view class="gallery-avatar-wrap">
+              <image
+                wx:if="{{item.unlocked}}"
+                class="gallery-avatar"
+                src="{{item.image}}"
+                mode="aspectFill"
+              />
+              <view wx:else class="gallery-silhouette"></view>
+            </view>
+            <text class="gallery-name">{{item.unlocked ? item.name : '尚未照面'}}</text>
+            <text class="gallery-epithet" wx:if="{{item.unlocked && item.epithet}}">{{item.epithet}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view
+    class="gallery-detail-overlay"
+    wx:if="{{galleryDetail}}"
+    bindtap="onCloseGalleryDetail"
+  >
+    <view class="gallery-detail-card" catchtap="onGalleryDetailCatch">
+      <image
+        class="gallery-detail-avatar"
+        src="{{galleryDetail.image}}"
+        mode="aspectFill"
+      />
+      <view class="gallery-detail-name">{{galleryDetail.name}}</view>
+      <view class="gallery-detail-epithet" wx:if="{{galleryDetail.epithet}}">{{galleryDetail.epithet}}</view>
+      <view class="gallery-detail-tagline">{{galleryDetail.tagline}}</view>
+      <view class="gallery-detail-summary">{{galleryDetail.summary}}</view>
+      <button class="btn btn-secondary gallery-detail-close" bindtap="onCloseGalleryDetail">关闭</button>
     </view>
   </view>
 

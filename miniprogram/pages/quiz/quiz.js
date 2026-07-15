@@ -14,6 +14,7 @@ const {
   getBookComic,
   getSnowUrl,
 } = require('../../utils/enrichment')
+const collection = require('../../utils/collection')
 
 const characters = require('../../utils/characters-data')
 const questions = require('../../utils/questions-data')
@@ -23,6 +24,28 @@ const MARKS = ['A', 'B', 'C', 'D']
 
 function pad2(n) {
   return n < 10 ? '0' + n : String(n)
+}
+
+function buildSessionMeetItems(sessionMetIds, primary, shadow, newlySet, byId) {
+  var ids = []
+  ;(sessionMetIds || []).forEach(function (id) {
+    if (id && ids.indexOf(id) === -1) ids.push(id)
+  })
+  if (primary && primary.id && ids.indexOf(primary.id) === -1) ids.push(primary.id)
+  if (shadow && shadow.id && ids.indexOf(shadow.id) === -1) ids.push(shadow.id)
+
+  return ids
+    .map(function (id) {
+      var c = byId[id]
+      if (!c) return null
+      return {
+        id: id,
+        name: c.name,
+        image: characterImage(c),
+        isNew: !!newlySet[id],
+      }
+    })
+    .filter(Boolean)
 }
 
 Page({
@@ -60,6 +83,7 @@ Page({
     resultBlindspot: '',
     resultRelation: '',
     resultGrowth: '',
+    resultNextStep: '',
     axisLegend: [],
     matchPercent: 0,
     comicAvailable: false,
@@ -67,6 +91,15 @@ Page({
     shadowName: '',
     shadowTagline: '',
     shadowSummary: '',
+    sessionMeetItems: [],
+    collectionUnlocked: 0,
+    collectionTotal: 0,
+    collectionProgressText: '',
+    hasCollection: false,
+    galleryVisible: false,
+    galleryItems: [],
+    galleryDetail: null,
+    revealPhase: 0,
     sharing: false,
     startPortraitUrl: '',
     snowUrl: '',
@@ -82,6 +115,8 @@ Page({
   userAxes: null,
   byId: {},
   comicPack: null,
+  sessionMetIds: [],
+  revealTimers: [],
 
   onLoad() {
     try {
@@ -90,15 +125,41 @@ Page({
         map[c.id] = c
       })
       this.byId = map
+      var progress = collection.getProgress(characters.length)
       this.setData({
         ready: true,
         startPortraitUrl: assetUrl('dostoevsky-start.jpg'),
         snowUrl: getSnowUrl(),
+        collectionUnlocked: progress.unlocked,
+        collectionTotal: progress.total,
+        collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
+        hasCollection: progress.unlocked > 0,
       })
     } catch (e) {
       console.error(e)
       this.setData({ loadError: true, ready: false })
     }
+  },
+
+  onUnload() {
+    this.clearRevealTimers()
+  },
+
+  clearRevealTimers() {
+    ;(this.revealTimers || []).forEach(function (t) {
+      clearTimeout(t)
+    })
+    this.revealTimers = []
+  },
+
+  refreshCollectionProgress() {
+    var progress = collection.getProgress(characters.length)
+    this.setData({
+      collectionUnlocked: progress.unlocked,
+      collectionTotal: progress.total,
+      collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
+      hasCollection: progress.unlocked > 0,
+    })
   },
 
   onStart() {
@@ -107,11 +168,18 @@ Page({
     this.shadow = null
     this.userAxes = null
     this.comicPack = null
+    this.sessionMetIds = []
+    this.clearRevealTimers()
     this.setData({
       view: 'quiz',
       index: 0,
       locking: false,
       comicVisible: false,
+      galleryVisible: false,
+      galleryDetail: null,
+      sessionMeetItems: [],
+      revealPhase: 0,
+      resultNextStep: '',
     })
     this.renderQuestion(0)
   },
@@ -192,6 +260,9 @@ Page({
       done()
       return
     }
+    if (flash.characterId) {
+      this.sessionMetIds = collection.appendSessionMet(this.sessionMetIds, flash.characterId)
+    }
     var character = this.byId[flash.characterId]
     var isScene = isSceneFlash(flash)
     this.setData({
@@ -220,8 +291,25 @@ Page({
     var picked = pickPrimaryAndShadow(ranked)
     this.primary = picked.primary
     this.shadow = picked.shadow
-    this.renderResult()
-    this.setData({ view: 'result' })
+
+    var persist = collection.recordQuizUnlocks({
+      flashIds: this.sessionMetIds.slice(),
+      primaryId: this.primary && this.primary.id,
+      shadowId: this.shadow && this.shadow.id,
+    })
+    if (!persist.ok) {
+      wx.showToast({ title: '收藏未保存', icon: 'none' })
+    }
+
+    var newlySet = {}
+    ;(persist.newlyUnlocked || []).forEach(function (id) {
+      newlySet[id] = true
+    })
+
+    this.renderResult(newlySet)
+    this.refreshCollectionProgress()
+    this.setData({ view: 'result', revealPhase: 0 })
+    this.scheduleReveal()
     wx.pageScrollTo({ scrollTop: 0, duration: 200 })
     var that = this
     setTimeout(function () {
@@ -229,7 +317,20 @@ Page({
     }, 80)
   },
 
-  renderResult() {
+  scheduleReveal() {
+    var that = this
+    this.clearRevealTimers()
+    var steps = [1, 2, 3, 4, 5, 6]
+    var delays = [0, 180, 380, 560, 720, 900]
+    steps.forEach(function (phase, i) {
+      var timer = setTimeout(function () {
+        that.setData({ revealPhase: phase })
+      }, delays[i])
+      that.revealTimers.push(timer)
+    })
+  },
+
+  renderResult(newlySet) {
     var primary = this.primary
     var shadow = this.shadow
     var axes = this.userAxes || primary.axes || {}
@@ -244,6 +345,14 @@ Page({
 
     var comic = getBookComic(primary)
     this.comicPack = comic
+
+    var sessionMeetItems = buildSessionMeetItems(
+      this.sessionMetIds,
+      primary,
+      shadow,
+      newlySet || {},
+      this.byId,
+    )
 
     this.setData({
       resultEyebrow: isHidden ? '你解锁了隐藏角色' : '你的陀氏人格是',
@@ -260,6 +369,7 @@ Page({
       resultBlindspot: primary.blindSpot,
       resultRelation: primary.inRelation,
       resultGrowth: primary.growth,
+      resultNextStep: primary.nextStep || '',
       axisLegend: buildAxisLegend(axes, axesMeta.axisHints || {}),
       matchPercent: similarityPercent(primary.score),
       comicAvailable: !!(comic && comic.pages && comic.pages.length),
@@ -269,6 +379,7 @@ Page({
         ? shadow.epithet + ' · ' + shadow.tagline
         : shadow.tagline,
       shadowSummary: shadow.summary,
+      sessionMeetItems: sessionMeetItems,
     })
   },
 
@@ -291,6 +402,50 @@ Page({
         ctx.scale(dpr, dpr)
         drawDualRadar(ctx, userAxes, charAxes, width, height)
       })
+  },
+
+  onOpenGallery() {
+    var items = collection.listForGallery(characters, {
+      characterImage: characterImage,
+    })
+    this.setData({
+      galleryVisible: true,
+      galleryItems: items,
+      galleryDetail: null,
+    })
+  },
+
+  onCloseGallery() {
+    this.setData({
+      galleryVisible: false,
+      galleryDetail: null,
+    })
+  },
+
+  onGalleryDetailCatch() {},
+
+  onTapGalleryItem(e) {
+    var id = e.currentTarget.dataset.id
+    var unlockedFlag = e.currentTarget.dataset.unlocked
+    var unlocked = unlockedFlag === true || unlockedFlag === 'true'
+    if (!unlocked) {
+      wx.showToast({ title: '再答一轮，或许会遇见', icon: 'none' })
+      return
+    }
+    var items = this.data.galleryItems || []
+    var found = null
+    for (var i = 0; i < items.length; i += 1) {
+      if (items[i].id === id) {
+        found = items[i]
+        break
+      }
+    }
+    if (!found) return
+    this.setData({ galleryDetail: found })
+  },
+
+  onCloseGalleryDetail() {
+    this.setData({ galleryDetail: null })
   },
 
   onOpenComic() {

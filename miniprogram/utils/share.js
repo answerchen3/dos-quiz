@@ -377,8 +377,36 @@ function buildLayout(ctx, options) {
     }, blockH)
   })
 
+  // nextStep（空间允许则写入；过长时 buildLayout 仍会完整排版，由高度上限自然裁切风险低）
+  if (primary.nextStep) {
+    ctx.font = "20px 'PingFang SC', sans-serif"
+    var nextLabelH = 28
+    ctx.font = "22px 'PingFang SC', sans-serif"
+    var nextBodyH = measureWrapped(ctx, primary.nextStep, CONTENT_W - 48, 34)
+    var nextH = 28 + nextLabelH + 8 + nextBodyH + 28
+    push(function (c, top) {
+      roundRectPath(c, PAD, top, CONTENT_W, nextH, 20)
+      c.fillStyle = 'rgba(212,180,131,0.08)'
+      c.fill()
+      c.strokeStyle = 'rgba(212,180,131,0.28)'
+      c.lineWidth = 1
+      c.stroke()
+
+      var ny = top + 28 + 18
+      c.fillStyle = '#d4b483'
+      c.font = "20px 'PingFang SC', sans-serif"
+      c.fillText('今晚可以去感受', PAD + 24, ny)
+      ny += nextLabelH + 8
+
+      c.fillStyle = 'rgba(246,234,212,0.92)'
+      c.font = "22px 'PingFang SC', sans-serif"
+      drawWrapped(c, primary.nextStep, PAD + 24, ny, CONTENT_W - 48, 34)
+    }, nextH + 28)
+  }
+
   // shadow card
   ctx.font = "20px 'PingFang SC', sans-serif"
+  var shadowKickerH = 26
   var shadowLabelH = 28
   ctx.font = "bold 28px 'Songti SC', 'STSong', serif"
   var shadowNameH = 36
@@ -391,7 +419,7 @@ function buildLayout(ctx, options) {
   )
   ctx.font = "22px 'PingFang SC', sans-serif"
   var shadowBodyH = measureWrapped(ctx, shadow.summary || '', CONTENT_W - 48, 34)
-  var shadowH = 28 + shadowLabelH + shadowNameH + 8 + shadowTagH + 12 + shadowBodyH + 28
+  var shadowH = 28 + shadowKickerH + shadowLabelH + shadowNameH + 8 + shadowTagH + 12 + shadowBodyH + 28
 
   push(function (c, top) {
     roundRectPath(c, PAD, top, CONTENT_W, shadowH, 20)
@@ -402,6 +430,11 @@ function buildLayout(ctx, options) {
     c.stroke()
 
     var sy = top + 28 + 18
+    c.fillStyle = '#a89478'
+    c.font = "18px 'PingFang SC', sans-serif"
+    c.fillText('若命运再偏一点', PAD + 24, sy)
+    sy += shadowKickerH
+
     c.fillStyle = '#d4b483'
     c.font = "20px 'PingFang SC', sans-serif"
     c.fillText('你的暗影搭档', PAD + 24, sy)
