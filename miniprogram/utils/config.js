@@ -1,18 +1,18 @@
 /**
  * 云存储资源配置（主包 ≤2MB：大图不进包，一律走云）
  *
- * 1. 打开开发者工具 → 云开发 → 存储
- * 2. 把项目根目录 upload-to-cloud/quiz/ 整个文件夹上传到云存储（保持 quiz/ 目录结构）
- *    含 portraits / scenes / comics / scenery / bgs
- * 3. 在存储里点开任意文件，复制 File ID，形如：
- *    cloud://env-xxxxx.xxxx/quiz/portraits/raskolnikov.jpg
- * 4. 把下面 CLOUD_ASSET_PREFIX 改成到 quiz 这一层的前缀，例如：
- *    cloud://env-xxxxx.xxxx/quiz
- * 5. （可选）在 app.js 填入云环境 ID
- * 6. 重新编译；肖像 / 闪卡场景 / 漫画 / 雪景走云端
+ * 环境 ID 已写在 app.js：cloud1-d5gw2jt7af9f83de9
  *
- * 留空时：仅开场图 + placeholder 可用，其余显示占位图（便于本地编译过 2MB）。
+ * 配置 CLOUD_ASSET_PREFIX：
+ * 1. 云开发 → 存储，上传 upload-to-cloud/quiz/（含 bgs / portraits / scenes…）
+ * 2. 点开任意文件，复制 File ID，例如：
+ *    cloud://cloud1-d5gw2jt7af9f83de9.636c-xxxx/quiz/portraits/raskolnikov.jpg
+ * 3. 截到 quiz 这一层填到下面，例如：
+ *    cloud://cloud1-d5gw2jt7af9f83de9.636c-xxxx/quiz
+ *
+ * 留空则肖像/场景/bg 走占位图。
  */
 module.exports = {
+  CLOUD_ENV_ID: 'cloud1-d5gw2jt7af9f83de9',
   CLOUD_ASSET_PREFIX: '',
 }
