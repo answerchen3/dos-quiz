@@ -131,7 +131,13 @@
           </view>
           <view class="trait-analysis">{{resultTraitAnalysis}}</view>
           <view class="radar-wrap">
-            <canvas type="2d" id="radarCanvas" class="radar-canvas"></canvas>
+            <image
+              wx:if="{{radarImage}}"
+              class="radar-image"
+              src="{{radarImage}}"
+              mode="aspectFit"
+            />
+            <view wx:else class="radar-image radar-image-placeholder"></view>
             <view class="radar-legend">
               <view class="radar-legend-item">
                 <view class="radar-swatch radar-swatch-you"></view>
@@ -282,5 +288,6 @@
     </view>
   </view>
 
+  <canvas type="2d" id="radarCanvas" class="radar-canvas-offscreen"></canvas>
   <canvas type="2d" id="shareCanvas" class="share-canvas"></canvas>
 </view>

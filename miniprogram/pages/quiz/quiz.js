@@ -85,6 +85,7 @@ Page({
     shadowSummary: '',
     sessionMeetItems: [],
     revealPhase: 0,
+    radarImage: '',
     sharing: false,
     startPortraitUrl: '',
     snowUrl: '',
@@ -148,6 +149,7 @@ Page({
       sessionMeetItems: [],
       revealPhase: 0,
       resultNextStep: '',
+      radarImage: '',
     })
     this.renderQuestion(0)
   },
@@ -277,12 +279,12 @@ Page({
     })
 
     this.renderResult(newlySet, persist.dropId)
-    this.setData({ view: 'result', revealPhase: 0 })
+    this.setData({ view: 'result', revealPhase: 0, radarImage: '' })
     this.scheduleReveal()
     var that = this
     setTimeout(function () {
       that.drawRadar()
-    }, 80)
+    }, 120)
   },
 
   scheduleReveal() {
@@ -348,21 +350,41 @@ Page({
   drawRadar() {
     var userAxes = this.userAxes || {}
     var charAxes = (this.primary && this.primary.axes) || {}
+    var that = this
+    // type=2d canvas 放在 scroll-view 内会“漂浮”；离屏绘制后转成图片嵌入文档流
     wx.createSelectorQuery()
       .select('#radarCanvas')
       .fields({ node: true, size: true })
       .exec(function (res) {
         var canvas = res && res[0] && res[0].node
         if (!canvas) return
-        var width = res[0].width || 320
-        var height = res[0].height || 320
+        var cssW = 320
+        var cssH = 320
         var dpr = wx.getSystemInfoSync().pixelRatio || 2
-        canvas.width = width * dpr
-        canvas.height = height * dpr
+        canvas.width = cssW * dpr
+        canvas.height = cssH * dpr
         var ctx = canvas.getContext('2d')
         if (!ctx) return
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
         ctx.scale(dpr, dpr)
-        drawDualRadar(ctx, userAxes, charAxes, width, height)
+        ctx.clearRect(0, 0, cssW, cssH)
+        drawDualRadar(ctx, userAxes, charAxes, cssW, cssH)
+        wx.canvasToTempFilePath({
+          canvas: canvas,
+          x: 0,
+          y: 0,
+          width: canvas.width,
+          height: canvas.height,
+          destWidth: canvas.width,
+          destHeight: canvas.height,
+          fileType: 'png',
+          success: function (fileRes) {
+            that.setData({ radarImage: fileRes.tempFilePath || '' })
+          },
+          fail: function (err) {
+            console.error('radar export failed', err)
+          },
+        })
       })
   },
 
