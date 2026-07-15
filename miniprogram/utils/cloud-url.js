@@ -2,11 +2,15 @@
  * 将 cloud:// File ID 转为可给 <image> 使用的 https 临时链。
  *
  * 免费档存储往往不能「所有用户可读」，客户端 getTempFileURL 会报
- * STORAGE_EXCEED_AUTHORITY。因此统一走云函数 getAssetUrls（管理端权限）。
+ * STORAGE_EXCEED_AUTHORITY。因此走已部署的云函数 quickstartFunctions
+ *（type: getAssetUrls）用管理端权限换链。
+ *
+ * 部署：右键 cloudfunctions/quickstartFunctions → 上传并部署：云端安装依赖
  */
 
 var cache = {}
 var CACHE_MS = 50 * 60 * 1000
+var FN_NAME = 'quickstartFunctions'
 
 function isCloudId(src) {
   return !!(src && String(src).indexOf('cloud://') === 0)
@@ -40,12 +44,24 @@ function resolveViaCloudFunction(cloudIds) {
   }
   return wx.cloud
     .callFunction({
-      name: 'getAssetUrls',
-      data: { fileList: cloudIds },
+      name: FN_NAME,
+      data: {
+        type: 'getAssetUrls',
+        fileList: cloudIds,
+      },
     })
     .then(function (res) {
       var result = (res && res.result) || {}
       return result.fileList || []
+    })
+    .catch(function (err) {
+      var msg = (err && (err.errMsg || err.message)) || String(err)
+      if (msg.indexOf('FUNCTION_NOT_FOUND') !== -1 || msg.indexOf('-501000') !== -1) {
+        console.error(
+          '[cloud-url] 云函数未部署。请右键 cloudfunctions/quickstartFunctions → 上传并部署（云端安装依赖）',
+        )
+      }
+      return Promise.reject(err)
     })
 }
 

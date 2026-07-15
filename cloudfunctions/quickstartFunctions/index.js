@@ -157,13 +157,17 @@ const deleteRecord = async (event) => {
   }
 };
 
-// const getOpenId = require('./getOpenId/index');
-// const getMiniProgramCode = require('./getMiniProgramCode/index');
-// const createCollection = require('./createCollection/index');
-// const selectRecord = require('./selectRecord/index');
-// const updateRecord = require('./updateRecord/index');
-// const fetchGoodsList = require('./fetchGoodsList/index');
-// const genMpQrcode = require('./genMpQrcode/index');
+/** 管理端换取云文件临时 https（规避客户端 STORAGE_EXCEED_AUTHORITY） */
+const getAssetUrls = async (event) => {
+  let fileList = (event && event.fileList) || [];
+  if (!Array.isArray(fileList)) fileList = [];
+  fileList = fileList.filter(Boolean).slice(0, 50);
+  if (!fileList.length) {
+    return { fileList: [] };
+  }
+  return cloud.getTempFileURL({ fileList });
+};
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   switch (event.type) {
@@ -181,5 +185,12 @@ exports.main = async (event, context) => {
       return await insertRecord(event);
     case "deleteRecord":
       return await deleteRecord(event);
+    case "getAssetUrls":
+      return await getAssetUrls(event);
+    default:
+      return {
+        success: false,
+        errMsg: "unknown type: " + (event && event.type),
+      };
   }
 };

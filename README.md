@@ -77,9 +77,10 @@ env: 'env-xxxxx',
 免费档通常**不能**开「所有用户可读」。本项目改为：
 
 - 存储可读权限保持默认（仅创建者/管理端）即可  
-- 小程序通过云函数 **`getAssetUrls`** 换取临时 https 链接  
+- 小程序通过云函数 **`quickstartFunctions`**（`type: getAssetUrls`）换取临时 https 链接  
 
-**首次部署**：开发者工具 → 云开发 → 云函数 → 右键 `cloudfunctions/getAssetUrls` → 上传并部署（安装依赖）。
+**首次部署（必做）**：  
+开发者工具 → 左栏 `cloudfunctions/quickstartFunctions` → 右键 → **上传并部署：云端安装依赖** → 选环境 `cloud1-d5gw2jt7af9f83de9`。
 
 付费开通「所有用户可读」后也可继续用云函数，无需改代码。
 
