@@ -76,7 +76,7 @@
   z-index: 1;
   width: 92%;
   margin: 0 auto;
-  padding: 40rpx 0 120rpx;
+  padding: 40rpx 0 180rpx;
   color: #f6ead4;
 }
 

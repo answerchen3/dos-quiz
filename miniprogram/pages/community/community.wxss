@@ -1,0 +1,130 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: #0c0907;
+  color: #f6ead4;
+  box-sizing: border-box;
+}
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.atmosphere-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40rpx);
+}
+
+.atmosphere-glow-a {
+  width: 420rpx;
+  height: 420rpx;
+  left: -80rpx;
+  top: 120rpx;
+  background: rgba(122, 46, 40, 0.28);
+}
+
+.atmosphere-glow-b {
+  width: 360rpx;
+  height: 360rpx;
+  right: -60rpx;
+  top: 360rpx;
+  background: rgba(212, 180, 131, 0.12);
+}
+
+.atmosphere-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  padding: 48rpx 36rpx 160rpx;
+  box-sizing: border-box;
+}
+
+.panel {
+  padding: 48rpx 36rpx;
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.18);
+  background: linear-gradient(165deg, rgba(28, 20, 16, 0.92), rgba(12, 9, 7, 0.96));
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 28rpx;
+}
+
+.ornament-rule {
+  flex: 1;
+  height: 1rpx;
+  background: rgba(212, 180, 131, 0.28);
+}
+
+.ornament-dot {
+  color: #d4b483;
+  font-size: 18rpx;
+}
+
+.eyebrow {
+  color: #a89478;
+  font-size: 22rpx;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16rpx;
+}
+
+.title {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 56rpx;
+  color: #f3e6d0;
+  line-height: 1.25;
+  margin-bottom: 20rpx;
+}
+
+.lead {
+  color: #a89478;
+  font-size: 28rpx;
+  line-height: 1.7;
+  margin-bottom: 36rpx;
+}
+
+.soon-card {
+  padding: 32rpx;
+  border-radius: 24rpx;
+  border: 1rpx dashed rgba(212, 180, 131, 0.35);
+  background: rgba(212, 180, 131, 0.06);
+  margin-bottom: 40rpx;
+}
+
+.soon-label {
+  color: #d4b483;
+  font-size: 24rpx;
+  letter-spacing: 0.12em;
+  margin-bottom: 12rpx;
+}
+
+.soon-body {
+  color: rgba(246, 234, 212, 0.88);
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.btn {
+  margin-top: 0;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8a3a34, #5c221e);
+  color: #f6ead4;
+  border: 1rpx solid rgba(212, 180, 131, 0.35);
+}

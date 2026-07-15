@@ -1,0 +1,362 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: #0c0907;
+  color: #f6ead4;
+  box-sizing: border-box;
+}
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.atmosphere-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40rpx);
+}
+
+.atmosphere-glow-a {
+  width: 420rpx;
+  height: 420rpx;
+  left: -80rpx;
+  top: 80rpx;
+  background: rgba(122, 46, 40, 0.28);
+}
+
+.atmosphere-glow-b {
+  width: 360rpx;
+  height: 360rpx;
+  right: -60rpx;
+  top: 420rpx;
+  background: rgba(212, 180, 131, 0.12);
+}
+
+.atmosphere-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  padding: 48rpx 36rpx 160rpx;
+  box-sizing: border-box;
+}
+
+.panel {
+  padding: 48rpx 36rpx;
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.18);
+  background: linear-gradient(165deg, rgba(28, 20, 16, 0.92), rgba(12, 9, 7, 0.96));
+}
+
+.eyebrow {
+  color: #a89478;
+  font-size: 22rpx;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16rpx;
+}
+
+.title {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 56rpx;
+  color: #f3e6d0;
+  line-height: 1.25;
+  margin-bottom: 16rpx;
+}
+
+.lead {
+  color: #a89478;
+  font-size: 28rpx;
+  line-height: 1.7;
+  margin-bottom: 36rpx;
+}
+
+.stat-card,
+.last-card {
+  margin-bottom: 28rpx;
+  padding: 28rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.22);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.stat-label {
+  color: #d4b483;
+  font-size: 22rpx;
+  letter-spacing: 0.12em;
+  margin-bottom: 12rpx;
+}
+
+.stat-value {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 40rpx;
+  color: #f3e6d0;
+  margin-bottom: 12rpx;
+}
+
+.stat-hint {
+  color: #a89478;
+  font-size: 24rpx;
+  line-height: 1.6;
+  margin-bottom: 20rpx;
+}
+
+.empty-hint {
+  color: #a89478;
+  font-size: 26rpx;
+  line-height: 1.7;
+  margin-bottom: 32rpx;
+}
+
+.last-row {
+  display: flex;
+  gap: 24rpx;
+  align-items: flex-start;
+}
+
+.last-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(212, 180, 131, 0.4);
+  flex-shrink: 0;
+  background: #1a1410;
+}
+
+.last-epithet {
+  color: #d4b483;
+  font-size: 22rpx;
+  margin-bottom: 6rpx;
+}
+
+.last-name {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 34rpx;
+  color: #f3e6d0;
+}
+
+.last-book {
+  margin-top: 6rpx;
+  color: #d4b483;
+  font-size: 22rpx;
+}
+
+.last-tagline {
+  margin-top: 10rpx;
+  color: #a89478;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.btn {
+  margin-top: 16rpx;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8a3a34, #5c221e);
+  color: #f6ead4;
+  border: 1rpx solid rgba(212, 180, 131, 0.35);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f6ead4;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+}
+
+.gallery-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 130;
+  background: rgba(6, 4, 3, 0.92);
+  display: flex;
+  align-items: flex-end;
+}
+
+.gallery-overlay.hidden {
+  display: none;
+}
+
+.gallery-sheet {
+  width: 100%;
+  max-height: 88vh;
+  border-radius: 36rpx 36rpx 0 0;
+  background: linear-gradient(180deg, #1a1410, #0c0907);
+  border: 1rpx solid rgba(212, 180, 131, 0.22);
+  padding: 28rpx 24rpx 48rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+  padding: 0 8rpx;
+}
+
+.gallery-top-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.gallery-heading {
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 34rpx;
+  color: #f3e6d0;
+}
+
+.gallery-progress {
+  color: #d4b483;
+  font-size: 24rpx;
+}
+
+.gallery-close {
+  color: #d4b483;
+  font-size: 26rpx;
+  padding: 8rpx 12rpx;
+}
+
+.gallery-scroll {
+  flex: 1;
+  max-height: 72vh;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8rpx 4rpx 24rpx;
+}
+
+.gallery-cell {
+  width: 33.33%;
+  box-sizing: border-box;
+  padding: 16rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-avatar-wrap {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+  border: 2rpx solid rgba(212, 180, 131, 0.28);
+  background: #120e0b;
+}
+
+.gallery-avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-silhouette {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 40%, #2a221c 0%, #15100d 70%);
+}
+
+.gallery-name {
+  color: #e8d7b8;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.gallery-cell.is-locked .gallery-name {
+  color: #7a6b58;
+}
+
+.gallery-epithet {
+  margin-top: 6rpx;
+  color: #a89478;
+  font-size: 18rpx;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.gallery-detail-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 140;
+  background: rgba(6, 4, 3, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.gallery-detail-card {
+  width: 100%;
+  max-width: 620rpx;
+  padding: 40rpx 36rpx 32rpx;
+  border-radius: 28rpx;
+  border: 1rpx solid rgba(212, 180, 131, 0.28);
+  background: linear-gradient(165deg, #1c1511, #0e0a08);
+  box-sizing: border-box;
+}
+
+.gallery-detail-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 24rpx;
+  border: 2rpx solid rgba(212, 180, 131, 0.4);
+}
+
+.gallery-detail-name {
+  text-align: center;
+  font-family: "Songti SC", "STSong", Georgia, serif;
+  font-size: 40rpx;
+  color: #f3e6d0;
+}
+
+.gallery-detail-epithet {
+  text-align: center;
+  margin-top: 10rpx;
+  color: #d4b483;
+  font-size: 26rpx;
+}
+
+.gallery-detail-tagline {
+  text-align: center;
+  margin-top: 16rpx;
+  color: #a89478;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.gallery-detail-summary {
+  margin-top: 24rpx;
+  color: rgba(246, 234, 212, 0.9);
+  font-size: 26rpx;
+  line-height: 1.7;
+  max-height: 36vh;
+  overflow-y: auto;
+}
+
+.gallery-detail-close {
+  margin-top: 28rpx;
+}

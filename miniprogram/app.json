@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/quiz/quiz"
+    "pages/quiz/quiz",
+    "pages/community/community",
+    "pages/profile/profile"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -8,6 +10,32 @@
     "navigationBarBackgroundColor": "#0c0907",
     "backgroundColor": "#0c0907",
     "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8a7a66",
+    "selectedColor": "#d4b483",
+    "backgroundColor": "#0c0907",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/quiz/quiz",
+        "text": "测试",
+        "iconPath": "assets/tab/quiz.png",
+        "selectedIconPath": "assets/tab/quiz-active.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区",
+        "iconPath": "assets/tab/community.png",
+        "selectedIconPath": "assets/tab/community-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab/profile.png",
+        "selectedIconPath": "assets/tab/profile-active.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

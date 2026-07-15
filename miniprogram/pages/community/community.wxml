@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="atmosphere">
+    <view class="atmosphere-glow atmosphere-glow-a"></view>
+    <view class="atmosphere-glow atmosphere-glow-b"></view>
+    <view class="atmosphere-vignette"></view>
+  </view>
+
+  <view class="shell">
+    <view class="panel">
+      <view class="ornament">
+        <view class="ornament-rule"></view>
+        <text class="ornament-dot">◆</text>
+        <view class="ornament-rule"></view>
+      </view>
+      <view class="eyebrow">Community</view>
+      <view class="title">交流社区</view>
+      <view class="lead">人格碰撞、书评闲谈、结果对照——这里留给后来的声音。</view>
+      <view class="soon-card">
+        <view class="soon-label">即将开放</view>
+        <view class="soon-body">第一版先把三栏立起来。社区帖子与互动会在后续版本接入。</view>
+      </view>
+      <button class="btn btn-primary" bindtap="onGoQuiz">先去测人格</button>
+    </view>
+  </view>
+</view>

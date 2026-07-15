@@ -88,9 +88,6 @@ Page({
     collectionTotal: 0,
     collectionProgressText: '',
     hasCollection: false,
-    galleryVisible: false,
-    galleryItems: [],
-    galleryDetail: null,
     revealPhase: 0,
     sharing: false,
     startPortraitUrl: '',
@@ -137,6 +134,10 @@ Page({
     this.clearRevealTimers()
   },
 
+  onShow() {
+    if (this.data.ready) this.refreshCollectionProgress()
+  },
+
   clearRevealTimers() {
     ;(this.revealTimers || []).forEach(function (t) {
       clearTimeout(t)
@@ -167,8 +168,6 @@ Page({
       index: 0,
       locking: false,
       comicVisible: false,
-      galleryVisible: false,
-      galleryDetail: null,
       sessionMeetItems: [],
       revealPhase: 0,
       resultNextStep: '',
@@ -393,48 +392,8 @@ Page({
       })
   },
 
-  onOpenGallery() {
-    var items = collection.listForGallery(characters, {
-      characterImage: characterImage,
-    })
-    this.setData({
-      galleryVisible: true,
-      galleryItems: items,
-      galleryDetail: null,
-    })
-  },
-
-  onCloseGallery() {
-    this.setData({
-      galleryVisible: false,
-      galleryDetail: null,
-    })
-  },
-
-  onGalleryDetailCatch() {},
-
-  onTapGalleryItem(e) {
-    var id = e.currentTarget.dataset.id
-    var unlockedFlag = e.currentTarget.dataset.unlocked
-    var unlocked = unlockedFlag === true || unlockedFlag === 'true'
-    if (!unlocked) {
-      wx.showToast({ title: '再答一轮，或许会遇见', icon: 'none' })
-      return
-    }
-    var items = this.data.galleryItems || []
-    var found = null
-    for (var i = 0; i < items.length; i += 1) {
-      if (items[i].id === id) {
-        found = items[i]
-        break
-      }
-    }
-    if (!found) return
-    this.setData({ galleryDetail: found })
-  },
-
-  onCloseGalleryDetail() {
-    this.setData({ galleryDetail: null })
+  onGoProfile() {
+    wx.switchTab({ url: '/pages/profile/profile' })
   },
 
   onOpenComic() {
