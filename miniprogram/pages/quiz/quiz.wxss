@@ -121,7 +121,8 @@
   width: 100%;
   height: 100%;
   opacity: 1;
-  filter: saturate(0.45) brightness(0.62) contrast(1.05);
+  /* 少压暗，让书图成为主视觉 */
+  filter: saturate(0.75) brightness(0.92) contrast(1.02);
 }
 
 .quiz-book-veil {
@@ -133,14 +134,13 @@
 }
 
 .quiz-book-veil.has-bg {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(10, 7, 5, 0.35) 0%,
-      rgba(10, 7, 5, 0.5) 50%,
-      rgba(10, 7, 5, 0.72) 100%
-    ),
-    radial-gradient(ellipse at center, transparent 25%, rgba(10, 7, 5, 0.4) 100%);
+  /* 仅底部略压，保证选项区可读 */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 7, 5, 0.08) 0%,
+    rgba(10, 7, 5, 0.12) 40%,
+    rgba(10, 7, 5, 0.55) 100%
+  );
 }
 
 .panel-fill {
@@ -157,33 +157,44 @@
   background: linear-gradient(165deg, rgba(28, 20, 16, 0.96) 0%, rgba(12, 9, 7, 0.98) 100%);
 }
 
-.panel-quiz {
+.panel-fill.panel-quiz {
   position: relative;
   z-index: 2;
-  background: linear-gradient(
-    165deg,
-    rgba(18, 14, 11, 0.42) 0%,
-    rgba(12, 9, 7, 0.55) 100%
-  );
+  background: transparent;
+}
+
+.view-quiz .scene {
+  text-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.75);
+}
+
+.view-quiz .scene-kicker,
+.view-quiz .scene-book,
+.view-quiz .progress-label {
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.7);
 }
 
 .view-quiz .option-btn {
-  background: rgba(12, 9, 7, 0.55);
+  background: rgba(12, 9, 7, 0.72);
+  backdrop-filter: blur(8px);
 }
 
 .view-quiz .option-btn.is-selected {
-  background: linear-gradient(135deg, rgba(90, 60, 40, 0.92), rgba(40, 28, 20, 0.92));
+  background: linear-gradient(135deg, rgba(90, 60, 40, 0.95), rgba(40, 28, 20, 0.95));
 }
 
 .view-quiz .progress-row,
 .view-quiz .scene-quote {
-  background-color: rgba(12, 9, 7, 0.4);
+  background-color: rgba(12, 9, 7, 0.55);
   border-radius: 16rpx;
   padding: 12rpx 16rpx;
 }
 
 .view-quiz .progress-row {
   margin-bottom: 28rpx;
+}
+
+.view-quiz .quiz-back {
+  background: rgba(12, 9, 7, 0.55);
 }
 
 .panel-start {
