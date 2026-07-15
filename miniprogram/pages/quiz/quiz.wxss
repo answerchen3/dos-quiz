@@ -1052,6 +1052,17 @@
   vertical-align: top;
 }
 
+.session-meet-scroll .session-meet-item:only-child {
+  width: 200rpx;
+  margin-right: 0;
+}
+
+.session-meet-scroll .session-meet-item:only-child .session-meet-avatar-wrap,
+.session-meet-scroll .session-meet-item:only-child .session-meet-avatar {
+  width: 160rpx;
+  height: 160rpx;
+}
+
 .session-meet-avatar-wrap {
   position: relative;
   width: 112rpx;

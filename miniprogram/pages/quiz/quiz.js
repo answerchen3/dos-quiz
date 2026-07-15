@@ -26,26 +26,18 @@ function pad2(n) {
   return n < 10 ? '0' + n : String(n)
 }
 
-function buildSessionMeetItems(sessionMetIds, primary, shadow, newlySet, byId) {
-  var ids = []
-  ;(sessionMetIds || []).forEach(function (id) {
-    if (id && ids.indexOf(id) === -1) ids.push(id)
-  })
-  if (primary && primary.id && ids.indexOf(primary.id) === -1) ids.push(primary.id)
-  if (shadow && shadow.id && ids.indexOf(shadow.id) === -1) ids.push(shadow.id)
-
-  return ids
-    .map(function (id) {
-      var c = byId[id]
-      if (!c) return null
-      return {
-        id: id,
-        name: c.name,
-        image: characterImage(c),
-        isNew: !!newlySet[id],
-      }
-    })
-    .filter(Boolean)
+function buildDropItems(dropId, newlySet, byId) {
+  if (!dropId) return []
+  var c = byId[dropId]
+  if (!c) return []
+  return [
+    {
+      id: dropId,
+      name: c.name,
+      image: characterImage(c),
+      isNew: !!newlySet[dropId],
+    },
+  ]
 }
 
 Page({
@@ -296,6 +288,9 @@ Page({
       flashIds: this.sessionMetIds.slice(),
       primaryId: this.primary && this.primary.id,
       shadowId: this.shadow && this.shadow.id,
+      allIds: characters.map(function (c) {
+        return c.id
+      }),
     })
     if (!persist.ok) {
       wx.showToast({ title: '收藏未保存', icon: 'none' })
@@ -306,7 +301,7 @@ Page({
       newlySet[id] = true
     })
 
-    this.renderResult(newlySet)
+    this.renderResult(newlySet, persist.dropId)
     this.refreshCollectionProgress()
     this.setData({ view: 'result', revealPhase: 0 })
     this.scheduleReveal()
@@ -330,7 +325,7 @@ Page({
     })
   },
 
-  renderResult(newlySet) {
+  renderResult(newlySet, dropId) {
     var primary = this.primary
     var shadow = this.shadow
     var axes = this.userAxes || primary.axes || {}
@@ -346,13 +341,7 @@ Page({
     var comic = getBookComic(primary)
     this.comicPack = comic
 
-    var sessionMeetItems = buildSessionMeetItems(
-      this.sessionMetIds,
-      primary,
-      shadow,
-      newlySet || {},
-      this.byId,
-    )
+    var sessionMeetItems = buildDropItems(dropId, newlySet || {}, this.byId)
 
     this.setData({
       resultEyebrow: isHidden ? '你解锁了隐藏角色' : '你的陀氏人格是',

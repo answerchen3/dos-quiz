@@ -97,14 +97,49 @@ function setLastResult(primaryId, shadowId) {
 }
 
 /**
- * 一次测验结束：闪卡 + 主人格 + 暗影落盘
- * @returns {{ ok: boolean, newlyUnlocked: string[] }}
+ * 从候选里随机抽一张（优先未解锁）
+ * @param {string[]} preferIds 本场闪卡遇见
+ * @param {string} excludeId 排除（通常是主人格，已单独入册）
+ * @param {string[]} [allIds] 全角色 id，作后备池
+ */
+function pickRandomDropId(preferIds, excludeId, allIds) {
+  var unlocked = getState().unlocked || {}
+  var seen = {}
+
+  function collect(list, onlyLocked) {
+    var out = []
+    ;(list || []).forEach(function (id) {
+      if (!id || id === excludeId || seen[id]) return
+      if (onlyLocked && unlocked[id]) return
+      seen[id] = true
+      out.push(id)
+    })
+    return out
+  }
+
+  var pool = collect(preferIds, true)
+  if (!pool.length) pool = collect(allIds, true)
+  if (!pool.length) {
+    seen = {}
+    pool = collect(preferIds, false)
+  }
+  if (!pool.length) {
+    seen = {}
+    pool = collect(allIds, false)
+  }
+  if (!pool.length) return null
+  return pool[Math.floor(Math.random() * pool.length)]
+}
+
+/**
+ * 一次测验结束：主人格入册 + 随机掉落 1 张（不再全量解锁闪卡/暗影）
+ * @returns {{ ok: boolean, newlyUnlocked: string[], dropId: string|null, primaryId: string }}
  */
 function recordQuizUnlocks(options) {
   var flashIds = (options && options.flashIds) || []
   var primaryId = options && options.primaryId
   var shadowId = options && options.shadowId
-  // 必须快照 id，不能持有 unlocked 对象引用（unlock 会原地改写）
+  var allIds = (options && options.allIds) || []
   var beforeIds = {}
   Object.keys(getState().unlocked || {}).forEach(function (id) {
     beforeIds[id] = true
@@ -115,9 +150,10 @@ function recordQuizUnlocks(options) {
     if (!result.ok) ok = false
   }
 
-  if (flashIds.length) track(unlock(flashIds, { sources: ['flash'] }))
   if (primaryId) track(unlock(primaryId, { sources: ['primary'] }))
-  if (shadowId) track(unlock(shadowId, { sources: ['shadow'] }))
+
+  var dropId = pickRandomDropId(flashIds, primaryId, allIds)
+  if (dropId) track(unlock(dropId, { sources: ['drop'] }))
 
   if (primaryId || shadowId) {
     if (!setLastResult(primaryId, shadowId)) ok = false
@@ -128,7 +164,12 @@ function recordQuizUnlocks(options) {
     if (!beforeIds[id]) newlyUnlocked.push(id)
   })
 
-  return { ok: ok, newlyUnlocked: newlyUnlocked }
+  return {
+    ok: ok,
+    newlyUnlocked: newlyUnlocked,
+    dropId: dropId,
+    primaryId: primaryId || null,
+  }
 }
 
 function getProgress(total) {
@@ -240,6 +281,7 @@ module.exports = {
   getState: getState,
   unlock: unlock,
   setLastResult: setLastResult,
+  pickRandomDropId: pickRandomDropId,
   recordQuizUnlocks: recordQuizUnlocks,
   getProgress: getProgress,
   listForGallery: listForGallery,

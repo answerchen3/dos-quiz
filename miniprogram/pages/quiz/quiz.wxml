@@ -45,7 +45,7 @@
           </view>
           <view class="meta-item">
             <text class="meta-mark">Ⅳ</text>
-            <text>本场遇见回顾，写入你的图鉴</text>
+            <text>主人格入册，并随机掉落一张图鉴卡</text>
           </view>
         </view>
         <view class="collection-chip" wx:if="{{hasCollection}}" bindtap="onOpenGallery">
@@ -202,7 +202,7 @@
           wx:if="{{sessionMeetItems.length}}"
         >
           <view class="session-meet-head">
-            <view class="session-meet-title">本场遇见</view>
+            <view class="session-meet-title">本场掉落</view>
             <view class="session-meet-sub">{{collectionProgressText}}</view>
           </view>
           <scroll-view class="session-meet-scroll" scroll-x enable-flex>
