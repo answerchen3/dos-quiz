@@ -1,6 +1,6 @@
 const collection = require('../../utils/collection')
 const { characterImage } = require('../../utils/quiz')
-const { toDisplayUrl, toDisplayUrls } = require('../../utils/cloud-url')
+const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
 const characters = require('../../utils/characters-data')
 
 Page({
@@ -58,11 +58,13 @@ Page({
     toDisplayUrl(lastCloud)
       .then(function (url) {
         that.setData({
-          lastResult: Object.assign({}, lastResult, { image: url }),
+          lastResult: Object.assign({}, lastResult, {
+            image: safeDisplayUrl(url),
+          }),
         })
       })
       .catch(function (err) {
-        console.error(err)
+        console.error('[profile] resolve last result', err)
       })
   },
 
@@ -92,14 +94,20 @@ Page({
         that.setData({
           galleryItems: items.map(function (item, i) {
             return Object.assign({}, item, {
-              image: item.unlocked ? urls[i] || '' : '',
+              image: item.unlocked ? safeDisplayUrl(urls[i]) : '',
             })
           }),
         })
       })
       .catch(function (err) {
-        console.error(err)
-        that.setData({ galleryItems: items })
+        console.error('[profile] resolve gallery', err)
+        that.setData({
+          galleryItems: items.map(function (item) {
+            return Object.assign({}, item, {
+              image: item.unlocked ? safeDisplayUrl(item.image) : '',
+            })
+          }),
+        })
       })
   },
 

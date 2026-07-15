@@ -16,7 +16,7 @@ const {
   getBookQuizBgUrl,
 } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
-const { toDisplayUrl, toDisplayUrls } = require('../../utils/cloud-url')
+const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
 
 const characters = require('../../utils/characters-data')
 const questions = require('../../utils/questions-data')
@@ -118,20 +118,19 @@ Page({
       var snowSrc = getSnowUrl()
       var that = this
       this.setData({ ready: true })
-      toDisplayUrls([startSrc, snowSrc])
-        .then(function (urls) {
-          that.setData({
-            startPortraitUrl: urls[0] || '',
-            snowUrl: urls[1] || '',
+      setTimeout(function () {
+        toDisplayUrls([startSrc, snowSrc])
+          .then(function (urls) {
+            that.setData({
+              startPortraitUrl: safeDisplayUrl(urls[0]),
+              snowUrl: safeDisplayUrl(urls[1]),
+            })
           })
-        })
-        .catch(function (err) {
-          console.error(err)
-          that.setData({
-            startPortraitUrl: startSrc.indexOf('cloud://') === 0 ? '' : startSrc,
-            snowUrl: snowSrc.indexOf('cloud://') === 0 ? '' : snowSrc,
+          .catch(function (err) {
+            console.error('[quiz] resolve start assets', err)
+            that.setData({ startPortraitUrl: '', snowUrl: '' })
           })
-        })
+      }, 0)
     } catch (e) {
       console.error(e)
       this.setData({ loadError: true, ready: false })
@@ -219,10 +218,10 @@ Page({
     toDisplayUrl(bgCloud)
       .then(function (url) {
         if (that.data.index !== reqIndex || that.data.view !== 'quiz') return
-        that.setData({ quizBgUrl: url })
+        that.setData({ quizBgUrl: safeDisplayUrl(url) })
       })
       .catch(function (err) {
-        console.error(err)
+        console.error('[quiz] resolve quiz bg', err)
       })
   },
 
@@ -276,7 +275,7 @@ Page({
           flashPhase: 'is-in',
           flashWho: flash.who || (character && character.name) || '',
           flashLine: flash.line || '',
-          flashImage: displayUrl || '',
+          flashImage: safeDisplayUrl(displayUrl),
           flashIsScene: isScene,
         })
         setTimeout(function () {
@@ -392,18 +391,18 @@ Page({
     toDisplayUrls([resultCloud].concat(dropCloud))
       .then(function (urls) {
         var meet = sessionMeetItems.map(function (item, i) {
-          return Object.assign({}, item, { image: urls[i + 1] || item.image })
+          return Object.assign({}, item, {
+            image: safeDisplayUrl(urls[i + 1]),
+          })
         })
         that.setData({
-          resultImage: urls[0] || '',
+          resultImage: safeDisplayUrl(urls[0]),
           sessionMeetItems: meet,
         })
       })
       .catch(function (err) {
-        console.error(err)
-        that.setData({
-          resultImage: resultCloud.indexOf('cloud://') === 0 ? '' : resultCloud,
-        })
+        console.error('[quiz] resolve result images', err)
+        that.setData({ resultImage: '' })
       })
   },
 
@@ -464,17 +463,21 @@ Page({
         that.setData({
           comicVisible: true,
           comicPages: rawPages.map(function (page, i) {
-            return Object.assign({}, page, { image: urls[i] || '' })
+            return Object.assign({}, page, { image: safeDisplayUrl(urls[i]) })
           }),
           comicBookTitle: comic.bookTitle,
           comicPageIndex: 0,
         })
       })
       .catch(function (err) {
-        console.error(err)
+        console.error('[quiz] resolve comic', err)
         that.setData({
           comicVisible: true,
-          comicPages: rawPages,
+          comicPages: rawPages.map(function (page) {
+            return Object.assign({}, page, {
+              image: safeDisplayUrl(page.image),
+            })
+          }),
           comicBookTitle: comic.bookTitle,
           comicPageIndex: 0,
         })

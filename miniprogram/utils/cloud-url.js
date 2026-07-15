@@ -1,11 +1,24 @@
 /**
  * 将 cloud:// File ID 转为可给 <image> 使用的 https 临时链。
- * 部分基础库/场景下 cloud:// 会被误当成相对路径（/pages/xxx/cloud://...）。
+ * 切勿把 cloud:// 直接塞给 image：会被解析成 /pages/xxx/cloud://... 本地路径。
  */
+
+function isCloudId(src) {
+  return !!(src && String(src).indexOf('cloud://') === 0)
+}
+
+/** 展示用 URL：禁止返回 cloud:// */
+function safeDisplayUrl(url) {
+  if (!url) return ''
+  var s = String(url)
+  if (s.indexOf('cloud://') === 0) return ''
+  return s
+}
+
 function toDisplayUrl(src) {
   if (!src) return Promise.resolve('')
   var url = String(src)
-  if (url.indexOf('cloud://') !== 0) return Promise.resolve(url)
+  if (!isCloudId(url)) return Promise.resolve(url)
   if (!wx.cloud || !wx.cloud.getTempFileURL) {
     return Promise.reject(new Error('云能力不可用'))
   }
@@ -14,22 +27,29 @@ function toDisplayUrl(src) {
     .then(function (res) {
       var file = res.fileList && res.fileList[0]
       if (file && file.tempFileURL) return file.tempFileURL
-      var errMsg = (file && file.errMsg) || 'getTempFileURL failed'
+      var errMsg =
+        (file && (file.errMsg || file.statusMsg)) ||
+        'getTempFileURL failed: ' + url
+      console.error('[cloud-url]', errMsg, file)
       return Promise.reject(new Error(errMsg))
     })
 }
 
+/**
+ * 保持与入参数组等长（含空串），不要 filter，避免下标错位。
+ */
 function toDisplayUrls(srcs) {
-  var list = (srcs || []).filter(Boolean)
+  var list = (srcs || []).map(function (s) {
+    return s || ''
+  })
   if (!list.length) return Promise.resolve([])
+
   var cloudIds = []
-  var indexMap = []
+  var cloudAt = []
   list.forEach(function (src, i) {
-    if (String(src).indexOf('cloud://') === 0) {
-      indexMap.push({ i: i, cloud: true, idx: cloudIds.length })
+    if (isCloudId(src)) {
+      cloudAt.push(i)
       cloudIds.push(src)
-    } else {
-      indexMap.push({ i: i, cloud: false })
     }
   })
   if (!cloudIds.length) return Promise.resolve(list.slice())
@@ -40,16 +60,27 @@ function toDisplayUrls(srcs) {
 
   return wx.cloud.getTempFileURL({ fileList: cloudIds }).then(function (res) {
     var files = (res && res.fileList) || []
-    return list.map(function (src, i) {
-      var meta = indexMap[i]
-      if (!meta.cloud) return src
-      var file = files[meta.idx]
-      return (file && file.tempFileURL) || src
+    var out = list.slice()
+    cloudAt.forEach(function (listIndex, j) {
+      var file = files[j]
+      if (file && file.tempFileURL) {
+        out[listIndex] = file.tempFileURL
+      } else {
+        console.error(
+          '[cloud-url] item failed',
+          cloudIds[j],
+          file && (file.errMsg || file.status),
+        )
+        out[listIndex] = ''
+      }
     })
+    return out
   })
 }
 
 module.exports = {
+  isCloudId: isCloudId,
+  safeDisplayUrl: safeDisplayUrl,
   toDisplayUrl: toDisplayUrl,
   toDisplayUrls: toDisplayUrls,
 }
