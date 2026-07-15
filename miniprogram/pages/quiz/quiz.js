@@ -215,7 +215,6 @@ Page({
         var next = that.data.index + 1
         that.setData({ index: next })
         that.renderQuestion(next)
-        wx.pageScrollTo({ scrollTop: 0, duration: 200 })
         return
       }
       that.finishQuiz()
@@ -280,7 +279,6 @@ Page({
     this.renderResult(newlySet, persist.dropId)
     this.setData({ view: 'result', revealPhase: 0 })
     this.scheduleReveal()
-    wx.pageScrollTo({ scrollTop: 0, duration: 200 })
     var that = this
     setTimeout(function () {
       that.drawRadar()

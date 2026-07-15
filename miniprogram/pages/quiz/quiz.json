@@ -4,5 +4,5 @@
   "navigationBarBackgroundColor": "#0c0907",
   "navigationBarTextStyle": "white",
   "backgroundColor": "#0c0907",
-  "disableScroll": false
+  "disableScroll": true
 }

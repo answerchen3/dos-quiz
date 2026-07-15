@@ -20,77 +20,84 @@
           <image class="start-portrait-img" src="{{startPortraitUrl}}" mode="aspectFill" />
           <view class="start-portrait-veil"></view>
         </view>
-        <view class="ornament">
-          <view class="ornament-rule"></view>
-          <text class="ornament-dot">◆</text>
-          <view class="ornament-rule"></view>
+        <view class="start-main">
+          <view class="ornament">
+            <view class="ornament-rule"></view>
+            <text class="ornament-dot">◆</text>
+            <view class="ornament-rule"></view>
+          </view>
+          <view class="eyebrow">Dostoevsky Character Quiz</view>
+          <view class="title">测测你的</view>
+          <view class="title title-accent">陀氏人格</view>
+          <view class="lead">人生抉择重现，这一刻，你站在哪边？</view>
+          <view class="meta-hint">答完你将获得</view>
+          <view class="meta-list">
+            <view class="meta-item">
+              <text class="meta-mark">Ⅰ</text>
+              <text>一个陀翁笔下与你最像的人</text>
+            </view>
+            <view class="meta-item">
+              <text class="meta-mark">Ⅱ</text>
+              <text>一份不专业的人格分析报告</text>
+            </view>
+            <view class="meta-item">
+              <text class="meta-mark">Ⅲ</text>
+              <text>一张专属分享图</text>
+            </view>
+            <view class="meta-item">
+              <text class="meta-mark">Ⅳ</text>
+              <text>主人格入册，并随机掉落一张图鉴卡</text>
+            </view>
+          </view>
         </view>
-        <view class="eyebrow">Dostoevsky Character Quiz</view>
-        <view class="title">测测你的</view>
-        <view class="title title-accent">陀氏人格</view>
-        <view class="lead">人生抉择重现，这一刻，你站在哪边？</view>
-        <view class="meta-hint">答完你将获得</view>
-        <view class="meta-list">
-          <view class="meta-item">
-            <text class="meta-mark">Ⅰ</text>
-            <text>一个陀翁笔下与你最像的人</text>
-          </view>
-          <view class="meta-item">
-            <text class="meta-mark">Ⅱ</text>
-            <text>一份不专业的人格分析报告</text>
-          </view>
-          <view class="meta-item">
-            <text class="meta-mark">Ⅲ</text>
-            <text>一张专属分享图</text>
-          </view>
-          <view class="meta-item">
-            <text class="meta-mark">Ⅳ</text>
-            <text>主人格入册，并随机掉落一张图鉴卡</text>
-          </view>
+        <view class="start-footer">
+          <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
+          <button class="btn btn-primary" bindtap="onStart">开始测试</button>
         </view>
-        <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
-        <button class="btn btn-primary" bindtap="onStart">开始测试</button>
       </view>
     </view>
 
     <!-- QUIZ -->
     <view class="view view-quiz" wx:if="{{view === 'quiz'}}">
-      <view class="panel">
+      <view class="panel panel-fill">
         <view class="progress-row">
           <view class="progress-track">
             <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
           </view>
           <text class="progress-label">{{progressLabel}}</text>
         </view>
-        <view class="scene-head">
-          <text class="scene-kicker">{{sceneKicker}}</text>
-          <text class="scene-book" wx:if="{{sceneBook}}">{{sceneBook}}</text>
-        </view>
-        <view class="scene-quote" wx:if="{{currentQuote}}">
-          <view class="scene-quote-text">「{{currentQuote}}」</view>
-          <view class="scene-quote-source" wx:if="{{currentQuoteSource}}">—— {{currentQuoteSource}}</view>
-        </view>
-        <view class="scene">{{currentScene}}</view>
-        <view class="options">
-          <view
-            wx:for="{{currentOptions}}"
-            wx:key="index"
-            class="option-btn {{item.selected ? 'is-selected' : ''}} {{item.dimmed ? 'is-dimmed' : ''}}"
-            data-index="{{index}}"
-            bindtap="onSelectOption"
-          >
-            <text class="option-mark">{{item.mark}}</text>
-            <text class="option-text">{{item.text}}</text>
+        <scroll-view class="quiz-body" scroll-y enhanced show-scrollbar="{{false}}">
+          <view class="scene-head">
+            <text class="scene-kicker">{{sceneKicker}}</text>
+            <text class="scene-book" wx:if="{{sceneBook}}">{{sceneBook}}</text>
           </view>
-        </view>
-        <button class="btn btn-ghost" bindtap="onBack" disabled="{{index === 0 || locking}}">← 上一题</button>
+          <view class="scene-quote" wx:if="{{currentQuote}}">
+            <view class="scene-quote-text">「{{currentQuote}}」</view>
+            <view class="scene-quote-source" wx:if="{{currentQuoteSource}}">—— {{currentQuoteSource}}</view>
+          </view>
+          <view class="scene">{{currentScene}}</view>
+          <view class="options">
+            <view
+              wx:for="{{currentOptions}}"
+              wx:key="index"
+              class="option-btn {{item.selected ? 'is-selected' : ''}} {{item.dimmed ? 'is-dimmed' : ''}}"
+              data-index="{{index}}"
+              bindtap="onSelectOption"
+            >
+              <text class="option-mark">{{item.mark}}</text>
+              <text class="option-text">{{item.text}}</text>
+            </view>
+          </view>
+        </scroll-view>
+        <button class="btn btn-ghost quiz-back" bindtap="onBack" disabled="{{index === 0 || locking}}">← 上一题</button>
       </view>
     </view>
 
     <!-- RESULT -->
     <view class="view view-result" wx:if="{{view === 'result'}}">
-      <view class="panel">
-        <view class="result-header reveal-block {{revealPhase >= 1 ? 'is-in' : ''}}">
+      <view class="panel panel-fill">
+        <scroll-view class="result-body" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="result-header reveal-block {{revealPhase >= 1 ? 'is-in' : ''}}">
           <view class="eyebrow">{{resultEyebrow}}</view>
           <view class="hidden-badge" wx:if="{{isHidden}}">隐藏角色已解锁</view>
           <view class="result-epithet">{{resultEpithet}}</view>
@@ -224,6 +231,7 @@
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
         </view>
+        </scroll-view>
       </view>
     </view>
   </view>
