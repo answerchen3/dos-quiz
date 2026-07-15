@@ -6,6 +6,16 @@
       src="{{snowUrl}}"
       mode="aspectFill"
     />
+    <image
+      wx:if="{{quizBgUrl && view === 'quiz'}}"
+      class="atmosphere-book-bg"
+      src="{{quizBgUrl}}"
+      mode="aspectFill"
+    />
+    <view
+      wx:if="{{quizBgUrl && view === 'quiz'}}"
+      class="atmosphere-book-veil"
+    ></view>
     <view class="atmosphere-glow atmosphere-glow-a"></view>
     <view class="atmosphere-glow atmosphere-glow-b"></view>
     <view class="atmosphere-vignette"></view>

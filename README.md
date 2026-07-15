@@ -35,6 +35,7 @@ upload-to-cloud/quiz/
   scenes/
   comics/         # 分书漫画速览
   scenery/        # 开场雪景
+  bgs/            # 角色背景（答题页按书主角换皮）
   dostoevsky-start.jpg
   placeholders/
 ```
@@ -48,6 +49,7 @@ upload-to-cloud/quiz/
    - `quiz/scenes/*.jpg`
    - `quiz/comics/<书slug>/page-*.jpg`
    - `quiz/scenery/*.jpg`
+   - `quiz/bgs/*-bg.png`
    - `quiz/dostoevsky-start.jpg`
    - `quiz/placeholders/stavrogin.jpg`
 4. 在存储中点开任意文件，复制 File ID，例如：

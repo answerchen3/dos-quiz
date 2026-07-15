@@ -13,6 +13,7 @@ const { exportShareImage } = require('../../utils/share')
 const {
   getBookComic,
   getSnowUrl,
+  getBookQuizBgUrl,
 } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
 
@@ -89,6 +90,7 @@ Page({
     sharing: false,
     startPortraitUrl: '',
     snowUrl: '',
+    quizBgUrl: '',
     comicVisible: false,
     comicPages: [],
     comicBookTitle: '',
@@ -150,6 +152,7 @@ Page({
       revealPhase: 0,
       resultNextStep: '',
       radarImage: '',
+      quizBgUrl: '',
     })
     this.renderQuestion(0)
   },
@@ -185,6 +188,7 @@ Page({
       currentScene: q.scene,
       currentQuote: q.quote || '',
       currentQuoteSource: quoteSource,
+      quizBgUrl: getBookQuizBgUrl(q.bookHint || q.quoteSource || ''),
       currentOptions: q.options.map(function (opt, i) {
         return {
           text: opt.text,

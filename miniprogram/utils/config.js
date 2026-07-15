@@ -3,7 +3,7 @@
  *
  * 1. 打开开发者工具 → 云开发 → 存储
  * 2. 把项目根目录 upload-to-cloud/quiz/ 整个文件夹上传到云存储（保持 quiz/ 目录结构）
- *    含 portraits / scenes / comics / scenery
+ *    含 portraits / scenes / comics / scenery / bgs
  * 3. 在存储里点开任意文件，复制 File ID，形如：
  *    cloud://env-xxxxx.xxxx/quiz/portraits/raskolnikov.jpg
  * 4. 把下面 CLOUD_ASSET_PREFIX 改成到 quiz 这一层的前缀，例如：
