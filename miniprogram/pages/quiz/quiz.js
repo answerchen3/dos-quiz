@@ -13,6 +13,7 @@ const { exportShareImage } = require('../../utils/share')
 const {
   getBookComic,
   getSnowUrl,
+  isBookComicUnlocked,
 } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
 const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
@@ -91,6 +92,7 @@ Page({
     axisLegend: [],
     matchPercent: 0,
     comicAvailable: false,
+    comicUnlocked: false,
     comicTitle: '',
     shadowName: '',
     shadowTagline: '',
@@ -125,23 +127,12 @@ Page({
         map[c.id] = c
       })
       this.byId = map
-      var startSrc = assetUrl('dostoevsky-start.jpg')
-      var snowSrc = getSnowUrl()
-      var that = this
-      this.setData({ ready: true })
-      setTimeout(function () {
-        toDisplayUrls([startSrc, snowSrc])
-          .then(function (urls) {
-            that.setData({
-              startPortraitUrl: safeDisplayUrl(urls[0]),
-              snowUrl: safeDisplayUrl(urls[1]),
-            })
-          })
-          .catch(function (err) {
-            console.error('[quiz] resolve start assets', err)
-            that.setData({ startPortraitUrl: '', snowUrl: '' })
-          })
-      }, 0)
+      // 开场图走主包本地路径，不经云换链
+      this.setData({
+        ready: true,
+        startPortraitUrl: assetUrl('dostoevsky-start.jpg'),
+        snowUrl: getSnowUrl(),
+      })
     } catch (e) {
       console.error(e)
       this.setData({ loadError: true, ready: false })
@@ -172,6 +163,8 @@ Page({
       index: 0,
       locking: false,
       comicVisible: false,
+      comicAvailable: false,
+      comicUnlocked: false,
       sessionMeetItems: [],
       revealPhase: 0,
       resultNextStep: '',
@@ -348,6 +341,10 @@ Page({
 
     var comic = getBookComic(primary)
     this.comicPack = comic
+    var comicReady = !!(comic && comic.pages && comic.pages.length)
+    var comicUnlocked = comicReady
+      ? isBookComicUnlocked(comic.bookSlug, characters)
+      : false
 
     var pid = primaryId || (primary && primary.id)
     var sessionMeetItems = buildDropItems(pid, dropId, newlySet || {}, this.byId)
@@ -379,7 +376,8 @@ Page({
       resultNextStep: primary.nextStep || '',
       axisLegend: buildAxisLegend(axes, axesMeta.axisHints || {}),
       matchPercent: similarityPercent(primary.score),
-      comicAvailable: !!(comic && comic.pages && comic.pages.length),
+      comicAvailable: comicReady,
+      comicUnlocked: comicUnlocked,
       comicTitle: comic ? '用漫画看懂《' + comic.bookTitle + '》' : '',
       shadowName: shadow.name,
       shadowTagline: shadow.epithet
@@ -464,6 +462,13 @@ Page({
     var comic = this.comicPack
     if (!comic || !comic.pages || !comic.pages.length) {
       wx.showToast({ title: '漫画暂不可用', icon: 'none' })
+      return
+    }
+    if (!isBookComicUnlocked(comic.bookSlug, characters)) {
+      wx.showToast({
+        title: '集齐《' + (comic.bookTitle || '') + '》主要人物后解锁漫画',
+        icon: 'none',
+      })
       return
     }
     var that = this

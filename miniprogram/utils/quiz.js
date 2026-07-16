@@ -8,6 +8,7 @@ const LOCAL_PLACEHOLDER = '/assets/placeholders/stavrogin.jpg'
 const LOCAL_BUNDLE = {
   'placeholders/stavrogin.jpg': true,
   'dostoevsky-start.jpg': true,
+  'scenery/petersburg-snow.jpg': true,
 }
 
 function normalizeAssetRel(path) {
@@ -17,20 +18,26 @@ function normalizeAssetRel(path) {
     .replace(/^assets\//, '')
 }
 
+function isLocalBundleRel(rel) {
+  return !!(LOCAL_BUNDLE[rel] || (rel && rel.indexOf('placeholders/') === 0))
+}
+
 function assetUrl(path) {
   if (!path) return LOCAL_PLACEHOLDER
   if (/^(cloud:\/\/|https?:\/\/)/.test(path)) return path
 
   var rel = normalizeAssetRel(path)
 
+  // 开场等主包资源优先本地，避免走云换链
+  if (isLocalBundleRel(rel)) {
+    return '/assets/' + rel
+  }
+
   if (CLOUD_ASSET_PREFIX) {
     return CLOUD_ASSET_PREFIX.replace(/\/$/, '') + '/' + rel
   }
 
-  // 未配云：主包只含占位 + 开场图，避免把 portraits/scenes 打进 2MB 限制
-  if (LOCAL_BUNDLE[rel] || rel.indexOf('placeholders/') === 0) {
-    return '/assets/' + rel
-  }
+  // 未配云：大图回落占位，避免把 portraits/scenes 打进 2MB 限制
   return LOCAL_PLACEHOLDER
 }
 

@@ -236,9 +236,9 @@
           <view class="actions-row">
             <button
               wx:if="{{comicAvailable}}"
-              class="btn btn-secondary actions-half"
+              class="btn btn-secondary actions-half {{comicUnlocked ? '' : 'is-locked'}}"
               bindtap="onOpenComic"
-            >漫画速览</button>
+            >{{comicUnlocked ? '漫画速览' : '漫画未解锁'}}</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
           <view class="result-disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。</view>

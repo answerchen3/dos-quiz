@@ -4,6 +4,7 @@ const comicsData = require('./comics-data')
 const sceneryData = require('./scenery-data')
 const enrichmentMeta = require('./enrichment-meta')
 const bookBgData = require('./book-bg-data')
+const collection = require('./collection')
 
 function resolveEnrichImage(rel, fallback) {
   if (!rel) return fallback || ''
@@ -30,6 +31,31 @@ function getBookComic(character) {
       }
     }),
   }
+}
+
+/**
+ * 全书主要人物：characters-data 中映射到该书、且非 hidden 的角色
+ * （hidden 如拉祖米欣不计入解锁门槛）
+ */
+function getMainCharacterIdsForBook(bookSlug, characters) {
+  if (!bookSlug) return []
+  var map = enrichmentMeta.characterBook || {}
+  var ids = []
+  ;(characters || []).forEach(function (c) {
+    if (!c || !c.id || c.hidden) return
+    if (map[c.id] === bookSlug) ids.push(c.id)
+  })
+  return ids
+}
+
+/** 图鉴是否已集齐该书主要人物（可解锁漫画） */
+function isBookComicUnlocked(bookSlug, characters) {
+  var ids = getMainCharacterIdsForBook(bookSlug, characters)
+  if (!ids.length) return false
+  for (var i = 0; i < ids.length; i += 1) {
+    if (!collection.isUnlocked(ids[i])) return false
+  }
+  return true
 }
 
 function getSnowUrl() {
@@ -62,6 +88,8 @@ function getBookQuizBgUrl(bookHint) {
 
 module.exports = {
   getBookComic,
+  getMainCharacterIdsForBook,
+  isBookComicUnlocked,
   getSnowUrl,
   getBookQuizBgUrl,
   bookHintToSlug,

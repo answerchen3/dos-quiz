@@ -6,10 +6,12 @@ miniprogram_npm/
 # 高清素材体积大，按 README 上传云存储，不进仓库 / 不进主包
 upload-to-cloud/
 
-# 禁止把大图再塞回小程序包（仅保留 placeholders + 开场图）
+# 禁止把大图再塞回小程序包（仅保留 placeholders + 开场图 + 雪景）
 miniprogram/assets/portraits/
 miniprogram/assets/scenes/
-miniprogram/assets/scenery/
+miniprogram/assets/scenery/**
+!miniprogram/assets/scenery/
+!miniprogram/assets/scenery/petersburg-snow.jpg
 miniprogram/assets/comics/
 miniprogram/assets/covers/
 
