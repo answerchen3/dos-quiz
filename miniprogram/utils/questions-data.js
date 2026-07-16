@@ -1,842 +1,842 @@
 module.exports = [
   {
-    id: 'q01',
-    scene: '楼梯间潮热发粘。办成大事，却要踩过一个人——你？',
-    bookHint: '《罪与罚》',
+    id: "q01",
+    scene: "楼梯间潮热发粘。办成大事，却要踩过一个人——你？",
+    bookHint: "《罪与罚》",
     options: [
       {
-        text: '先跨过去，事后再解释',
+        text: "先跨过去，事后再解释",
         flash: {
-          who: '拉斯柯尔尼科夫',
-          characterId: 'raskolnikov',
-          line: '楼梯间的空气发粘。他握紧想法——不是为钱，是为证明自己有权跨过去。',
-          image: '/assets/scenes/q01-A.jpg',
-          imageKind: 'scene',
+          who: "拉斯柯尔尼科夫",
+          characterId: "raskolnikov",
+          line: "楼梯间的空气发粘。他握紧想法——不是为钱，是为证明自己有权跨过去。",
+          image: "/assets/scenes/q01-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 },
+        axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: '停手，人不能当垫脚石',
+        text: "停手，人不能当垫脚石",
         flash: {
-          who: '索尼娅',
-          characterId: 'sonya',
-          line: '她没有争辩对错。只是伸手，把那个人从黑暗边缘轻轻拉回来。',
-          image: '/assets/scenes/q01-B.jpg',
-          imageKind: 'scene',
+          who: "索尼娅",
+          characterId: "sonya",
+          line: "她没有争辩对错。只是伸手，把那个人从黑暗边缘轻轻拉回来。",
+          image: "/assets/scenes/q01-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 3 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 3 }
       },
       {
-        text: '笑着耸肩，认真不起来',
+        text: "笑着耸肩，认真不起来",
         flash: {
-          who: '斯维德里盖洛夫',
-          characterId: 'svidrigailov',
-          line: '他笑了一下，像在看一场乏味的戏。所谓界限，不过是别人吓自己的词。',
-          image: '/assets/scenes/q01-C.jpg',
-          imageKind: 'scene',
+          who: "斯维德里盖洛夫",
+          characterId: "svidrigailov",
+          line: "他笑了一下，像在看一场乏味的戏。所谓界限，不过是别人吓自己的词。",
+          image: "/assets/scenes/q01-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 3, 虚无: 5, 自尊: 1, 热忱: 1 },
-      },
+        axes: { 理性: 3, 怜悯: 1, 激情: 3, 虚无: 5, 自尊: 1, 热忱: 1 }
+      }
     ],
-    quote: '凡是非凡的人，都有权利允许自己的良心跨过某些障碍。',
-    quoteSource: '《罪与罚》',
+    quote: "凡是非凡的人，都有权利允许自己的良心跨过某些障碍。",
+    quoteSource: "《罪与罚》"
   },
   {
-    id: 'q02',
-    scene: '腹壁温热发黏。外面在喊救命，你却觉得这里更安全——你？',
-    bookHint: '《鳄鱼》',
+    id: "q02",
+    scene: "朋友关在闷屋里，又病又倔。门外药水味——你？",
+    bookHint: "《罪与罚》",
     options: [
       {
-        text: '留下，并证明被吞是福气',
+        text: "直接闯进去，把人拉起来",
         flash: {
-          who: '斯维德里盖洛夫',
-          characterId: 'svidrigailov',
-          line: '他靠着温热的内壁，竟笑出声：外面那么吵，这里反而清静。',
-          image: '/assets/scenes/q02-A.jpg',
-          imageKind: 'scene',
+          who: "拉祖米欣",
+          characterId: "razumikhin",
+          line: "门被撞开。他骂着「你发什么疯」，一边把热汤和外套塞进那个人怀里。",
+          image: "/assets/scenes/q02-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 2, 热忱: 1 },
+        axes: { 理性: 1, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: '拼全力往外撕，哪怕更苦',
+        text: "先问清楚，再决定要不要逼",
         flash: {
-          who: '德米特里',
-          characterId: 'dmitry-karamazov',
-          line: '他用拳头砸向黑暗：关在肚子里苟活，那不叫活着。',
-          image: '/assets/scenes/q02-B.jpg',
-          imageKind: 'scene',
+          who: "波尔菲里",
+          characterId: "porfiry",
+          line: "他不急着破门。只是把椅子拉近一点，用闲聊把缝隙听出来。",
+          image: "/assets/scenes/q02-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 2, 激情: 5, 虚无: 1, 自尊: 4, 热忱: 5 },
+        axes: { 理性: 5, 怜悯: 3, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: '嘴上说挺好，夜里恨自己',
+        text: "坐在门口陪着，不催也不走",
         flash: {
-          who: '地下室人',
-          characterId: 'underground-man',
-          line: '他对空墙说「挺好」，手却掐进掌心：放弃挣扎的人，最恨自己。',
-          image: '/assets/scenes/q02-C.jpg',
-          imageKind: 'scene',
+          who: "阿辽沙",
+          characterId: "alyosha-karamazov",
+          line: "他靠着门框，不催破门。只让屋里的人知道：还有人在，不必一个人硬撑。",
+          image: "/assets/scenes/q02-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 2, 虚无: 4, 自尊: 5, 热忱: 1 },
-      },
+        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 4 }
+      }
     ],
-    quote: '人可以习惯一切，哪怕是绞刑架。',
-    quoteSource: '《死屋手记》',
+    quote: "他几乎不出门，谁来看他都像是打扰。",
+    quoteSource: "《罪与罚》"
   },
   {
-    id: 'q03',
-    scene: '笑声砸过来。大家只要开心果，不要面具后面的你——你？',
-    bookHint: '《波尔宗科夫》',
+    id: "q03",
+    scene: "婚约文书摊开，墨未干；签字换安稳——你选？",
+    bookHint: "《罪与罚》",
     options: [
       {
-        text: '继续演，至少还有位置',
+        text: "抬下巴谈条件，一步不让",
         flash: {
-          who: '老卡拉马佐夫',
-          characterId: 'fyodor-karamazov',
-          line: '他举杯大笑，把真心咽下去：你们要热闹，我就给热闹。',
-          image: '/assets/scenes/q03-A.jpg',
-          imageKind: 'scene',
+          who: "杜尼娅",
+          characterId: "dunya",
+          line: "她抬起下巴。可以谈条件，被当成筹码谈判——一步都不让。",
+          image: "/assets/scenes/q03-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 2, 激情: 3, 虚无: 5, 自尊: 1, 热忱: 2 },
+        axes: { 理性: 2, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: '撕下面具，让气氛变冷',
+        text: "为了在乎的人，我先吞下去",
         flash: {
-          who: '杜尼娅',
-          characterId: 'dunya',
-          line: '她收住笑，抬起下巴：你们可以不要我，但不能再只看见这张脸。',
-          image: '/assets/scenes/q03-B.jpg',
-          imageKind: 'scene',
+          who: "索尼娅",
+          characterId: "sonya",
+          line: "她手指掐进掌心，脸上仍平静。有人还需要她撑着。",
+          image: "/assets/scenes/q03-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 1, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: '演太久，分不清谁是我',
+        text: "笑着撕掉安排，嘲弄正经",
         flash: {
-          who: '戈利亚德金',
-          characterId: 'golyadkin-senior',
-          line: '镜里那个人还在笑。他伸手去摸脸，却摸到一层摘不下来的皮。',
-          image: '/assets/scenes/q03-C.jpg',
-          imageKind: 'scene',
+          who: "斯维德里盖洛夫",
+          characterId: "svidrigailov",
+          line: "他把纸推回去，像推开一场乏味的戏：安稳？不过是别人吓自己的词。",
+          image: "/assets/scenes/q03-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 4, 热忱: 1 },
-      },
+        axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 3, 自尊: 4, 热忱: 2 }
+      }
     ],
-    quote: '人们把他当作笑话，他自己却比嘲笑者更清醒。',
-    quoteSource: '《波尔宗科夫》',
+    quote: "她可以为家里牺牲许多，却容不得自己被当成货物来谈。",
+    quoteSource: "《罪与罚》"
   },
   {
-    id: 'q04',
-    scene: '宴席还在算计利益。你偏想做件对自己有害的蠢事——你？',
-    bookHint: '《地下室手记》',
+    id: "q04",
+    scene: "街角有人无端挨打，孩子哭声很尖——你最先怎样？",
+    bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: '故意踩偏，证明我不是琴键',
+        text: "转头就走：这种世界我不进",
         flash: {
-          who: '地下室人',
-          characterId: 'underground-man',
-          line: '他明知会疼，仍把杯子碰翻：我宁可痛苦地自由，也不做快乐的奴隶。',
-          image: '/assets/scenes/q04-A.jpg',
-          imageKind: 'scene',
+          who: "伊万",
+          characterId: "ivan-karamazov",
+          line: "眼泪在他眼前放大。他退回入场券：如果这是和谐的代价，我不进场。",
+          image: "/assets/scenes/q04-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 5, 热忱: 1 },
+        axes: { 理性: 5, 怜悯: 3, 激情: 2, 虚无: 3, 自尊: 4, 热忱: 1 }
       },
       {
-        text: '不干蠢事，用理性护住自己',
+        text: "靠近，先接住他的疼痛",
         flash: {
-          who: '波尔菲里',
-          characterId: 'porfiry',
-          line: '他轻轻放下刀叉：自由若只会自伤，那不过是换了一种镣铐。',
-          image: '/assets/scenes/q04-B.jpg',
-          imageKind: 'scene',
+          who: "阿辽沙",
+          characterId: "alyosha-karamazov",
+          line: "他蹲在尘土里，不问宇宙是否公正——先把那个人的手握住。",
+          image: "/assets/scenes/q04-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 2, 激情: 1, 虚无: 1, 自尊: 3, 热忱: 3 },
+        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 1, 热忱: 5 }
       },
       {
-        text: '想过，却退回潮湿角落怨世界',
+        text: "冲上去，先做点什么再说",
         flash: {
-          who: '地下室人',
-          characterId: 'underground-man',
-          line: '他关上门，对着潮湿墙壁骂完所有人，又骂更不敢出门的自己。',
-          image: '/assets/scenes/q04-C.jpg',
-          imageKind: 'scene',
+          who: "德米特里",
+          characterId: "dmitry-karamazov",
+          line: "他已经冲进人群，嗓门盖过哭声：谁再动手，冲我来。",
+          image: "/assets/scenes/q04-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 5, 热忱: 1 },
-      },
+        axes: { 理性: 1, 怜悯: 3, 激情: 5, 虚无: 1, 自尊: 3, 热忱: 5 }
+      }
     ],
-    quote: '我是有病的人。我太清醒了。',
-    quoteSource: '《地下室手记》',
+    quote: "我不是不接受上帝，我只是恭恭敬敬地把入场券退还。",
+    quoteSource: "《卡拉马佐夫兄弟》"
   },
   {
-    id: 'q05',
-    scene: '老人忽然攥紧你的手：你是不是在骗我？随即又糊涂——你？',
-    bookHint: '《舅舅的梦》',
+    id: "q05",
+    scene: "客厅酒气混着吼声：钱、欲望、面子搅成一团——你？",
+    bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: '趁清醒，把真相说出口',
+        text: "开玩笑搅局，嘲讽正经人",
         flash: {
-          who: '沙托夫',
-          characterId: 'shatov',
-          line: '他声音发颤，却更定：这一刻可能是最后一次——他有权知道。',
-          image: '/assets/scenes/q05-A.jpg',
-          imageKind: 'scene',
+          who: "老卡拉马佐夫",
+          characterId: "fyodor-karamazov",
+          line: "正经话被他一声浪笑打断。他举杯：尊严？先干杯再说。",
+          image: "/assets/scenes/q05-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 5 },
+        axes: { 理性: 2, 怜悯: 1, 激情: 5, 虚无: 5, 自尊: 1, 热忱: 1 }
       },
       {
-        text: '继续撒谎，护住他最后的幻觉',
+        text: "又爱又恨，把所有人卷进来",
         flash: {
-          who: '索尼娅',
-          characterId: 'sonya',
-          line: '她反握住那只手，轻声说：没有骗你。把残酷的真相咽回肚里。',
-          image: '/assets/scenes/q05-B.jpg',
-          imageKind: 'scene',
+          who: "格鲁申卡",
+          characterId: "grushenka",
+          line: "门一开，两个人都转头。她站在光里，像故意把整座房子点着。",
+          image: "/assets/scenes/q05-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 2, 怜悯: 2, 激情: 5, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: '犹豫开口，话未出口他又糊涂',
+        text: "不吭声，把轻蔑听进影子里",
         flash: {
-          who: '戈利亚德金',
-          characterId: 'golyadkin-senior',
-          line: '词语卡在喉口。等他准备好，那双眼睛已经重新失焦。',
-          image: '/assets/scenes/q05-C.jpg',
-          imageKind: 'scene',
+          who: "斯麦尔佳科夫",
+          characterId: "smerdyakov",
+          line: "他站在门边，把一句轻蔑听进心里，转身消失在阴影里。",
+          image: "/assets/scenes/q05-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 3, 激情: 1, 虚无: 4, 自尊: 3, 热忱: 1 },
-      },
+        axes: { 理性: 4, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 3, 热忱: 1 }
+      }
     ],
-    quote: '你们都在骗我，对不对？',
-    quoteSource: '《舅舅的梦》',
+    quote: "我们是卑鄙的，我们是有情欲的，我们是卡拉马佐夫！",
+    quoteSource: "《卡拉马佐夫兄弟》"
   },
   {
-    id: 'q06',
-    scene: '客厅里人人围着糊涂贵人演戏。茶凉了，你把手往哪放？',
-    bookHint: '《舅舅的梦》',
+    id: "q06",
+    scene: "桌上搁着入场券。屋里还在讲更高的和谐——你？",
+    bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: '加入演出，顺便捞点好处',
+        text: "推开椅子就走：眼泪比解释重",
         flash: {
-          who: '彼得·韦尔霍文斯基',
-          characterId: 'pyotr-verkhovensky',
-          line: '他凑近耳边奉承一句，眼睛却在找缺口：不演的人，才是异类。',
-          image: '/assets/scenes/q06-A.jpg',
-          imageKind: 'scene',
+          who: "伊万",
+          characterId: "ivan-karamazov",
+          line: "他推开椅子，指着桌上的入场券：眼泪比你们的和谐重。",
+          image: "/assets/scenes/q06-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 5, 自尊: 2, 热忱: 3 },
+        axes: { 理性: 5, 怜悯: 4, 激情: 1, 虚无: 3, 自尊: 4, 热忱: 1 }
       },
       {
-        text: '不奉承也不揭穿，冷淡旁观',
+        text: "站起来，去找还在哭的人",
         flash: {
-          who: '斯塔夫罗金',
-          characterId: 'stavrogin',
-          line: '他坐在边角喝茶，像接受献祭，却不献出自己。',
-          image: '/assets/scenes/q06-B.jpg',
-          imageKind: 'scene',
+          who: "阿辽沙",
+          characterId: "alyosha-karamazov",
+          line: "他没有赢下辩论。他只是站起来，去找那个还在哭的人。",
+          image: "/assets/scenes/q06-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 1, 虚无: 5, 自尊: 3, 热忱: 1 },
+        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: '当场撕破这荒诞的笑脸',
+        text: "听完高论，把刺默默记在心里",
         flash: {
-          who: '德米特里',
-          characterId: 'dmitry-karamazov',
-          line: '他把杯子顿在桌上：够了。虚伪的热闹比沉默更脏。',
-          image: '/assets/scenes/q06-C.jpg',
-          imageKind: 'scene',
+          who: "斯麦尔佳科夫",
+          characterId: "smerdyakov",
+          line: "他听完高论，嘴角几不可察地动了动：说归说，刺归刺。",
+          image: "/assets/scenes/q06-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 2, 激情: 5, 虚无: 1, 自尊: 4, 热忱: 4 },
-      },
+        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 3, 热忱: 1 }
+      }
     ],
-    quote: '人人都心知肚明，却仍把这场戏演到底。',
-    quoteSource: '《舅舅的梦》',
+    quote: "如果苦难是买和谐的门票，这票价我付不起。",
+    quoteSource: "《卡拉马佐夫兄弟》"
   },
   {
-    id: 'q07',
-    scene: '有人真的走近你。你渴望被看见，又怕被看穿——你？',
-    bookHint: '《地下室手记》',
+    id: "q07",
+    scene: "车站灯光刺眼。一边是濒临毁灭的人，一边是爱你的人——你？",
+    bookHint: "《白痴》",
     options: [
       {
-        text: '推开靠近的人，守住软肋',
+        text: "去托住那个快毁灭的人",
         flash: {
-          who: '地下室人',
-          characterId: 'underground-man',
-          line: '他笑着回刺一句：被看穿比被误解更可怕。门在对方面前关上。',
-          image: '/assets/scenes/q07-A.jpg',
-          imageKind: 'scene',
+          who: "梅什金",
+          characterId: "prince-myshkin",
+          line: "车站的灯光很白。他走向被议论的人，只说：我相信你——哪怕这会伤到另一个人。",
+          image: "/assets/scenes/q07-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 5, 热忱: 1 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 1, 热忱: 4 }
       },
       {
-        text: '打开一条缝，让人看见一点',
+        text: "抓住属于自己的那份爱",
         flash: {
-          who: '阿辽沙',
-          characterId: 'alyosha-karamazov',
-          line: '他没有一次交完底。只是把椅子拉近一点：也许这次，可以试。',
-          image: '/assets/scenes/q07-B.jpg',
-          imageKind: 'scene',
+          who: "阿格拉娅",
+          characterId: "aglaya",
+          line: "她抬眼像在考试：你可以谈拯救，先证明你不是把我当成旁白。",
+          image: "/assets/scenes/q07-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: '推开又拉回，把人搞疯',
+        text: "抓不住就一起沉，谁也别想要",
         flash: {
-          who: '纳斯塔霞',
-          characterId: 'nastasya',
-          line: '她抓住又松开：来吧——别靠近。渴望与羞耻在同一只手里较劲。',
-          image: '/assets/scenes/q07-C.jpg',
-          imageKind: 'scene',
+          who: "罗戈任",
+          characterId: "rogozhin",
+          line: "他的手指在桌沿捏白。他低声说：你是我的——不然谁都别想要。",
+          image: "/assets/scenes/q07-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 2, 激情: 5, 虚无: 3, 自尊: 5, 热忱: 2 },
-      },
+        axes: { 理性: 1, 怜悯: 1, 激情: 5, 虚无: 2, 自尊: 3, 热忱: 3 }
+      }
     ],
-    quote: '他渴望被看见，又在被看见的瞬间逃跑。',
-    quoteSource: '《地下室手记》',
+    quote: "美将拯救世界。",
+    quoteSource: "《白痴》"
   },
   {
-    id: 'q08',
-    scene: '舞会灯下，另一个更会来事的你先寒暄——你？',
-    bookHint: '《双重人格》',
+    id: "q08",
+    scene: "走廊笑声砸过来：美？拯救？醒醒。你还往前吗？",
+    bookHint: "《白痴》",
     options: [
       {
-        text: '越解释越乱，死守体面',
+        text: "仍走进那个人，哪怕被当傻瓜",
         flash: {
-          who: '戈利亚德金',
-          characterId: 'golyadkin-senior',
-          line: '他连连鞠躬，词语绊在舌头上：我不是那样的人——越说，缝越大。',
-          image: '/assets/scenes/q08-A.jpg',
-          imageKind: 'scene',
+          who: "梅什金",
+          characterId: "prince-myshkin",
+          line: "他红着脸，仍把那句话说完：美若不能托人，至少能让我不先变脏。",
+          image: "/assets/scenes/q08-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 2, 激情: 3, 虚无: 3, 自尊: 5, 热忱: 1 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 1, 热忱: 4 }
       },
       {
-        text: '让那个更会处事的自己上场',
+        text: "停步先审：对方够不够真",
         flash: {
-          who: '小戈利亚德金',
-          characterId: 'golyadkin-junior',
-          line: '他笑得恰到好处，抢先握手。场面站在他这边，本人却被挤到阴影里。',
-          image: '/assets/scenes/q08-B.jpg',
-          imageKind: 'scene',
+          who: "阿格拉娅",
+          characterId: "aglaya",
+          line: "她抬眼看人，像在考试：你可以谈美，先证明你不是在哄我。",
+          image: "/assets/scenes/q08-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 3, 热忱: 3 },
+        axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: '按住胸口：看清是怕，还是真有人拆台',
+        text: "笑回去：美只会把人烧疼",
         flash: {
-          who: '戈利亚德金',
-          characterId: 'golyadkin-senior',
-          line: '他按住胸口，强迫自己看清：拆台的也许不是别人，是怕。',
-          image: '/assets/scenes/q08-C.jpg',
-          imageKind: 'scene',
+          who: "纳斯塔霞",
+          characterId: "nastasya",
+          line: "她笑了一下，笑声里有刀：别用美来救我——先回答你敢不敢选我。",
+          image: "/assets/scenes/q08-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 2, 自尊: 3, 热忱: 2 },
-      },
+        axes: { 理性: 2, 怜悯: 2, 激情: 5, 虚无: 3, 自尊: 5, 热忱: 2 }
+      }
     ],
-    quote: '最怕的不是对手，是那个更会处事的自己。',
-    quoteSource: '《双重人格》',
+    quote: "有时候，人们把最干净的心叫做白痴。",
+    quoteSource: "《白痴》"
   },
   {
-    id: 'q09',
-    scene: '桌上搁着入场券。屋里还在讲更高的和谐——你的手往哪放？',
-    bookHint: '《卡拉马佐夫兄弟》',
+    id: "q09",
+    scene: "客厅里一群人围着魅力人物谈理想。茶凉了——你？",
+    bookHint: "《群魔》",
     options: [
       {
-        text: '推开椅子离场：眼泪比解释重',
+        text: "坐正中喝茶，理想堆脚边也不表态",
         flash: {
-          who: '伊万',
-          characterId: 'ivan-karamazov',
-          line: '他推开椅子，指着桌上的入场券：眼泪比你们的和谐重。',
-          image: '/assets/scenes/q09-A.jpg',
-          imageKind: 'scene',
+          who: "斯塔夫罗金",
+          characterId: "stavrogin",
+          line: "众人把理想堆到他脚边。他只微微点头，像接受献祭，却不献出自己。",
+          image: "/assets/scenes/q09-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 4, 激情: 1, 虚无: 3, 自尊: 4, 热忱: 1 },
+        axes: { 理性: 4, 怜悯: 1, 激情: 1, 虚无: 5, 自尊: 3, 热忱: 1 }
       },
       {
-        text: '站起来，去找还在哭的人',
+        text: "推动局面，把人编进棋盘",
         flash: {
-          who: '阿辽沙',
-          characterId: 'alyosha-karamazov',
-          line: '他没有赢下辩论。他只是站起来，去找那个还在哭的人。',
-          image: '/assets/scenes/q09-B.jpg',
-          imageKind: 'scene',
+          who: "彼得·韦尔霍文斯基",
+          characterId: "pyotr-verkhovensky",
+          line: "他拍拍某人的肩，像分配角色：你去点火，你去传话，他——站中间。",
+          image: "/assets/scenes/q09-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 },
+        axes: { 理性: 4, 怜悯: 1, 激情: 4, 虚无: 5, 自尊: 3, 热忱: 3 }
       },
       {
-        text: '听完高论，把刺默默记进心里',
+        text: "先问谁受伤了，热闹值不值得",
         flash: {
-          who: '斯麦尔佳科夫',
-          characterId: 'smerdyakov',
-          line: '他听完高论，嘴角几不可察地动了动：说归说，刺归刺。',
-          image: '/assets/scenes/q09-C.jpg',
-          imageKind: 'scene',
+          who: "沙托夫",
+          characterId: "shatov",
+          line: "口号正热。他却转向角落里没说话的人：这热闹，谁在付钱。",
+          image: "/assets/scenes/q09-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 3, 热忱: 1 },
-      },
+        axes: { 理性: 2, 怜悯: 4, 激情: 2, 虚无: 2, 自尊: 2, 热忱: 5 }
+      }
     ],
-    quote: '我不是不接受上帝，我只是恭恭敬敬地把入场券退还。',
-    quoteSource: '《卡拉马佐夫兄弟》',
+    quote: "人们把他当作旗帜，他自己却站在空处。",
+    quoteSource: "《群魔》"
   },
   {
-    id: 'q10',
-    scene: '你清醒知道对方空心。可一见面，狠话又碎掉——你？',
-    bookHint: '《被侮辱与被损害的》',
+    id: "q10",
+    scene: "有人声音发紧：自由若只停在嘴上，就不存在——你？",
+    bookHint: "《群魔》",
     options: [
       {
-        text: '亲手斩断，哪怕痛彻心扉',
+        text: "听完，把那句话听进心里",
         flash: {
-          who: '杜尼娅',
-          characterId: 'dunya',
-          line: '她抬起下巴，把还想伸出的手收回：清醒地爱空心人，是对自己的背叛。',
-          image: '/assets/scenes/q10-A.jpg',
-          imageKind: 'scene',
+          who: "基里洛夫",
+          characterId: "kirillov",
+          line: "他说话很快，像在跟时间赛跑：半吊子的自由，比奴役更刺耳。",
+          image: "/assets/scenes/q10-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 2 },
+        axes: { 理性: 5, 怜悯: 2, 激情: 3, 虚无: 4, 自尊: 4, 热忱: 2 }
       },
       {
-        text: '继续燃烧，不拿值不值得衡量',
+        text: "转身找下一个人：这可编进棋盘",
         flash: {
-          who: '娜塔莎',
-          characterId: 'natasha',
-          line: '她把指控都听完，眼睛仍亮：你们可以判我傻，不能替我决定我爱谁。',
-          image: '/assets/scenes/q10-B.jpg',
-          imageKind: 'scene',
+          who: "彼得·韦尔霍文斯基",
+          characterId: "pyotr-verkhovensky",
+          line: "他听完，眼睛亮了一下：好，这可以变成一件「有用」的事。",
+          image: "/assets/scenes/q10-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 4, 激情: 5, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 4, 怜悯: 2, 激情: 3, 虚无: 4, 自尊: 3, 热忱: 3 }
       },
       {
-        text: '想走，见他又全部崩塌',
+        text: "去抓一件能跪下的具体事",
         flash: {
-          who: '涅莉',
-          characterId: 'nelly',
-          line: '她退半步又停住。恨自己软弱，却更恨那双让她停下的眼睛。',
-          image: '/assets/scenes/q10-C.jpg',
-          imageKind: 'scene',
+          who: "沙托夫",
+          characterId: "shatov",
+          line: "他声音发颤，却更定：我不需要更响的口号，我需要还能信的东西。",
+          image: "/assets/scenes/q10-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 3, 激情: 4, 虚无: 3, 自尊: 4, 热忱: 2 },
-      },
+        axes: { 理性: 2, 怜悯: 4, 激情: 3, 虚无: 2, 自尊: 3, 热忱: 5 }
+      }
     ],
-    quote: '我明知他是个空心人，我还是爱他。',
-    quoteSource: '《被侮辱与被损害的》',
+    quote: "有人把自由谈得很满，却容不得自己半吊子。",
+    quoteSource: "《群魔》"
   },
   {
-    id: 'q11',
-    scene: '轮盘台发热。手段正在吞掉你想守护的人——你还赌吗？',
-    bookHint: '《赌徒》',
+    id: "q11",
+    scene: "宴席还在算计利益。你偏想做件对自己有害的蠢事——你？",
+    bookHint: "《地下室手记》",
     options: [
       {
-        text: '收手，回到最初想守护的身边',
+        text: "偏做蠢事，证明我不是琴键",
         flash: {
-          who: '索尼娅',
-          characterId: 'sonya',
-          line: '她按住对方的手：筹码可以输光，人不能再被筹码换走。',
-          image: '/assets/scenes/q11-A.jpg',
-          imageKind: 'scene',
+          who: "地下室人",
+          characterId: "underground-man",
+          line: "他笑着把杯子推远：快乐的奴隶？我宁可痛苦地自由。",
+          image: "/assets/scenes/q11-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 5, 热忱: 1 }
       },
       {
-        text: '再赌一把，也许下一轮就自由',
+        text: "不会。真正的自由要靠理性",
         flash: {
-          who: '德米特里',
-          characterId: 'dmitry-karamazov',
-          line: '他眼睛发亮，把最后一点理智推过桌沿：已经没有回头路了。',
-          image: '/assets/scenes/q11-B.jpg',
-          imageKind: 'scene',
+          who: "波尔菲里",
+          characterId: "porfiry",
+          line: "他慢慢搅着茶：跟自己作对不算自由，只是另一种被念头牵着走。",
+          image: "/assets/scenes/q11-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 1, 激情: 5, 虚无: 3, 自尊: 3, 热忱: 4 },
+        axes: { 理性: 5, 怜悯: 2, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: '分不清：为她，还是为那种心跳',
+        text: "想过，最终还是不敢，窝着恨",
         flash: {
-          who: '地下室人',
-          characterId: 'underground-man',
-          line: '他盯着旋转的红黑格：我已麻木，不知是爱她，还是爱心跳本身。',
-          image: '/assets/scenes/q11-C.jpg',
-          imageKind: 'scene',
+          who: "地下室人",
+          characterId: "underground-man",
+          line: "他对空墙比划完反击，第二天遇见对方，却连眼神都躲。",
+          image: "/assets/scenes/q11-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 5, 自尊: 2, 热忱: 1 },
-      },
+        axes: { 理性: 4, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 5, 热忱: 1 }
+      }
     ],
-    quote: '赢来的自由，有时比输更彻底地吞掉人。',
-    quoteSource: '《赌徒》',
+    quote: "人并非总是追求利益最大化的动物。",
+    quoteSource: "《地下室手记》"
   },
   {
-    id: 'q12',
-    scene: '幸福终于敲门。你竟怕它太美、怕自己不配——你？',
-    bookHint: '《脆弱的心》',
+    id: "q12",
+    scene: "桥栏冰凉，天边已白：这段相遇要散——你？",
+    bookHint: "《白夜》",
     options: [
       {
-        text: '接住它，哪怕手还在抖',
+        text: "全力投入，明知会散也要",
         flash: {
-          who: '娜斯简卡',
-          characterId: 'nastenka',
-          line: '她把门拉开一条缝：配不配从来不是问题——先让光进来。',
-          image: '/assets/scenes/q12-A.jpg',
-          imageKind: 'scene',
+          who: "白夜梦想家",
+          characterId: "dreamer",
+          line: "桥栏很凉。他把整个夏天的幻想，都押进这几个短短的夜晚。",
+          image: "/assets/scenes/q12-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 3, 激情: 3, 虚无: 1, 自尊: 2, 热忱: 5 },
+        axes: { 理性: 1, 怜悯: 3, 激情: 4, 虚无: 1, 自尊: 1, 热忱: 3 }
       },
       {
-        text: '推开试探，看它是否还回来',
+        text: "说清去向，不把人留在幻象里",
         flash: {
-          who: '阿格拉娅',
-          characterId: 'aglaya',
-          line: '她抬眼像在考试：你若经不起我推开，就别谈可靠。',
-          image: '/assets/scenes/q12-B.jpg',
-          imageKind: 'scene',
+          who: "娜斯简卡",
+          characterId: "nastenka",
+          line: "她握住对方的手：谢谢你来过，我仍要往自己的光走。",
+          image: "/assets/scenes/q12-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 },
+        axes: { 理性: 4, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 3, 热忱: 3 }
       },
       {
-        text: '在「何时失去」里耗干感受力',
+        text: "珍视这一夜，不要求它成一生",
         flash: {
-          who: '阿尔卡季',
-          characterId: 'arkady',
-          line: '幸福还在门口，他已在心里把它失去一千次——手却不敢伸。',
-          image: '/assets/scenes/q12-C.jpg',
-          imageKind: 'scene',
+          who: "娜斯简卡",
+          characterId: "nastenka",
+          line: "她把故事讲完，声音轻而清楚：美可以短，诚实必须长。",
+          image: "/assets/scenes/q12-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 2, 激情: 2, 虚无: 4, 自尊: 5, 热忱: 1 },
-      },
+        axes: { 理性: 3, 怜悯: 3, 激情: 2, 虚无: 2, 自尊: 2, 热忱: 2 }
+      }
     ],
-    quote: '有人害怕的不是不幸，而是自己配不上突然到来的幸福。',
-    quoteSource: '《脆弱的心》',
+    quote: "我是个幻想家。我自己编造完整的生活。",
+    quoteSource: "《白夜》"
   },
   {
-    id: 'q13',
-    scene: '笼门开了。外面大得发晕，你竟想缩回去——你？',
-    bookHint: '《死屋手记》',
+    id: "q13",
+    scene: "钱很紧，窗缝灌风，还想守体面——你怎么过？",
+    bookHint: "《穷人》",
     options: [
       {
-        text: '拥抱自由，害怕也往前',
+        text: "省自己，把温柔留给在乎的人",
         flash: {
-          who: '阿列伊',
-          characterId: 'alei',
-          line: '他踏出第一步，声音很轻：缩回笼子只是暂时舒服，长远是更大的毁灭。',
-          image: '/assets/scenes/q13-A.jpg',
-          imageKind: 'scene',
+          who: "杰武什金",
+          characterId: "makar-devushkin",
+          line: "他搓着手写完整的问候。茶淡了没关系，字必须端正。",
+          image: "/assets/scenes/q13-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 5 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 3, 热忱: 4 }
       },
       {
-        text: '退回牢笼，求人告诉我该做什么',
+        text: "领受善意，但不把命运交人安排",
         flash: {
-          who: '斯维德里盖洛夫',
-          characterId: 'svidrigailov',
-          line: '他笑着退半步：外面太无边了。有人安排日子，至少不会失眠。',
-          image: '/assets/scenes/q13-B.jpg',
-          imageKind: 'scene',
+          who: "瓦尔瓦拉",
+          characterId: "varvara-dobroselova",
+          line: "她回信时写得很暖，也写得很清：感谢你，我的路要我自己走。",
+          image: "/assets/scenes/q13-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 1, 虚无: 5, 自尊: 2, 热忱: 1 },
+        axes: { 理性: 4, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: '理智往前，身体每秒想逃回',
+        text: "把苦写成礼貌，绝不在信里哭穷",
         flash: {
-          who: '亚历山大·彼得罗维奇',
-          characterId: 'alexander-petrovich',
-          line: '他记下这种撕裂：知道自由好，却仍听见号子里那种稳定的铃响。',
-          image: '/assets/scenes/q13-C.jpg',
-          imageKind: 'scene',
+          who: "杰武什金",
+          characterId: "makar-devushkin",
+          line: "他改掉一句诉苦，换上天气与问好。体面，是他最后的制服。",
+          image: "/assets/scenes/q13-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 3, 自尊: 4, 热忱: 2 },
-      },
+        axes: { 理性: 2, 怜悯: 4, 激情: 1, 虚无: 1, 自尊: 4, 热忱: 3 }
+      }
     ],
-    quote: '人可以习惯一切，哪怕是绞刑架。',
-    quoteSource: '《死屋手记》',
+    quote: "即使只剩几戈比，信里也还要写得体面、温柔。",
+    quoteSource: "《穷人》"
   },
   {
-    id: 'q14',
-    scene: '最亲近的人伤过你。原谅、报复，或用宽容折磨——你选？',
-    bookHint: '《永久的丈夫》',
+    id: "q14",
+    scene: "镜子起雾，领结勒住喉：明天要见人——你靠什么站直？",
+    bookHint: "《少年》",
     options: [
       {
-        text: '彻底原谅，各自走开',
+        text: "先成为名片上的那种人",
         flash: {
-          who: '阿辽沙',
-          characterId: 'alyosha-karamazov',
-          line: '他松开拳头：纠缠只会让伤口更湿。放下，各自走路。',
-          image: '/assets/scenes/q14-A.jpg',
-          imageKind: 'scene',
+          who: "阿尔卡季",
+          characterId: "arkady",
+          line: "他把领结系紧，像系住一个即将登场的新身份。",
+          image: "/assets/scenes/q14-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 3, 怜悯: 1, 激情: 3, 虚无: 1, 自尊: 5, 热忱: 5 }
       },
       {
-        text: '暗中报复，让他也尝尝滋味',
+        text: "谈吐与视野，让人仰望",
         flash: {
-          who: '罗戈任',
-          characterId: 'rogozhin',
-          line: '他的手指在桌沿捏白：表面宽容是虚伪的——我会等一个时机。',
-          image: '/assets/scenes/q14-B.jpg',
-          imageKind: 'scene',
+          who: "韦尔西洛夫",
+          characterId: "versilov",
+          line: "他说话不紧不慢，房间像被打开一扇更大的窗——人却看不清他站在哪。",
+          image: "/assets/scenes/q14-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 1, 激情: 5, 虚无: 3, 自尊: 4, 热忱: 2 },
+        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 2, 自尊: 4, 热忱: 2 }
       },
       {
-        text: '用「原谅」当武器，让他永背愧疚',
+        text: "被需要，关键时刻我安静地在",
         flash: {
-          who: '斯维德里盖洛夫',
-          characterId: 'svidrigailov',
-          line: '他温和地拍拍对方肩膀：我不报复。我的宽容，会比刀子更久。',
-          image: '/assets/scenes/q14-C.jpg',
-          imageKind: 'scene',
+          who: "马卡尔",
+          characterId: "makar",
+          line: "他不多话。只是把一件小事做好，让慌乱的人肩上轻一点。",
+          image: "/assets/scenes/q14-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 4, 热忱: 1 },
-      },
+        axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
+      }
     ],
-    quote: '最毒的宽恕，是让对方永远活在你的慈悲里。',
-    quoteSource: '《永久的丈夫》',
+    quote: "我的主意是成为某种人，好让出身闭嘴。",
+    quoteSource: "《少年》"
   },
   {
-    id: 'q15',
-    scene: '门缝里有神秘气味。你知会被吞噬，却更想靠近——你？',
-    bookHint: '《女房东》',
+    id: "q15",
+    scene: "有人坐到你旁边，不讲话，只把热茶推过来——你？",
+    bookHint: "《少年》",
     options: [
       {
-        text: '飞蛾扑火，危险本身就是燃料',
+        text: "收下，改天把棉衣递出去也不解释",
         flash: {
-          who: '罗戈任',
-          characterId: 'rogozhin',
-          line: '他低声说：你是我的——不然谁都别想要。火焰比安全更像活着。',
-          image: '/assets/scenes/q15-A.jpg',
-          imageKind: 'scene',
+          who: "马卡尔",
+          characterId: "makar",
+          line: "他点点头，像把一件旧棉衣递过来：穿上就行，不必谢。",
+          image: "/assets/scenes/q15-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 1, 激情: 5, 虚无: 3, 自尊: 3, 热忱: 3 },
+        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: '保持距离，真正的爱不该毁灭人',
+        text: "感激，却更急着证明自己配得上",
         flash: {
-          who: '杜尼娅',
-          characterId: 'dunya',
-          line: '她关上门，脊背仍发烫：被吞噬不是爱，是投降。',
-          image: '/assets/scenes/q15-B.jpg',
-          imageKind: 'scene',
+          who: "阿尔卡季",
+          characterId: "arkady",
+          line: "他收下帮助，耳朵却发烫：我不能一直是被人扶的那个。",
+          image: "/assets/scenes/q15-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 2 },
+        axes: { 理性: 3, 怜悯: 2, 激情: 3, 虚无: 1, 自尊: 5, 热忱: 4 }
       },
       {
-        text: '越痛越往前，分不清算不算爱',
+        text: "感动，随后用更复杂的解释稀释它",
         flash: {
-          who: '涅托奇卡',
-          characterId: 'netochka',
-          line: '她抓住身边的人不放——像抓住自己还能被爱的证据，哪怕手被烫红。',
-          image: '/assets/scenes/q15-C.jpg',
-          imageKind: 'scene',
+          who: "韦尔西洛夫",
+          characterId: "versilov",
+          line: "他微笑致谢，随即把善谈成「人类情感的某种形式」——暖意淡了一层。",
+          image: "/assets/scenes/q15-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 4, 激情: 5, 虚无: 2, 自尊: 3, 热忱: 2 },
-      },
+        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 3, 自尊: 3, 热忱: 2 }
+      }
     ],
-    quote: '有人从自我折磨里，辨认出一种病态的乐趣。',
-    quoteSource: '《女房东》',
+    quote: "有些扶持不响，却比演说更托得住人。",
+    quoteSource: "《少年》"
   },
   {
-    id: 'q16',
-    scene: '对方哭着求你别再对她好。你的付出，已是自己活着的证据——你？',
-    bookHint: '《穷人》',
+    id: "q16",
+    scene: "旧门在记忆里砰地关上，胸口发紧——你下意识会？",
+    bookHint: "《涅托奇卡·涅兹瓦诺娃》",
     options: [
       {
-        text: '停止付出，先把自己捡回来',
+        text: "把音量拧大，更死死抓住人",
         flash: {
-          who: '瓦尔瓦拉',
-          characterId: 'varvara-dobroselova',
-          line: '她回信写得很清：若善意让彼此耗尽，那就该停——路要自己走。',
-          image: '/assets/scenes/q16-A.jpg',
-          imageKind: 'scene',
+          who: "涅托奇卡",
+          characterId: "netochka",
+          line: "她把音量拧到最大，抓住身边的人不放——像抓住自己还能被爱的证据。",
+          image: "/assets/scenes/q16-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 3 },
+        axes: { 理性: 1, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 4, 热忱: 2 }
       },
       {
-        text: '继续付出，停下来等于让我死去',
+        text: "昂着头，绝不容自己变普通",
         flash: {
-          who: '杰武什金',
-          characterId: 'makar-devushkin',
-          line: '他搓着手改掉诉苦：不要剥夺我唯一活着的意义——就是照顾你。',
-          image: '/assets/scenes/q16-B.jpg',
-          imageKind: 'scene',
+          who: "叶菲莫夫",
+          characterId: "yefimov",
+          line: "掌声退去后，他仍昂着头。跌落不可原谅——尤其对自己。",
+          image: "/assets/scenes/q16-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 5 },
+        axes: { 理性: 2, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 1 }
       },
       {
-        text: '想停，自我却已全系在他身上',
+        text: "看见别人抖，自己先伸手",
         flash: {
-          who: '杰武什金',
-          characterId: 'makar-devushkin',
-          line: '笔停在纸上发抖。停下来，他就什么都没有了——包括自己。',
-          image: '/assets/scenes/q16-C.jpg',
-          imageKind: 'scene',
+          who: "涅托奇卡",
+          characterId: "netochka",
+          line: "她看见别人发抖，会先发抖。伤过的人，才能把别人的疼读出声。",
+          image: "/assets/scenes/q16-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 4, 激情: 3, 虚无: 3, 自尊: 4, 热忱: 2 },
-      },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 3 }
+      }
     ],
-    quote: '不要剥夺我唯一活下去的意义——就是照顾你。',
-    quoteSource: '《穷人》',
+    quote: "她记得每一种屈辱，也记得音乐怎样把她托起来。",
+    quoteSource: "《涅托奇卡·涅兹瓦诺娃》"
   },
   {
-    id: 'q17',
-    scene: '你按「为你好」去救一个人。对方越沉默，你越用力——你？',
-    bookHint: '《温顺的女性》',
+    id: "q17",
+    scene: "你清醒知道对方空心。可一见面，狠话又碎掉——你？",
+    bookHint: "《被侮辱与被损害的》",
     options: [
       {
-        text: '停下来听：我的帮助里可有傲慢',
+        text: "狠心止损，亲手斩断它",
         flash: {
-          who: '阿辽沙',
-          characterId: 'alyosha-karamazov',
-          line: '他放下说教的手：也许我从未问过——你到底想要什么。',
-          image: '/assets/scenes/q17-A.jpg',
-          imageKind: 'scene',
+          who: "涅莉",
+          characterId: "nelly",
+          line: "有人递来面包与同情。她退半步：穷可以，被可怜不行——爱也不行，若它再羞辱我一次。",
+          image: "/assets/scenes/q17-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 4 },
+        axes: { 理性: 4, 怜悯: 2, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: '寒心抽身：有些人扶不上墙',
+        text: "继续燃烧，心甘情愿一无所有",
         flash: {
-          who: '叶菲莫夫',
-          characterId: 'yefimov',
-          line: '他昂着头退开：我付出那么多，换来冷漠——那就烂在原地吧。',
-          image: '/assets/scenes/q17-B.jpg',
-          imageKind: 'scene',
+          who: "娜塔莎",
+          characterId: "natasha",
+          line: "她把指控都听完，眼睛仍亮：你们可以判我傻，不能替我决定我爱谁。",
+          image: "/assets/scenes/q17-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 4, 自尊: 5, 热忱: 1 },
+        axes: { 理性: 1, 怜悯: 4, 激情: 5, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: '越抗拒越救，不知何时该停',
+        text: "想走，见他又全部崩塌",
         flash: {
-          who: '梅什金',
-          characterId: 'prince-myshkin',
-          line: '他红着脸仍往前伸手：我确实想帮你——可你退一步，我跟两步。',
-          image: '/assets/scenes/q17-C.jpg',
-          imageKind: 'scene',
+          who: "娜塔莎",
+          characterId: "natasha",
+          line: "她每天都想结束，每次见面又全部崩塌。恨他，更恨自己的软弱。",
+          image: "/assets/scenes/q17-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 5, 激情: 3, 虚无: 1, 自尊: 1, 热忱: 5 },
-      },
+        axes: { 理性: 2, 怜悯: 3, 激情: 4, 虚无: 3, 自尊: 3, 热忱: 2 }
+      }
     ],
-    quote: '我是带着拯救她的意图娶她的。',
-    quoteSource: '《温顺的女性》',
+    quote: "我明知他是个空心人，我还是爱他。",
+    quoteSource: "《被侮辱与被损害的》"
   },
   {
-    id: 'q18',
-    scene: '一个理念握着你走路。你渐渐分不清：是你在用它，还是它在用你？',
-    bookHint: '跨书',
+    id: "q18",
+    scene: "铁床、号子味、日子按铃响切段。你靠什么撑住？",
+    bookHint: "《死屋手记》",
     options: [
       {
-        text: '停下来审视：别让工具变成牢笼',
+        text: "把号子里的人写进本子",
         flash: {
-          who: '波尔菲里',
-          characterId: 'porfiry',
-          line: '他把椅子拉近一点：理念若让你失去选择，它就不再是你的刀。',
-          image: '/assets/scenes/q18-A.jpg',
-          imageKind: 'scene',
+          who: "亚历山大·彼得罗维奇",
+          characterId: "alexander-petrovich",
+          line: "他在嘈杂里仍看人：残暴、滑稽、善意——一律入眼，像抓住最后的秩序。",
+          image: "/assets/scenes/q18-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 3, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 3 },
+        axes: { 理性: 5, 怜悯: 3, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 3 }
       },
       {
-        text: '继续被推着走，停即否定过去',
+        text: "半块面包递出去，手还可以抖",
         flash: {
-          who: '拉斯柯尔尼科夫',
-          characterId: 'raskolnikov',
-          line: '他握紧那想法，像握紧自己：它已经定义了我——停下等于否定全部。',
-          image: '/assets/scenes/q18-B.jpg',
-          imageKind: 'scene',
+          who: "阿列伊",
+          characterId: "alei",
+          line: "他分享半块面包，声音很轻。粗粝里这一点礼貌，让周围也慢半拍。",
+          image: "/assets/scenes/q18-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 1, 激情: 4, 虚无: 3, 自尊: 5, 热忱: 4 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: '分不清谁在思考，谁在被思考',
+        text: "跟着学字，把明天也排进号子里",
         flash: {
-          who: '斯塔夫罗金',
-          characterId: 'stavrogin',
-          line: '众人把理想堆到他脚边。他只微微点头——不知是他站着，还是思想站着。',
-          image: '/assets/scenes/q18-C.jpg',
-          imageKind: 'scene',
+          who: "阿列伊",
+          characterId: "alei",
+          line: "他跟着学字，学得认真。铁窗外面是远方，铁窗里面也可以有明天。",
+          image: "/assets/scenes/q18-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 5, 怜悯: 1, 激情: 1, 虚无: 5, 自尊: 3, 热忱: 1 },
-      },
+        axes: { 理性: 3, 怜悯: 4, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 4 }
+      }
     ],
-    quote: '思想有自己活生生的命运，它使人疯狂，把人逼向极端。',
-    quoteSource: '跨书',
+    quote: "人可以失去自由，却不必立刻失去人的样子。",
+    quoteSource: "《死屋手记》"
   },
   {
-    id: 'q19',
-    scene: '桥栏冰凉，天边已白：这段相遇要散——你？',
-    bookHint: '《白夜》',
+    id: "q19",
+    scene: "舞会灯下，另一个更会来事的你先寒暄——你？",
+    bookHint: "《双重人格》",
     options: [
       {
-        text: '全力投入，明知会散也要',
+        text: "越解释越乱，死守体面",
         flash: {
-          who: '白夜梦想家',
-          characterId: 'dreamer',
-          line: '桥栏很凉。他把整个夏天的幻想，都押进这几个短短的夜晚。',
-          image: '/assets/scenes/q19-A.jpg',
-          imageKind: 'scene',
+          who: "戈利亚德金",
+          characterId: "golyadkin-senior",
+          line: "他连连鞠躬，词语绊在舌头上：我不是那样的人——越说，缝越大。",
+          image: "/assets/scenes/q19-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 3, 激情: 4, 虚无: 1, 自尊: 1, 热忱: 3 },
+        axes: { 理性: 2, 怜悯: 2, 激情: 3, 虚无: 3, 自尊: 5, 热忱: 1 }
       },
       {
-        text: '说清去向，不把人留在幻象里',
+        text: "让那个更会来事的自己先上场",
         flash: {
-          who: '娜斯简卡',
-          characterId: 'nastenka',
-          line: '她握住对方的手：谢谢你来过，我仍要往自己的光走。',
-          image: '/assets/scenes/q19-B.jpg',
-          imageKind: 'scene',
+          who: "小戈利亚德金",
+          characterId: "golyadkin-junior",
+          line: "他笑得恰到好处，抢先握手寒暄。场面站在他这边，本人却被挤到阴影里。",
+          image: "/assets/scenes/q19-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 3, 热忱: 3 },
+        axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 3, 热忱: 3 }
       },
       {
-        text: '珍视这一夜，不要求它成为一生',
+        text: "按住胸口：看清是怕还是拆台",
         flash: {
-          who: '娜斯简卡',
-          characterId: 'nastenka',
-          line: '她把故事讲完，声音轻而清楚：美可以短，诚实必须长。',
-          image: '/assets/scenes/q19-C.jpg',
-          imageKind: 'scene',
+          who: "戈利亚德金",
+          characterId: "golyadkin-senior",
+          line: "他按住胸口，强迫自己看清：拆台的也许不是别人，是怕。",
+          image: "/assets/scenes/q19-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 4, 怜悯: 4, 激情: 2, 虚无: 2, 自尊: 3, 热忱: 2 },
-      },
+        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 2, 自尊: 3, 热忱: 2 }
+      }
     ],
-    quote: '我是个幻想家。我自己编造完整的生活。',
-    quoteSource: '《白夜》',
+    quote: "最怕的不是对手，是那个更会处事的自己。",
+    quoteSource: "《双重人格》"
   },
   {
-    id: 'q20',
-    scene: '车站灯光刺眼。一边是濒临毁灭的人，一边是爱你的人——你？',
-    bookHint: '《白痴》',
+    id: "q20",
+    scene: "过错还坐在房间角落。夜里你怎么跟它待着？",
+    bookHint: "跨书",
     options: [
       {
-        text: '走向苦难那边，哪怕伤了爱你的人',
+        text: "整夜审讯自己，睡不着",
         flash: {
-          who: '梅什金',
-          characterId: 'prince-myshkin',
-          line: '车站的灯光很白。他走向那个被所有人议论的人，只说：我相信你。',
-          image: '/assets/scenes/q20-A.jpg',
-          imageKind: 'scene',
+          who: "拉斯柯尔尼科夫",
+          characterId: "raskolnikov",
+          line: "夜里更响的，是良心在狭小房间里的脚步声——理念已落地，人还醒着。",
+          image: "/assets/scenes/q20-A.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 1, 热忱: 4 },
+        axes: { 理性: 5, 怜悯: 2, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: '抓住属于自己的爱，不再去拯救',
+        text: "伸手过去：路还长，我不让你一个人站着",
         flash: {
-          who: '阿格拉娅',
-          characterId: 'aglaya',
-          line: '她抬眼看人，像在考试：你可以谈拯救，先证明你敢选我。',
-          image: '/assets/scenes/q20-B.jpg',
-          imageKind: 'scene',
+          who: "索尼娅",
+          characterId: "sonya",
+          line: "她不谈免罪。她只是伸手：你若还站得住，我不让你一个人站着。",
+          image: "/assets/scenes/q20-B.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 },
+        axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: '停在中间，任何选择都会伤人',
+        text: "耸肩：不想再陪它演戏",
         flash: {
-          who: '纳斯塔霞',
-          characterId: 'nastasya',
-          line: '她笑了一下，笑声里有刀：别用美来救我——你根本选不了。',
-          image: '/assets/scenes/q20-C.jpg',
-          imageKind: 'scene',
+          who: "斯维德里盖洛夫",
+          characterId: "svidrigailov",
+          line: "他耸耸肩：过错？不过是故事的一种写法。他打了个哈欠，不想再陪它演戏。",
+          image: "/assets/scenes/q20-C.jpg",
+          imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 2, 激情: 4, 虚无: 4, 自尊: 4, 热忱: 1 },
-      },
+        axes: { 理性: 3, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 2, 热忱: 1 }
+      }
     ],
-    quote: '美将拯救世界。',
-    quoteSource: '《白痴》',
-  },
-]
+    quote: "人与过错相处的方式，往往比过错本身更像他是谁。",
+    quoteSource: "跨书"
+  }
+];
