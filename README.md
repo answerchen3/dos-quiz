@@ -94,6 +94,7 @@ dos-quiz/
     assets/             # 仅占位 + 开场图
   cloudfunctions/
   upload-to-cloud/      # 高清资源，上传云存储，勿打进包
+  workshop/             # 开发空间（策展/prompt/草稿），不进主包
 ```
 
 ## 参考
