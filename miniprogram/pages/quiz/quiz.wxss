@@ -290,10 +290,17 @@
 }
 
 .disclaimer {
-  margin: 0 0 20rpx;
+  margin: 0 0 12rpx;
   color: rgba(179, 154, 122, 0.75);
   font-size: 22rpx;
   line-height: 1.6;
+}
+
+.privacy-note {
+  margin: 0 0 20rpx;
+  color: rgba(168, 148, 120, 0.62);
+  font-size: 20rpx;
+  line-height: 1.55;
 }
 
 .quiz-body,
@@ -1116,13 +1123,29 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 20rpx;
+  margin-bottom: 12rpx;
+  gap: 16rpx;
 }
 
 .session-meet-title {
   color: #f3e6d0;
   font-size: 30rpx;
   font-family: "Songti SC", "STSong", Georgia, serif;
+}
+
+.session-meet-link {
+  color: #d4b483;
+  font-size: 22rpx;
+  flex-shrink: 0;
+  text-decoration: underline;
+  text-underline-offset: 4rpx;
+}
+
+.session-meet-rule {
+  color: rgba(168, 148, 120, 0.88);
+  font-size: 22rpx;
+  line-height: 1.5;
+  margin-bottom: 18rpx;
 }
 
 .session-meet-sub {
@@ -1191,6 +1214,30 @@
   text-align: center;
   white-space: normal;
   line-height: 1.35;
+}
+
+.session-meet-badge {
+  margin-top: 6rpx;
+  color: rgba(168, 148, 120, 0.85);
+  font-size: 18rpx;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+.shadow-note {
+  margin-top: 14rpx;
+  color: rgba(168, 148, 120, 0.75);
+  font-size: 20rpx;
+  line-height: 1.45;
+}
+
+.result-disclaimer {
+  margin-top: 24rpx;
+  text-align: center;
+  color: rgba(168, 148, 120, 0.72);
+  font-size: 20rpx;
+  line-height: 1.5;
 }
 
 .gallery-overlay {

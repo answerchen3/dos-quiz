@@ -17,6 +17,14 @@ Page({
 
   onShow() {
     this.refresh()
+    var openOnce = false
+    try {
+      openOnce = !!wx.getStorageSync('dos.openGalleryOnce')
+      if (openOnce) wx.removeStorageSync('dos.openGalleryOnce')
+    } catch (e) {}
+    if (openOnce) {
+      this.onOpenGallery()
+    }
   },
 
   refresh() {

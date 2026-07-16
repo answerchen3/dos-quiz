@@ -51,7 +51,8 @@
           </view>
         </view>
         <view class="start-footer">
-          <view class="disclaimer">娱乐向自我探索，非专业心理诊断。耗时约 4–5 分钟。</view>
+          <view class="disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。约 4–5 分钟。</view>
+          <view class="privacy-note">云能力仅用于加载题图素材；图鉴保存在本机；保存长图时才会申请相册权限。</view>
           <button class="btn btn-primary" bindtap="onStart">开始测试</button>
         </view>
       </view>
@@ -199,6 +200,7 @@
           <view class="shadow-name">{{shadowName}}</view>
           <view class="shadow-tagline">{{shadowTagline}}</view>
           <view class="shadow-summary">{{shadowSummary}}</view>
+          <view class="shadow-note">{{shadowNote}}</view>
         </view>
 
         <view
@@ -207,7 +209,9 @@
         >
           <view class="session-meet-head">
             <view class="session-meet-title">本场掉落</view>
+            <view class="session-meet-link" bindtap="onOpenCollection">写入图鉴 · 去看看</view>
           </view>
+          <view class="session-meet-rule" wx:if="{{sessionMeetRule}}">{{sessionMeetRule}}</view>
           <scroll-view class="session-meet-scroll" scroll-x enable-flex>
             <view
               class="session-meet-item"
@@ -219,6 +223,7 @@
                 <text class="session-meet-new" wx:if="{{item.isNew}}">新</text>
               </view>
               <text class="session-meet-name">{{item.name}}</text>
+              <text class="session-meet-badge">{{item.badge}}</text>
             </view>
           </scroll-view>
         </view>
@@ -236,6 +241,7 @@
             >漫画速览</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
+          <view class="result-disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。</view>
         </view>
         </scroll-view>
       </view>

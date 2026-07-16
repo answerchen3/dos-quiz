@@ -27,18 +27,29 @@ function pad2(n) {
   return n < 10 ? '0' + n : String(n)
 }
 
-function buildDropItems(dropId, newlySet, byId) {
-  if (!dropId) return []
-  var c = byId[dropId]
-  if (!c) return []
-  return [
-    {
-      id: dropId,
+function buildDropItems(primaryId, dropId, newlySet, byId) {
+  var items = []
+  var seen = {}
+
+  function pushId(id, kind) {
+    if (!id || seen[id]) return
+    var c = byId[id]
+    if (!c) return
+    seen[id] = true
+    var isNew = !!newlySet[id]
+    items.push({
+      id: id,
       name: c.name,
       image: characterImage(c),
-      isNew: !!newlySet[dropId],
-    },
-  ]
+      isNew: isNew,
+      kind: kind,
+      badge: isNew ? '新入册' : '再遇 · 已在图鉴',
+    })
+  }
+
+  pushId(primaryId, 'primary')
+  if (dropId && dropId !== primaryId) pushId(dropId, 'drop')
+  return items
 }
 
 Page({
@@ -85,6 +96,8 @@ Page({
     shadowTagline: '',
     shadowSummary: '',
     sessionMeetItems: [],
+    sessionMeetRule: '',
+    shadowNote: '暗影仅对照、不进图鉴',
     revealPhase: 0,
     radarImage: '',
     sharing: false,
@@ -298,7 +311,7 @@ Page({
       newlySet[id] = true
     })
 
-    this.renderResult(newlySet, persist.dropId)
+    this.renderResult(newlySet, persist.dropId, persist.primaryId)
     this.setData({ view: 'result', revealPhase: 0, radarImage: '' })
     this.scheduleReveal()
     var that = this
@@ -320,7 +333,7 @@ Page({
     })
   },
 
-  renderResult(newlySet, dropId) {
+  renderResult(newlySet, dropId, primaryId) {
     var primary = this.primary
     var shadow = this.shadow
     var axes = this.userAxes || primary.axes || {}
@@ -336,7 +349,15 @@ Page({
     var comic = getBookComic(primary)
     this.comicPack = comic
 
-    var sessionMeetItems = buildDropItems(dropId, newlySet || {}, this.byId)
+    var pid = primaryId || (primary && primary.id)
+    var sessionMeetItems = buildDropItems(pid, dropId, newlySet || {}, this.byId)
+    var newCount = sessionMeetItems.filter(function (item) {
+      return item.isNew
+    }).length
+    var sessionMeetRule =
+      '主人格必入册，并随机掉落 1 张；本场新入册 ' +
+      newCount +
+      ' 张。暗影仅对照、不进图鉴。'
     var resultCloud = characterImage(primary)
     var that = this
 
@@ -365,7 +386,9 @@ Page({
         ? shadow.epithet + ' · ' + shadow.tagline
         : shadow.tagline,
       shadowSummary: shadow.summary,
+      shadowNote: '暗影仅对照、不进图鉴',
       sessionMeetItems: sessionMeetItems,
+      sessionMeetRule: sessionMeetRule,
     })
 
     var dropCloud = sessionMeetItems.map(function (item) {
@@ -387,6 +410,13 @@ Page({
         console.error('[quiz] resolve result images', err)
         that.setData({ resultImage: '' })
       })
+  },
+
+  onOpenCollection() {
+    try {
+      wx.setStorageSync('dos.openGalleryOnce', 1)
+    } catch (e) {}
+    wx.switchTab({ url: '/pages/profile/profile' })
   },
 
   drawRadar() {
