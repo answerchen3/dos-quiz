@@ -234,10 +234,10 @@
             <button class="btn btn-secondary actions-half" bindtap="onShare" loading="{{sharing}}">保存长图</button>
           </view>
           <view class="actions-row">
-            <button class="btn btn-secondary actions-half" bindtap="onOpenCollection">图鉴 · 漫画</button>
+            <button class="btn btn-secondary actions-half" bindtap="onOpenComicGallery">图鉴 · 漫画</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
-          <view class="result-comic-hint">集齐一书主要人物后，可在「我的 · 图鉴」阅读原著漫画。</view>
+          <view class="result-comic-hint">集齐一书主要人物后，可在「我的 · 漫画图鉴」阅读原著漫画。</view>
           <view class="result-disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。</view>
         </view>
         </scroll-view>

@@ -391,6 +391,13 @@ Page({
     wx.switchTab({ url: '/pages/profile/profile' })
   },
 
+  onOpenComicGallery() {
+    try {
+      wx.setStorageSync('dos.openComicGalleryOnce', 1)
+    } catch (e) {}
+    wx.switchTab({ url: '/pages/profile/profile' })
+  },
+
   drawRadar() {
     var userAxes = this.userAxes || {}
     var charAxes = (this.primary && this.primary.axes) || {}

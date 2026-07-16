@@ -13,9 +13,11 @@ Page({
     collectionUnlocked: 0,
     collectionTotal: 0,
     collectionProgressText: '',
+    comicProgressText: '',
     hasCollection: false,
     lastResult: null,
     galleryVisible: false,
+    comicGalleryVisible: false,
     galleryItems: [],
     galleryDetail: null,
     comicBooks: [],
@@ -27,12 +29,17 @@ Page({
 
   onShow() {
     this.refresh()
-    var openOnce = false
+    var openGalleryOnce = false
+    var openComicOnce = false
     try {
-      openOnce = !!wx.getStorageSync('dos.openGalleryOnce')
-      if (openOnce) wx.removeStorageSync('dos.openGalleryOnce')
+      openGalleryOnce = !!wx.getStorageSync('dos.openGalleryOnce')
+      if (openGalleryOnce) wx.removeStorageSync('dos.openGalleryOnce')
+      openComicOnce = !!wx.getStorageSync('dos.openComicGalleryOnce')
+      if (openComicOnce) wx.removeStorageSync('dos.openComicGalleryOnce')
     } catch (e) {}
-    if (openOnce) {
+    if (openComicOnce) {
+      this.onOpenComicGallery()
+    } else if (openGalleryOnce) {
       this.onOpenGallery()
     }
   },
@@ -40,6 +47,11 @@ Page({
   refresh() {
     var progress = collection.getProgress(characters.length)
     var state = collection.getState()
+    var comicBooks = listBookComicsProgress(characters)
+    var comicUnlocked = 0
+    for (var c = 0; c < comicBooks.length; c += 1) {
+      if (comicBooks[c].unlocked) comicUnlocked += 1
+    }
     var lastResult = null
     var lastCloud = ''
     if (state.lastResult && state.lastResult.primaryId) {
@@ -67,9 +79,10 @@ Page({
       collectionUnlocked: progress.unlocked,
       collectionTotal: progress.total,
       collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
+      comicProgressText: '已解锁 ' + comicUnlocked + ' / ' + comicBooks.length + ' 部',
       hasCollection: progress.unlocked > 0,
       lastResult: lastResult,
-      comicBooks: listBookComicsProgress(characters),
+      comicBooks: comicBooks,
     })
 
     if (!lastResult || !lastCloud) return
@@ -98,13 +111,13 @@ Page({
     var that = this
     this.setData({
       galleryVisible: true,
+      comicGalleryVisible: false,
       galleryItems: items.map(function (item) {
         return Object.assign({}, item, {
           image: item.unlocked ? '' : item.image,
         })
       }),
       galleryDetail: null,
-      comicBooks: listBookComicsProgress(characters),
     })
     var cloudList = items.map(function (item) {
       return item.unlocked ? item.image : ''
@@ -136,6 +149,19 @@ Page({
       galleryVisible: false,
       galleryDetail: null,
     })
+  },
+
+  onOpenComicGallery() {
+    this.setData({
+      comicGalleryVisible: true,
+      galleryVisible: false,
+      galleryDetail: null,
+      comicBooks: listBookComicsProgress(characters),
+    })
+  },
+
+  onCloseComicGallery() {
+    this.setData({ comicGalleryVisible: false })
   },
 
   onTapGalleryItem(e) {
