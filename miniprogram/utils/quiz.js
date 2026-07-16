@@ -64,11 +64,26 @@ function computeAxisScores(questions, answers) {
   return scores
 }
 
+/**
+ * 按轴标定区间映射到 0–100（替代旧全局 REF=65）。
+ * 区间取自随机答题 Monte Carlo 的约 p01–p99 原始分，用于缓解同质化；
+ * 越界钳制到 0/100。合入前以 workshop 自检脚本 ≥5k 门禁校验。
+ */
+const AXIS_NORM_BOUNDS = {
+  理性: { min: 49, max: 72 },
+  怜悯: { min: 42, max: 67 },
+  激情: { min: 40, max: 60 },
+  虚无: { min: 40, max: 63 },
+  自尊: { min: 55, max: 78 },
+  热忱: { min: 41, max: 62 },
+}
+
 function normalizeAxes(raw) {
-  const REF = 65
   const out = {}
   AXIS_ORDER.forEach(function (name) {
-    const v = Math.round(((raw[name] || 0) / REF) * 100)
+    const bound = AXIS_NORM_BOUNDS[name] || { min: 0, max: 100 }
+    const span = Math.max(1, bound.max - bound.min)
+    const v = Math.round((((raw && raw[name]) || 0) - bound.min) / span * 100)
     out[name] = Math.max(0, Math.min(100, v))
   })
   return out
@@ -140,6 +155,7 @@ function isSceneFlash(flash) {
 module.exports = {
   HIDDEN_MARGIN,
   AXIS_ORDER,
+  AXIS_NORM_BOUNDS,
   PLACEHOLDER_IMAGE,
   assetUrl,
   characterImage,
