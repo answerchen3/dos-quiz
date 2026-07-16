@@ -1,5 +1,6 @@
 const { characterImage, PLACEHOLDER_IMAGE, AXIS_ORDER } = require('./quiz')
 const { buildRadarGeometry } = require('./radar')
+const { toDisplayUrl } = require('./cloud-url')
 
 const W = 750
 const PAD = 40
@@ -54,19 +55,10 @@ function roundRectPath(ctx, x, y, w, h, r) {
   ctx.closePath()
 }
 
+/** 与结果页同源：走 cloud-url.toDisplayUrl（云函数换链）；失败由调用方降级 */
 function resolveDrawableUrl(src) {
   if (!src) return Promise.resolve(src)
-  if (src.indexOf('cloud://') !== 0) return Promise.resolve(src)
-  if (!wx.cloud || !wx.cloud.getTempFileURL) {
-    return Promise.reject(new Error('云能力不可用'))
-  }
-  return wx.cloud.getTempFileURL({ fileList: [src] }).then(function (res) {
-    var file = res.fileList && res.fileList[0]
-    if (!file || !file.tempFileURL) {
-      throw new Error('获取云文件临时链接失败')
-    }
-    return file.tempFileURL
-  })
+  return toDisplayUrl(src)
 }
 
 function loadImage(canvas, src) {
@@ -461,12 +453,15 @@ function buildLayout(ctx, options) {
     drawWrapped(c, shadow.summary || '', PAD + 24, sy, CONTENT_W - 48, 34)
   }, shadowH + 28)
 
-  // footer
+  // footer + 娱乐免责（P0-7）
   push(function (c, top) {
     c.fillStyle = 'rgba(168,148,120,0.85)'
     c.font = "18px 'PingFang SC', sans-serif"
     c.fillText('fancy-world · 测测你的陀氏人格', PAD, top + 18)
-  }, 40)
+    c.fillStyle = 'rgba(168,148,120,0.7)'
+    c.font = "16px 'PingFang SC', sans-serif"
+    c.fillText('文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。', PAD, top + 42)
+  }, 64)
 
   return { height: y + PAD, blocks: blocks }
 }
