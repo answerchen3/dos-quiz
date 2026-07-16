@@ -234,13 +234,10 @@
             <button class="btn btn-secondary actions-half" bindtap="onShare" loading="{{sharing}}">保存长图</button>
           </view>
           <view class="actions-row">
-            <button
-              wx:if="{{comicAvailable}}"
-              class="btn btn-secondary actions-half {{comicUnlocked ? '' : 'is-locked'}}"
-              bindtap="onOpenComic"
-            >{{comicUnlocked ? '漫画速览' : '漫画未解锁'}}</button>
+            <button class="btn btn-secondary actions-half" bindtap="onOpenCollection">图鉴 · 漫画</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
+          <view class="result-comic-hint">集齐一书主要人物后，可在「我的 · 图鉴」阅读原著漫画。</view>
           <view class="result-disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。</view>
         </view>
         </scroll-view>
@@ -263,34 +260,6 @@
       <view class="flash-kicker">这一刻像</view>
       <view class="flash-who">{{flashWho}}</view>
       <view class="flash-line">{{flashLine}}</view>
-    </view>
-  </view>
-
-  <view class="comic-overlay {{comicVisible ? '' : 'hidden'}}">
-    <view class="comic-sheet">
-      <view class="comic-top">
-        <text class="comic-heading">《{{comicBookTitle}}》速览</text>
-        <text class="comic-close" bindtap="onCloseComic">关闭</text>
-      </view>
-      <swiper
-        class="comic-swiper"
-        current="{{comicPageIndex}}"
-        bindchange="onComicChange"
-      >
-        <swiper-item wx:for="{{comicPages}}" wx:key="id">
-          <view class="comic-page">
-            <image
-              wx:if="{{item.image}}"
-              class="comic-image"
-              src="{{item.image}}"
-              mode="widthFix"
-            />
-            <view class="comic-narration" wx:if="{{item.narration}}">{{item.narration}}</view>
-            <view class="comic-empty" wx:if="{{!item.image}}">上传云端漫画资源后可看配图</view>
-          </view>
-        </swiper-item>
-      </swiper>
-      <view class="comic-pager">{{comicPageIndex + 1}} / {{comicPages.length}}</view>
     </view>
   </view>
 

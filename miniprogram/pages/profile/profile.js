@@ -1,6 +1,11 @@
 const collection = require('../../utils/collection')
 const { characterImage } = require('../../utils/quiz')
 const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
+const {
+  listBookComicsProgress,
+  getComicByBookSlug,
+  isBookComicUnlocked,
+} = require('../../utils/enrichment')
 const characters = require('../../utils/characters-data')
 
 Page({
@@ -13,6 +18,11 @@ Page({
     galleryVisible: false,
     galleryItems: [],
     galleryDetail: null,
+    comicBooks: [],
+    comicVisible: false,
+    comicPages: [],
+    comicBookTitle: '',
+    comicPageIndex: 0,
   },
 
   onShow() {
@@ -59,6 +69,7 @@ Page({
       collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
       hasCollection: progress.unlocked > 0,
       lastResult: lastResult,
+      comicBooks: listBookComicsProgress(characters),
     })
 
     if (!lastResult || !lastCloud) return
@@ -93,6 +104,7 @@ Page({
         })
       }),
       galleryDetail: null,
+      comicBooks: listBookComicsProgress(characters),
     })
     var cloudList = items.map(function (item) {
       return item.unlocked ? item.image : ''
@@ -151,4 +163,69 @@ Page({
   },
 
   onGalleryDetailCatch() {},
+
+  onTapComicBook(e) {
+    var slug = e.currentTarget.dataset.slug
+    var unlockedFlag = e.currentTarget.dataset.unlocked
+    var unlocked = unlockedFlag === true || unlockedFlag === 'true'
+    if (!slug) return
+    if (!unlocked) {
+      var title = e.currentTarget.dataset.title || ''
+      wx.showToast({
+        title: '集齐《' + title + '》主要人物后解锁漫画',
+        icon: 'none',
+      })
+      return
+    }
+    this.openComic(slug)
+  },
+
+  openComic(bookSlug) {
+    if (!isBookComicUnlocked(bookSlug, characters)) {
+      wx.showToast({ title: '漫画尚未解锁', icon: 'none' })
+      return
+    }
+    var comic = getComicByBookSlug(bookSlug)
+    if (!comic || !comic.pages || !comic.pages.length) {
+      wx.showToast({ title: '漫画暂不可用', icon: 'none' })
+      return
+    }
+    var that = this
+    var rawPages = comic.pages
+    var cloudList = rawPages.map(function (p) {
+      return p.image || ''
+    })
+    toDisplayUrls(cloudList)
+      .then(function (urls) {
+        that.setData({
+          comicVisible: true,
+          comicPages: rawPages.map(function (page, i) {
+            return Object.assign({}, page, { image: safeDisplayUrl(urls[i]) })
+          }),
+          comicBookTitle: comic.bookTitle,
+          comicPageIndex: 0,
+        })
+      })
+      .catch(function (err) {
+        console.error('[profile] resolve comic', err)
+        that.setData({
+          comicVisible: true,
+          comicPages: rawPages.map(function (page) {
+            return Object.assign({}, page, {
+              image: safeDisplayUrl(page.image),
+            })
+          }),
+          comicBookTitle: comic.bookTitle,
+          comicPageIndex: 0,
+        })
+      })
+  },
+
+  onCloseComic() {
+    this.setData({ comicVisible: false })
+  },
+
+  onComicChange(e) {
+    this.setData({ comicPageIndex: e.detail.current || 0 })
+  },
 })

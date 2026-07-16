@@ -10,11 +10,7 @@ const {
 } = require('../../utils/quiz')
 const { buildAxisLegend, drawDualRadar, similarityPercent } = require('../../utils/radar')
 const { exportShareImage } = require('../../utils/share')
-const {
-  getBookComic,
-  getSnowUrl,
-  isBookComicUnlocked,
-} = require('../../utils/enrichment')
+const { getSnowUrl } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
 const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
 
@@ -91,9 +87,6 @@ Page({
     resultNextStep: '',
     axisLegend: [],
     matchPercent: 0,
-    comicAvailable: false,
-    comicUnlocked: false,
-    comicTitle: '',
     shadowName: '',
     shadowTagline: '',
     shadowSummary: '',
@@ -105,10 +98,6 @@ Page({
     sharing: false,
     startPortraitUrl: '',
     snowUrl: '',
-    comicVisible: false,
-    comicPages: [],
-    comicBookTitle: '',
-    comicPageIndex: 0,
   },
 
   answers: [],
@@ -116,7 +105,6 @@ Page({
   shadow: null,
   userAxes: null,
   byId: {},
-  comicPack: null,
   sessionMetIds: [],
   revealTimers: [],
 
@@ -155,16 +143,12 @@ Page({
     this.primary = null
     this.shadow = null
     this.userAxes = null
-    this.comicPack = null
     this.sessionMetIds = []
     this.clearRevealTimers()
     this.setData({
       view: 'quiz',
       index: 0,
       locking: false,
-      comicVisible: false,
-      comicAvailable: false,
-      comicUnlocked: false,
       sessionMeetItems: [],
       revealPhase: 0,
       resultNextStep: '',
@@ -339,13 +323,6 @@ Page({
       labels.push({ text: trait, soft: true })
     })
 
-    var comic = getBookComic(primary)
-    this.comicPack = comic
-    var comicReady = !!(comic && comic.pages && comic.pages.length)
-    var comicUnlocked = comicReady
-      ? isBookComicUnlocked(comic.bookSlug, characters)
-      : false
-
     var pid = primaryId || (primary && primary.id)
     var sessionMeetItems = buildDropItems(pid, dropId, newlySet || {}, this.byId)
     var newCount = sessionMeetItems.filter(function (item) {
@@ -376,9 +353,6 @@ Page({
       resultNextStep: primary.nextStep || '',
       axisLegend: buildAxisLegend(axes, axesMeta.axisHints || {}),
       matchPercent: similarityPercent(primary.score),
-      comicAvailable: comicReady,
-      comicUnlocked: comicUnlocked,
-      comicTitle: comic ? '用漫画看懂《' + comic.bookTitle + '》' : '',
       shadowName: shadow.name,
       shadowTagline: shadow.epithet
         ? shadow.epithet + ' · ' + shadow.tagline
@@ -456,58 +430,6 @@ Page({
           },
         })
       })
-  },
-
-  onOpenComic() {
-    var comic = this.comicPack
-    if (!comic || !comic.pages || !comic.pages.length) {
-      wx.showToast({ title: '漫画暂不可用', icon: 'none' })
-      return
-    }
-    if (!isBookComicUnlocked(comic.bookSlug, characters)) {
-      wx.showToast({
-        title: '集齐《' + (comic.bookTitle || '') + '》主要人物后解锁漫画',
-        icon: 'none',
-      })
-      return
-    }
-    var that = this
-    var rawPages = comic.pages
-    var cloudList = rawPages.map(function (p) {
-      return p.image || ''
-    })
-    toDisplayUrls(cloudList)
-      .then(function (urls) {
-        that.setData({
-          comicVisible: true,
-          comicPages: rawPages.map(function (page, i) {
-            return Object.assign({}, page, { image: safeDisplayUrl(urls[i]) })
-          }),
-          comicBookTitle: comic.bookTitle,
-          comicPageIndex: 0,
-        })
-      })
-      .catch(function (err) {
-        console.error('[quiz] resolve comic', err)
-        that.setData({
-          comicVisible: true,
-          comicPages: rawPages.map(function (page) {
-            return Object.assign({}, page, {
-              image: safeDisplayUrl(page.image),
-            })
-          }),
-          comicBookTitle: comic.bookTitle,
-          comicPageIndex: 0,
-        })
-      })
-  },
-
-  onCloseComic() {
-    this.setData({ comicVisible: false })
-  },
-
-  onComicChange(e) {
-    this.setData({ comicPageIndex: e.detail.current || 0 })
   },
 
   onShareAppMessage() {

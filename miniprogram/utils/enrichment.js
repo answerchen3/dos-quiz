@@ -14,15 +14,13 @@ function resolveEnrichImage(rel, fallback) {
   return assetUrl(rel)
 }
 
-function getBookComic(character) {
-  if (!character) return null
-  var map = enrichmentMeta.characterBook || {}
-  var slug = map[character.id]
-  if (!slug || !comicsData[slug]) return null
-  var comic = comicsData[slug]
+function getComicByBookSlug(bookSlug, bookTitleHint) {
+  if (!bookSlug || !comicsData[bookSlug]) return null
+  var comic = comicsData[bookSlug]
+  var titles = enrichmentMeta.bookTitle || {}
   return {
     bookSlug: comic.bookSlug,
-    bookTitle: comic.bookTitle || character.bookTitle,
+    bookTitle: comic.bookTitle || bookTitleHint || titles[bookSlug] || '',
     pages: (comic.pages || []).map(function (page) {
       return {
         id: page.id,
@@ -31,6 +29,46 @@ function getBookComic(character) {
       }
     }),
   }
+}
+
+function getBookComic(character) {
+  if (!character) return null
+  var map = enrichmentMeta.characterBook || {}
+  var slug = map[character.id]
+  return getComicByBookSlug(slug, character.bookTitle)
+}
+
+/**
+ * 图鉴页：各书漫画进度（主要人物已解锁数 / 所需数）
+ */
+function listBookComicsProgress(characters) {
+  var titles = enrichmentMeta.bookTitle || {}
+  var slugs = Object.keys(comicsData || {})
+  return slugs.map(function (slug) {
+    var ids = getMainCharacterIdsForBook(slug, characters)
+    var required = ids.length
+    var unlockedCount = 0
+    for (var i = 0; i < ids.length; i += 1) {
+      if (collection.isUnlocked(ids[i])) unlockedCount += 1
+    }
+    var unlocked = required > 0 && unlockedCount >= required
+    var remain = required - unlockedCount
+    var comic = comicsData[slug] || {}
+    return {
+      bookSlug: slug,
+      bookTitle: comic.bookTitle || titles[slug] || slug,
+      requiredCount: required,
+      unlockedCount: unlockedCount,
+      unlocked: unlocked,
+      progressText: unlockedCount + ' / ' + required,
+      statusText: unlocked
+        ? '已解锁 · 可阅读'
+        : required
+          ? '集齐主要人物解锁'
+          : '暂无主要人物',
+      actionText: unlocked ? '阅读漫画' : remain > 0 ? '还需 ' + remain + ' 人' : '未解锁',
+    }
+  })
 }
 
 /**
@@ -88,6 +126,8 @@ function getBookQuizBgUrl(bookHint) {
 
 module.exports = {
   getBookComic,
+  getComicByBookSlug,
+  listBookComicsProgress,
   getMainCharacterIdsForBook,
   isBookComicUnlocked,
   getSnowUrl,

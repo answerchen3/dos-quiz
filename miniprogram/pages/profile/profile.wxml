@@ -9,12 +9,13 @@
     <view class="panel">
       <view class="eyebrow">Profile</view>
       <view class="title">我的</view>
-      <view class="lead">图鉴、上次人格，以及再走进彼得堡的入口。</view>
+      <view class="lead">图鉴、原著漫画，以及再走进彼得堡的入口。</view>
 
       <view class="stat-card">
-        <view class="stat-label">陀氏图鉴</view>
+        <view class="stat-label">陀氏图鉴 · 漫画</view>
         <view class="stat-value">{{collectionProgressText}}</view>
-        <view class="stat-hint" wx:if="{{!hasCollection}}">测完人格后，会随机掉落一张卡写入此处。</view>
+        <view class="stat-hint" wx:if="{{!hasCollection}}">测完人格后，会随机掉落一张卡写入此处；集齐一书主要人物可解锁漫画。</view>
+        <view class="stat-hint" wx:else>集齐一书主要人物后，可在图鉴里阅读原著漫画。</view>
         <button class="btn btn-secondary" bindtap="onOpenGallery">打开图鉴</button>
       </view>
 
@@ -49,6 +50,31 @@
         <text class="gallery-close" bindtap="onCloseGallery">关闭</text>
       </view>
       <scroll-view class="gallery-scroll" scroll-y>
+        <view class="comic-section">
+          <view class="comic-section-head">
+            <text class="comic-section-title">原著漫画</text>
+            <text class="comic-section-hint">集齐一书主要人物后解锁</text>
+          </view>
+          <view
+            class="comic-book-row {{item.unlocked ? 'is-unlocked' : 'is-locked'}}"
+            wx:for="{{comicBooks}}"
+            wx:key="bookSlug"
+            data-slug="{{item.bookSlug}}"
+            data-title="{{item.bookTitle}}"
+            data-unlocked="{{item.unlocked}}"
+            bindtap="onTapComicBook"
+          >
+            <view class="comic-book-copy">
+              <text class="comic-book-title">《{{item.bookTitle}}》</text>
+              <text class="comic-book-progress">主要人物 {{item.progressText}} · {{item.statusText}}</text>
+            </view>
+            <text class="comic-book-action">{{item.actionText}}</text>
+          </view>
+        </view>
+
+        <view class="gallery-section-head">
+          <text class="comic-section-title">人物图鉴</text>
+        </view>
         <view class="gallery-grid">
           <view
             class="gallery-cell {{item.unlocked ? 'is-unlocked' : 'is-locked'}}"
@@ -72,6 +98,34 @@
           </view>
         </view>
       </scroll-view>
+    </view>
+  </view>
+
+  <view class="comic-overlay {{comicVisible ? '' : 'hidden'}}">
+    <view class="comic-sheet">
+      <view class="comic-top">
+        <text class="comic-heading">《{{comicBookTitle}}》速览</text>
+        <text class="comic-close" bindtap="onCloseComic">关闭</text>
+      </view>
+      <swiper
+        class="comic-swiper"
+        current="{{comicPageIndex}}"
+        bindchange="onComicChange"
+      >
+        <swiper-item wx:for="{{comicPages}}" wx:key="id">
+          <view class="comic-page">
+            <image
+              wx:if="{{item.image}}"
+              class="comic-image"
+              src="{{item.image}}"
+              mode="widthFix"
+            />
+            <view class="comic-narration" wx:if="{{item.narration}}">{{item.narration}}</view>
+            <view class="comic-empty" wx:if="{{!item.image}}">上传云端漫画资源后可看配图</view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="comic-pager">{{comicPageIndex + 1}} / {{comicPages.length}}</view>
     </view>
   </view>
 
