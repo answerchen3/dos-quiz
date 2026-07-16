@@ -78,7 +78,7 @@ Page({
     this.setData({
       collectionUnlocked: progress.unlocked,
       collectionTotal: progress.total,
-      collectionProgressText: '已遇见 ' + progress.unlocked + ' / ' + progress.total,
+      collectionProgressText: '已收录 ' + progress.unlocked + ' / ' + progress.total,
       comicProgressText: '已解锁 ' + comicUnlocked + ' / ' + comicBooks.length + ' 部',
       hasCollection: progress.unlocked > 0,
       lastResult: lastResult,
@@ -169,7 +169,7 @@ Page({
     var unlockedFlag = e.currentTarget.dataset.unlocked
     var unlocked = unlockedFlag === true || unlockedFlag === 'true'
     if (!unlocked) {
-      wx.showToast({ title: '再答一轮，或许会遇见', icon: 'none' })
+      wx.showToast({ title: '再测一轮，或许会遇见', icon: 'none' })
       return
     }
     var items = this.data.galleryItems || []
@@ -198,7 +198,7 @@ Page({
     if (!unlocked) {
       var title = e.currentTarget.dataset.title || ''
       wx.showToast({
-        title: '集齐《' + title + '》主要人物后解锁漫画',
+        title: '集齐《' + title + '》主要角色后解锁漫画',
         icon: 'none',
       })
       return

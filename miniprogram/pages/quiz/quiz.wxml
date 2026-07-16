@@ -30,29 +30,27 @@
           <view class="title">测测你的</view>
           <view class="title title-accent">陀氏人格</view>
           <view class="lead">人生抉择重现，这一刻，你站在哪边？</view>
-          <view class="meta-hint">答完你将获得</view>
           <view class="meta-list">
             <view class="meta-item">
               <text class="meta-mark">Ⅰ</text>
-              <text>一个陀翁笔下与你最像的人</text>
+              <text>遇见陀翁笔下与你最像的人</text>
             </view>
             <view class="meta-item">
               <text class="meta-mark">Ⅱ</text>
-              <text>一份不专业的人格分析报告</text>
+              <text>一份角色对照速写</text>
             </view>
             <view class="meta-item">
               <text class="meta-mark">Ⅲ</text>
-              <text>一张专属分享图</text>
+              <text>一张可分享的长图</text>
             </view>
             <view class="meta-item">
               <text class="meta-mark">Ⅳ</text>
-              <text>主人格入册，并随机掉落一张图鉴卡</text>
+              <text>收集角色卡，解锁原著漫画</text>
             </view>
           </view>
         </view>
         <view class="start-footer">
           <view class="disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。约 4–5 分钟。</view>
-          <view class="privacy-note">云能力仅用于加载题图素材；图鉴保存在本机；保存长图时才会申请相册权限。</view>
           <button class="btn btn-primary" bindtap="onStart">开始测试</button>
         </view>
       </view>
@@ -127,7 +125,7 @@
 
         <view class="trait-panel reveal-block {{revealPhase >= 2 ? 'is-in' : ''}}">
           <view class="section-head">
-            <view class="trait-panel-title">特质分析</view>
+            <view class="trait-panel-title">六维对照</view>
             <view class="section-sub">由你的抉择生成</view>
           </view>
           <view class="trait-analysis">{{resultTraitAnalysis}}</view>
@@ -165,15 +163,15 @@
 
         <view class="analysis reveal-block {{revealPhase >= 3 ? 'is-in' : ''}}">
           <view class="analysis-block">
-            <view class="analysis-title">整体画像</view>
+            <view class="analysis-title">你是谁</view>
             <view class="analysis-body">{{resultSummary}}</view>
           </view>
           <view class="analysis-block">
-            <view class="analysis-title">你的锋芒</view>
+            <view class="analysis-title">你的光</view>
             <view class="analysis-body">{{resultStrengths}}</view>
           </view>
           <view class="analysis-block">
-            <view class="analysis-title">你的盲区</view>
+            <view class="analysis-title">你的影</view>
             <view class="analysis-body">{{resultBlindspot}}</view>
           </view>
           <view class="analysis-block">
@@ -181,7 +179,7 @@
             <view class="analysis-body">{{resultRelation}}</view>
           </view>
           <view class="analysis-block">
-            <view class="analysis-title">可以怎么长</view>
+            <view class="analysis-title">书页之外</view>
             <view class="analysis-body">{{resultGrowth}}</view>
           </view>
         </view>
@@ -196,7 +194,7 @@
 
         <view class="shadow-card reveal-block {{revealPhase >= 5 ? 'is-in' : ''}}">
           <view class="shadow-kicker">若命运再偏一点</view>
-          <view class="shadow-label">你的暗影搭档</view>
+          <view class="shadow-label">你的暗面</view>
           <view class="shadow-name">{{shadowName}}</view>
           <view class="shadow-tagline">{{shadowTagline}}</view>
           <view class="shadow-summary">{{shadowSummary}}</view>
@@ -208,8 +206,8 @@
           wx:if="{{sessionMeetItems.length}}"
         >
           <view class="session-meet-head">
-            <view class="session-meet-title">本场掉落</view>
-            <view class="session-meet-link" bindtap="onOpenCollection">写入图鉴 · 去看看</view>
+            <view class="session-meet-title">这一程遇见</view>
+            <view class="session-meet-link" bindtap="onOpenCollection">去图鉴看看</view>
           </view>
           <view class="session-meet-rule" wx:if="{{sessionMeetRule}}">{{sessionMeetRule}}</view>
           <scroll-view class="session-meet-scroll" scroll-x enable-flex>
@@ -234,10 +232,9 @@
             <button class="btn btn-secondary actions-half" bindtap="onShare" loading="{{sharing}}">保存长图</button>
           </view>
           <view class="actions-row">
-            <button class="btn btn-secondary actions-half" bindtap="onOpenComicGallery">图鉴 · 漫画</button>
+            <button class="btn btn-secondary actions-half" bindtap="onOpenComicGallery">漫画图鉴</button>
             <button class="btn btn-secondary actions-half" bindtap="onRetry">再测一次</button>
           </view>
-          <view class="result-comic-hint">集齐一书主要人物后，可在「我的 · 漫画图鉴」阅读原著漫画。</view>
           <view class="result-disclaimer">文学角色对照小游戏，仅供娱乐，不是心理测评或诊断。</view>
         </view>
         </scroll-view>

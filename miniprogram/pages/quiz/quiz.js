@@ -40,7 +40,7 @@ function buildDropItems(primaryId, dropId, newlySet, byId) {
       image: characterImage(c),
       isNew: isNew,
       kind: kind,
-      badge: isNew ? '新入册' : '再遇 · 已在图鉴',
+      badge: isNew ? '新收录' : '再遇 · 已收录',
     })
   }
 
@@ -329,14 +329,14 @@ Page({
       return item.isNew
     }).length
     var sessionMeetRule =
-      '主人格必入册，并随机掉落 1 张；本场新入册 ' +
+      '主要角色自动收录，另随机收录 1 张；本场新收录 ' +
       newCount +
-      ' 张。暗影仅对照、不进图鉴。'
+      ' 张。暗面仅对照、不收录。'
     var resultCloud = characterImage(primary)
     var that = this
 
     this.setData({
-      resultEyebrow: isHidden ? '你解锁了隐藏角色' : '你的陀氏人格是',
+      resultEyebrow: isHidden ? '你解锁了隐藏角色' : '这一局，你最像',
       isHidden: isHidden,
       resultEpithet: primary.epithet || '',
       resultImage: '',
@@ -358,7 +358,7 @@ Page({
         ? shadow.epithet + ' · ' + shadow.tagline
         : shadow.tagline,
       shadowSummary: shadow.summary,
-      shadowNote: '暗影仅对照、不进图鉴',
+      shadowNote: '暗面仅对照、不收录',
       sessionMeetItems: sessionMeetItems,
       sessionMeetRule: sessionMeetRule,
     })
@@ -448,7 +448,7 @@ Page({
       }
     }
     return {
-      title: '测测你的陀氏人格，看看你是谁',
+      title: '测测你的陀氏人格，看看你像谁',
       path: '/pages/quiz/quiz',
     }
   },

@@ -64,9 +64,9 @@ function listBookComicsProgress(characters) {
       statusText: unlocked
         ? '已解锁 · 可阅读'
         : required
-          ? '集齐主要人物解锁'
-          : '暂无主要人物',
-      actionText: unlocked ? '阅读漫画' : remain > 0 ? '还需 ' + remain + ' 人' : '未解锁',
+          ? '集齐主要角色解锁'
+          : '暂无主要角色',
+      actionText: unlocked ? '阅读' : remain > 0 ? '还差 ' + remain + ' 人' : '未解锁',
     }
   })
 }

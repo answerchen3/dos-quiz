@@ -9,20 +9,20 @@
     <view class="panel">
       <view class="eyebrow">Profile</view>
       <view class="title">我的</view>
-      <view class="lead">人物图鉴、漫画图鉴，以及再走进彼得堡的入口。</view>
+      <view class="lead">你遇见的人，和你读过的故事。</view>
 
       <view class="stat-card">
         <view class="stat-label">人物图鉴</view>
         <view class="stat-value">{{collectionProgressText}}</view>
-        <view class="stat-hint" wx:if="{{!hasCollection}}">测完人格后，会随机掉落一张卡写入此处。</view>
-        <view class="stat-hint" wx:else>已解锁角色可点开查看详情。</view>
+        <view class="stat-hint" wx:if="{{!hasCollection}}">测完一轮后，会随机收录一张角色卡。</view>
+        <view class="stat-hint" wx:else>点开已收录的角色可查看详情。</view>
         <button class="btn btn-secondary" bindtap="onOpenGallery">打开人物图鉴</button>
       </view>
 
       <view class="stat-card">
         <view class="stat-label">漫画图鉴</view>
         <view class="stat-value">{{comicProgressText}}</view>
-        <view class="stat-hint">集齐一书主要人物后解锁原著漫画。</view>
+        <view class="stat-hint">集齐一书主要角色后解锁原著漫画。</view>
         <button class="btn btn-secondary" bindtap="onOpenComicGallery">打开漫画图鉴</button>
       </view>
 
@@ -40,7 +40,7 @@
       </view>
 
       <view class="empty-hint" wx:else>
-        还没有测验记录。去「测试」栏走完一轮吧。
+        还没有记录。去「测试」走完一轮吧。
       </view>
 
       <button class="btn btn-primary" bindtap="onGoQuiz">去测人格</button>
@@ -95,7 +95,7 @@
       <scroll-view class="gallery-scroll" scroll-y>
         <view class="comic-section">
           <view class="comic-section-head">
-            <text class="comic-section-hint">集齐一书主要人物后解锁</text>
+            <text class="comic-section-hint">集齐一书主要角色后解锁</text>
           </view>
           <view
             class="comic-book-row {{item.unlocked ? 'is-unlocked' : 'is-locked'}}"
@@ -108,7 +108,7 @@
           >
             <view class="comic-book-copy">
               <text class="comic-book-title">《{{item.bookTitle}}》</text>
-              <text class="comic-book-progress">主要人物 {{item.progressText}} · {{item.statusText}}</text>
+              <text class="comic-book-progress">主要角色 {{item.progressText}} · {{item.statusText}}</text>
             </view>
             <text class="comic-book-action">{{item.actionText}}</text>
           </view>
@@ -137,7 +137,7 @@
               mode="widthFix"
             />
             <view class="comic-narration" wx:if="{{item.narration}}">{{item.narration}}</view>
-            <view class="comic-empty" wx:if="{{!item.image}}">上传云端漫画资源后可看配图</view>
+            <view class="comic-empty" wx:if="{{!item.image}}">配图加载中</view>
           </view>
         </swiper-item>
       </swiper>
