@@ -5,33 +5,33 @@ module.exports = [
     bookHint: "《罪与罚》",
     options: [
       {
-        text: "跨过去，事后再解释",
+        text: "跨过去",
         flash: {
           who: "拉斯柯尔尼科夫",
           characterId: "raskolnikov",
-          line: "跨过去。事后再解释。",
+          line: "跨过去。",
           image: "/assets/scenes/q01-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: "停手，任何人的生命都不能成为垫脚石",
+        text: "停手",
         flash: {
           who: "索尼娅",
           characterId: "sonya",
-          line: "停手。人不能当垫脚石。",
+          line: "停手。",
           image: "/assets/scenes/q01-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 3 }
       },
       {
-        text: "无所谓，与我无关",
+        text: "无所谓",
         flash: {
           who: "斯维德里盖洛夫",
           characterId: "svidrigailov",
-          line: "无所谓。与我无关。",
+          line: "无所谓。",
           image: "/assets/scenes/q01-C.jpg",
           imageKind: "scene"
         },
@@ -51,29 +51,29 @@ module.exports = [
         flash: {
           who: "老卡拉马佐夫",
           characterId: "fyodor-karamazov",
-          line: "接受。代价而已。",
+          line: "接受。",
           image: "/assets/scenes/q02-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 1, 激情: 5, 虚无: 5, 自尊: 1, 热忱: 1 }
       },
       {
-        text: "拒绝。用无辜者的苦难换来的和谐，我不要",
+        text: "拒绝",
         flash: {
           who: "伊万",
           characterId: "ivan-karamazov",
-          line: "我不要这种和谐。",
+          line: "拒绝。",
           image: "/assets/scenes/q02-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 4, 激情: 1, 虚无: 3, 自尊: 4, 热忱: 1 }
       },
       {
-        text: "我无法接受，但也无力反抗，只好冷眼旁观",
+        text: "冷眼旁观",
         flash: {
           who: "斯麦尔佳科夫",
           characterId: "smerdyakov",
-          line: "无力反抗，只好旁观。",
+          line: "冷眼旁观。",
           image: "/assets/scenes/q02-C.jpg",
           imageKind: "scene"
         },
@@ -131,18 +131,18 @@ module.exports = [
     bookHint: "《群魔》",
     options: [
       {
-        text: "通过极端行为宣示自由",
+        text: "宣示自由",
         flash: {
           who: "基里洛夫",
           characterId: "kirillov",
-          line: "用极端行为宣示自由。",
+          line: "宣示自由。",
           image: "/assets/scenes/q04-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 2, 激情: 3, 虚无: 4, 自尊: 4, 热忱: 2 }
       },
       {
-        text: "自己为世界创造意义",
+        text: "自己创造意义",
         flash: {
           who: "沙托夫",
           characterId: "shatov",
@@ -153,7 +153,7 @@ module.exports = [
         axes: { 理性: 2, 怜悯: 4, 激情: 3, 虚无: 2, 自尊: 3, 热忱: 5 }
       },
       {
-        text: "陷入彻底的虚无",
+        text: "陷入虚无",
         flash: {
           who: "斯塔夫罗金",
           characterId: "stavrogin",
@@ -184,18 +184,18 @@ module.exports = [
         axes: { 理性: 3, 怜悯: 1, 激情: 3, 虚无: 1, 自尊: 5, 热忱: 5 }
       },
       {
-        text: "停下来寻找别的意义",
+        text: "寻找别的意义",
         flash: {
           who: "马卡尔",
           characterId: "makar",
-          line: "停下来，找别的意义。",
+          line: "寻找别的意义。",
           image: "/assets/scenes/q05-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: "陷入彻底的迷茫",
+        text: "陷入迷茫",
         flash: {
           who: "韦尔西洛夫",
           characterId: "versilov",
@@ -219,7 +219,7 @@ module.exports = [
         flash: {
           who: "地下室人",
           characterId: "underground-man",
-          line: "会。宁可痛苦地自由。",
+          line: "会。",
           image: "/assets/scenes/q06-A.jpg",
           imageKind: "scene"
         },
@@ -230,14 +230,14 @@ module.exports = [
         flash: {
           who: "波尔菲里",
           characterId: "porfiry",
-          line: "不会。真正的自由靠理性。",
+          line: "不会。",
           image: "/assets/scenes/q06-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 2, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: "我或许想过，但最终还是不敢",
+        text: "想过，最终不敢",
         flash: {
           who: "地下室人",
           characterId: "underground-man",
@@ -257,18 +257,18 @@ module.exports = [
     bookHint: "《地下室手记》",
     options: [
       {
-        text: "推开一切靠近的人",
+        text: "推开靠近的人",
         flash: {
           who: "地下室人",
           characterId: "underground-man",
-          line: "推开。被看穿更可怕。",
+          line: "推开。",
           image: "/assets/scenes/q07-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 1, 激情: 2, 虚无: 5, 自尊: 5, 热忱: 1 }
       },
       {
-        text: "尝试打开一条缝",
+        text: "打开一条缝",
         flash: {
           who: "地下室人",
           characterId: "underground-man",
@@ -303,7 +303,7 @@ module.exports = [
         flash: {
           who: "亚历山大·彼得罗维奇",
           characterId: "alexander-petrovich",
-          line: "肉体可囚，灵魂不降。",
+          line: "精神独立。",
           image: "/assets/scenes/q08-A.jpg",
           imageKind: "scene"
         },
@@ -321,11 +321,11 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: "陷入麻木与虚无",
+        text: "陷入麻木",
         flash: {
           who: "亚历山大·彼得罗维奇",
           characterId: "alexander-petrovich",
-          line: "麻木。只要能活下去。",
+          line: "麻木。",
           image: "/assets/scenes/q08-C.jpg",
           imageKind: "scene"
         },
@@ -341,33 +341,33 @@ module.exports = [
     bookHint: "《死屋手记》",
     options: [
       {
-        text: "拥抱自由，即使恐惧",
+        text: "拥抱自由",
         flash: {
           who: "亚历山大·彼得罗维奇",
           characterId: "alexander-petrovich",
-          line: "拥抱自由，即使恐惧。",
+          line: "拥抱自由。",
           image: "/assets/scenes/q09-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 2, 激情: 3, 虚无: 2, 自尊: 4, 热忱: 4 }
       },
       {
-        text: "渴望退回牢笼",
+        text: "退回牢笼",
         flash: {
           who: "阿列伊",
           characterId: "alei",
-          line: "渴望退回牢笼。",
+          line: "退回牢笼。",
           image: "/assets/scenes/q09-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 3, 激情: 1, 虚无: 4, 自尊: 2, 热忱: 2 }
       },
       {
-        text: "我被撕裂了",
+        text: "被撕裂了",
         flash: {
           who: "亚历山大·彼得罗维奇",
           characterId: "alexander-petrovich",
-          line: "理智要自由，身子想逃回去。",
+          line: "被撕裂了。",
           image: "/assets/scenes/q09-C.jpg",
           imageKind: "scene"
         },
@@ -409,7 +409,7 @@ module.exports = [
         flash: {
           who: "娜塔莎",
           characterId: "natasha",
-          line: "不忍伤害，又怕被伤害。",
+          line: "我不知道。",
           image: "/assets/scenes/q10-C.jpg",
           imageKind: "scene"
         },
@@ -429,7 +429,7 @@ module.exports = [
         flash: {
           who: "涅莉",
           characterId: "nelly",
-          line: "狠心止损。亲手斩断。",
+          line: "狠心止损。",
           image: "/assets/scenes/q11-A.jpg",
           imageKind: "scene"
         },
@@ -447,11 +447,11 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 4, 激情: 5, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: "我无法退出，但我也恨自己",
+        text: "无法退出",
         flash: {
           who: "娜塔莎",
           characterId: "natasha",
-          line: "想结束，见他又崩塌。",
+          line: "无法退出。",
           image: "/assets/scenes/q11-C.jpg",
           imageKind: "scene"
         },
@@ -489,11 +489,11 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 3, 激情: 4, 虚无: 1, 自尊: 1, 热忱: 3 }
       },
       {
-        text: "现实与幻想早已模糊",
+        text: "真假已模糊",
         flash: {
           who: "白夜梦想家",
           characterId: "dreamer",
-          line: "分不清真假，也无所谓了。",
+          line: "真假已模糊。",
           image: "/assets/scenes/q12-C.jpg",
           imageKind: "scene"
         },
@@ -509,33 +509,33 @@ module.exports = [
     bookHint: "《穷人》",
     options: [
       {
-        text: "保持骨气，宁折不弯",
+        text: "保持骨气",
         flash: {
           who: "瓦尔瓦拉",
           characterId: "varvara-dobroselova",
-          line: "保持骨气，宁折不弯。",
+          line: "保持骨气。",
           image: "/assets/scenes/q13-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "为了爱的人，我愿意低头",
+        text: "愿意低头",
         flash: {
           who: "杰武什金",
           characterId: "makar-devushkin",
-          line: "为了爱的人，愿意低头。",
+          line: "愿意低头。",
           image: "/assets/scenes/q13-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: "我被撕裂了",
+        text: "被撕裂了",
         flash: {
           who: "杰武什金",
           characterId: "makar-devushkin",
-          line: "想帮，又怕被可怜。",
+          line: "被撕裂了。",
           image: "/assets/scenes/q13-C.jpg",
           imageKind: "scene"
         },
@@ -551,11 +551,11 @@ module.exports = [
     bookHint: "《穷人》",
     options: [
       {
-        text: "停止付出，照顾好自己",
+        text: "停止付出",
         flash: {
           who: "瓦尔瓦拉",
           characterId: "varvara-dobroselova",
-          line: "停止付出，照顾好自己。",
+          line: "停止付出。",
           image: "/assets/scenes/q14-A.jpg",
           imageKind: "scene"
         },
@@ -566,14 +566,14 @@ module.exports = [
         flash: {
           who: "杰武什金",
           characterId: "makar-devushkin",
-          line: "继续付出。停下等于死去。",
+          line: "继续付出。",
           image: "/assets/scenes/q14-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 3, 热忱: 4 }
       },
       {
-        text: "我不知道怎么停",
+        text: "不知道怎么停",
         flash: {
           who: "杰武什金",
           characterId: "makar-devushkin",
@@ -593,33 +593,33 @@ module.exports = [
     bookHint: "《涅托奇卡·涅兹瓦诺娃》",
     options: [
       {
-        text: "继续包容，无条件相信",
+        text: "继续包容",
         flash: {
           who: "涅托奇卡",
           characterId: "netochka",
-          line: "继续包容，无条件相信。",
+          line: "继续包容。",
           image: "/assets/scenes/q15-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "狠心离开，让他自己面对",
+        text: "狠心离开",
         flash: {
           who: "叶菲莫夫",
           characterId: "yefimov",
-          line: "狠心离开。他自己面对。",
+          line: "狠心离开。",
           image: "/assets/scenes/q15-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 1 }
       },
       {
-        text: "我既心疼又无力",
+        text: "心疼又无力",
         flash: {
           who: "涅托奇卡",
           characterId: "netochka",
-          line: "心疼，又无力。",
+          line: "心疼又无力。",
           image: "/assets/scenes/q15-C.jpg",
           imageKind: "scene"
         },
@@ -635,7 +635,7 @@ module.exports = [
     bookHint: "《双重人格》",
     options: [
       {
-        text: "与他和解，承认他的存在",
+        text: "与他和解",
         flash: {
           who: "戈利亚德金",
           characterId: "golyadkin-senior",
@@ -646,11 +646,11 @@ module.exports = [
         axes: { 理性: 4, 怜悯: 2, 激情: 2, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: "彻底对抗，消灭他",
+        text: "彻底对抗",
         flash: {
           who: "戈利亚德金",
           characterId: "golyadkin-senior",
-          line: "彻底对抗。消灭他。",
+          line: "彻底对抗。",
           image: "/assets/scenes/q16-B.jpg",
           imageKind: "scene"
         },
@@ -661,7 +661,7 @@ module.exports = [
         flash: {
           who: "小戈利亚德金",
           characterId: "golyadkin-junior",
-          line: "分不清谁才是真的我。",
+          line: "陷入自我怀疑。",
           image: "/assets/scenes/q16-C.jpg",
           imageKind: "scene"
         },
@@ -681,7 +681,7 @@ module.exports = [
         flash: {
           who: "梅什金",
           characterId: "prince-myshkin",
-          line: "相信。美不是幻觉。",
+          line: "相信。",
           image: "/assets/scenes/q17-A.jpg",
           imageKind: "scene"
         },
@@ -692,18 +692,18 @@ module.exports = [
         flash: {
           who: "纳斯塔霞",
           characterId: "nastasya",
-          line: "不相信。美救不了世界。",
+          line: "不相信。",
           image: "/assets/scenes/q17-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 3, 怜悯: 2, 激情: 5, 虚无: 3, 自尊: 5, 热忱: 2 }
       },
       {
-        text: "我不确定",
+        text: "不确定",
         flash: {
           who: "阿格拉娅",
           characterId: "aglaya",
-          line: "不确定。光芒很快熄灭。",
+          line: "不确定。",
           image: "/assets/scenes/q17-C.jpg",
           imageKind: "scene"
         },
@@ -741,11 +741,11 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: "我已经分辨不出来了",
+        text: "分辨不出来了",
         flash: {
           who: "斯维德里盖洛夫",
           characterId: "svidrigailov",
-          line: "分不清是谁在想。",
+          line: "分辨不出来了。",
           image: "/assets/scenes/q18-C.jpg",
           imageKind: "scene"
         },
@@ -761,33 +761,33 @@ module.exports = [
     bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: "承认这种复杂性",
+        text: "承认复杂性",
         flash: {
           who: "德米特里",
           characterId: "dmitry-karamazov",
-          line: "承认。善与恶并存。",
+          line: "承认复杂性。",
           image: "/assets/scenes/q19-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 3, 激情: 5, 虚无: 2, 自尊: 3, 热忱: 4 }
       },
       {
-        text: "用「好人」来简化自己",
+        text: "用「好人」简化自己",
         flash: {
           who: "阿辽沙",
           characterId: "alyosha-karamazov",
-          line: "努力做一个纯粹的好人。",
+          line: "用「好人」简化自己。",
           image: "/assets/scenes/q19-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: "我被这种复杂性撕裂了",
+        text: "被复杂性撕裂",
         flash: {
           who: "伊万",
           characterId: "ivan-karamazov",
-          line: "两半之间，每天挣扎。",
+          line: "被复杂性撕裂。",
           image: "/assets/scenes/q19-C.jpg",
           imageKind: "scene"
         },
@@ -799,44 +799,44 @@ module.exports = [
   },
   {
     id: "q20",
-    scene: "如果让你选择一种身份认同——做一个坚定的「中国人」（深耕自己的文化和传统），还是做一个「世界公民」（超越民族界限，拥抱全人类共同的价值），你会倾向于哪一方？",
-    bookHint: "《作家日记》",
+    scene: "当外来的「先进理念」与本国的「传统土壤」发生冲突时，你是选择拥抱外来的新思想，还是回归本土的传统根基？",
+    bookHint: "《群魔》",
     options: [
       {
-        text: "做坚定的中国人",
+        text: "拥抱新思想",
+        flash: {
+          who: "彼得·韦尔霍文斯基",
+          characterId: "pyotr-verkhovensky",
+          line: "拥抱新思想。",
+          image: "/assets/scenes/q20-A.jpg",
+          imageKind: "scene"
+        },
+        axes: { 理性: 5, 怜悯: 1, 激情: 4, 虚无: 4, 自尊: 3, 热忱: 3 }
+      },
+      {
+        text: "回归传统根基",
         flash: {
           who: "沙托夫",
           characterId: "shatov",
-          line: "做坚定的中国人。",
-          image: "/assets/scenes/q20-A.jpg",
+          line: "回归传统根基。",
+          image: "/assets/scenes/q20-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 4, 激情: 3, 虚无: 2, 自尊: 3, 热忱: 5 }
       },
       {
-        text: "做世界公民",
+        text: "试图融合",
         flash: {
-          who: "韦尔西洛夫",
-          characterId: "versilov",
-          line: "做世界公民。",
-          image: "/assets/scenes/q20-B.jpg",
-          imageKind: "scene"
-        },
-        axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 3, 自尊: 4, 热忱: 2 }
-      },
-      {
-        text: "我相信两者可以共存",
-        flash: {
-          who: "阿辽沙",
-          characterId: "alyosha-karamazov",
-          line: "两者可以共存。",
+          who: "斯塔夫罗金",
+          characterId: "stavrogin",
+          line: "试图融合。",
           image: "/assets/scenes/q20-C.jpg",
           imageKind: "scene"
         },
-        axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
+        axes: { 理性: 4, 怜悯: 2, 激情: 1, 虚无: 3, 自尊: 3, 热忱: 2 }
       }
     ],
-    quote: "拯救世界之路就是由这些个别的平凡人开始的。",
-    quoteSource: "《作家日记》"
+    quote: "离开自己的土壤，人就失去了根，变成了浮萍。",
+    quoteSource: "《群魔》"
   }
 ];
