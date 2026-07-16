@@ -5,21 +5,146 @@
     <view class="atmosphere-vignette"></view>
   </view>
 
-  <view class="shell">
-    <view class="panel">
+  <scroll-view class="shell" scroll-y="true" enhanced="{{true}}">
+
+    <!-- 今日金句 -->
+    <view class="panel quote-panel">
       <view class="ornament">
         <view class="ornament-rule"></view>
         <text class="ornament-dot">◆</text>
         <view class="ornament-rule"></view>
       </view>
-      <view class="eyebrow">Community</view>
-      <view class="title">交流社区</view>
-      <view class="lead">人格碰撞、书评闲谈、结果对照——这里留给后来的声音。</view>
-      <view class="soon-card">
-        <view class="soon-label">即将开放</view>
-        <view class="soon-body">第一版先把三栏立起来。社区帖子与互动会在后续版本接入。</view>
+      <view class="eyebrow">Daily Quote · {{dateStr}}</view>
+      <view class="title">今日一句</view>
+      <view class="quote-text">{{todayQuote.text}}</view>
+      <view class="quote-source" wx:if="{{todayQuote.book}}">
+        ——《{{todayQuote.book}}》<text wx:if="{{todayQuote.character}}"> · {{todayQuote.character}}</text>
       </view>
-      <button class="btn btn-primary" bindtap="onGoQuiz">先去测人格</button>
+    </view>
+
+    <!-- 写感受 -->
+    <view class="panel">
+      <view class="section-label">我的感受</view>
+      <textarea
+        class="note-input"
+        placeholder="把今天读到这句时的想法写下来…"
+        placeholder-class="note-placeholder"
+        value="{{noteText}}"
+        bindinput="onNoteInput"
+        maxlength="200"
+        auto-height="{{true}}"
+      />
+      <view class="note-meta">{{noteText.length || 0}} / 200</view>
+    </view>
+
+    <!-- 选底图 -->
+    <view class="panel">
+      <view class="section-label">选手帐底图</view>
+      <view class="bg-tip">已收录角色的 bg 可选；未收录请先去测人格/收角色。</view>
+      <view class="bg-grid">
+        <view
+          wx:for="{{bgOptions}}"
+          wx:key="characterId"
+          class="bg-cell {{item.characterId === selectedBgCharacterId ? 'bg-cell-on' : ''}} {{item.unlocked ? '' : 'bg-cell-locked'}}"
+          data-id="{{item.characterId}}"
+          bindtap="onSelectBg"
+        >
+          <view class="bg-cell-img-wrap">
+            <image
+              wx:if="{{item.displayUrl}}"
+              class="bg-cell-img"
+              src="{{item.displayUrl}}"
+              mode="aspectFill"
+            />
+            <view wx:else class="bg-cell-placeholder">加载中…</view>
+            <view wx:if="{{!item.unlocked}}" class="bg-cell-lock">未收录</view>
+          </view>
+          <view class="bg-cell-name">{{item.name}}</view>
+          <view class="bg-cell-book">{{item.bookTitle}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 预览 + 操作 -->
+    <view class="panel">
+      <view class="section-label">预览</view>
+      <view class="preview-wrap" bindtap="onPreviewImageTap">
+        <image
+          wx:if="{{previewImage}}"
+          class="preview-img"
+          src="{{previewImage}}"
+          mode="widthFix"
+        />
+        <view wx:else class="preview-empty">选好底图、写完感受后点「生成手帐」</view>
+      </view>
+      <view class="action-row">
+        <button
+          class="btn btn-primary"
+          bindtap="onGenerate"
+          disabled="{{generating}}"
+          loading="{{generating}}"
+        >生成手帐</button>
+        <button
+          class="btn btn-ghost"
+          bindtap="onSaveToAlbum"
+          disabled="{{!previewImage}}"
+        >保存到相册</button>
+      </view>
+      <button class="btn btn-text" open-type="share">分享给好友</button>
+    </view>
+
+    <!-- 历史手帐 -->
+    <view class="panel" wx:if="{{notes.length}}">
+      <view class="section-label">历史手帐</view>
+      <view class="history-list">
+        <view
+          wx:for="{{notes}}"
+          wx:key="id"
+          class="history-item"
+          data-id="{{item.id}}"
+          bindtap="onPreviewNote"
+        >
+          <image
+            wx:if="{{item.imagePath}}"
+            class="history-thumb"
+            src="{{item.imagePath}}"
+            mode="aspectFill"
+          />
+          <view wx:else class="history-thumb history-thumb-fallback">
+            <text class="history-thumb-date">{{item.date}}</text>
+          </view>
+          <view class="history-meta">
+            <view class="history-date">{{item.date}}</view>
+            <view class="history-quote">{{item.quoteText}}</view>
+            <view class="history-note" wx:if="{{item.noteText}}">{{item.noteText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部入口 -->
+    <view class="footer-entry">
+      <button class="btn btn-ghost btn-small" bindtap="onGoQuiz">去测人格</button>
+    </view>
+  </scroll-view>
+
+  <!-- 离屏 canvas，type=2d -->
+  <canvas type="2d" id="journalCanvas" class="journal-canvas-offscreen"></canvas>
+
+  <!-- 历史文字回看弹层 -->
+  <view wx:if="{{showPreview}}" class="preview-mask" bindtap="onClosePreview">
+    <view class="preview-modal" catchtap="">
+      <view class="ornament">
+        <view class="ornament-rule"></view>
+        <text class="ornament-dot">◆</text>
+        <view class="ornament-rule"></view>
+      </view>
+      <view class="eyebrow">{{previewNote.date}}</view>
+      <view class="modal-quote">{{previewNote.quoteText}}</view>
+      <view class="modal-source" wx:if="{{previewNote.quoteBook}}">——《{{previewNote.quoteBook}}》</view>
+      <view class="modal-note" wx:if="{{previewNote.noteText}}">{{previewNote.noteText}}</view>
+      <view class="modal-note modal-note-empty" wx:else>（那日未留字）</view>
+      <button class="btn btn-text" bindtap="onClosePreview">关闭</button>
     </view>
   </view>
 </view>
