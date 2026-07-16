@@ -30,6 +30,8 @@
           <view class="title">测测你的</view>
           <view class="title title-accent">陀氏人格</view>
           <view class="lead">人生抉择重现，这一刻，你站在哪边？</view>
+          <view class="start-quote">「我是一个有病的人……我是一个心怀恶意的人。」</view>
+          <view class="start-quote-source">——《地下室手记》</view>
           <view class="meta-list">
             <view class="meta-item">
               <text class="meta-mark">Ⅰ</text>
