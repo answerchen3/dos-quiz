@@ -59,14 +59,7 @@
 
     <!-- QUIZ -->
     <view class="view view-quiz" wx:if="{{view === 'quiz'}}">
-      <image
-        wx:if="{{quizBgUrl}}"
-        class="quiz-book-bg"
-        src="{{quizBgUrl}}"
-        mode="aspectFill"
-      />
-      <view class="quiz-book-veil {{quizBgUrl ? 'has-bg' : ''}}"></view>
-      <view class="panel panel-fill panel-quiz">
+      <view class="panel panel-fill">
         <view class="progress-row">
           <view class="progress-track">
             <view class="progress-fill" style="width: {{progressPercent}}%;"></view>

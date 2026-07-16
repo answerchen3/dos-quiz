@@ -109,40 +109,6 @@
   overflow: hidden;
 }
 
-/* 答题页：书主角 bg 铺在面板之下 */
-.view-quiz {
-  position: relative;
-}
-
-.quiz-book-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  /* 少压暗，让书图成为主视觉 */
-  filter: saturate(0.75) brightness(0.92) contrast(1.02);
-}
-
-.quiz-book-veil {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: transparent;
-}
-
-.quiz-book-veil.has-bg {
-  /* 仅底部略压，保证选项区可读 */
-  background: linear-gradient(
-    180deg,
-    rgba(10, 7, 5, 0.08) 0%,
-    rgba(10, 7, 5, 0.12) 40%,
-    rgba(10, 7, 5, 0.55) 100%
-  );
-}
-
 .panel-fill {
   flex: 1;
   min-height: 0;
@@ -155,46 +121,6 @@
   flex-direction: column;
   padding: 32rpx 36rpx calc(24rpx + env(safe-area-inset-bottom));
   background: linear-gradient(165deg, rgba(28, 20, 16, 0.96) 0%, rgba(12, 9, 7, 0.98) 100%);
-}
-
-.panel-fill.panel-quiz {
-  position: relative;
-  z-index: 2;
-  background: transparent;
-}
-
-.view-quiz .scene {
-  text-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.75);
-}
-
-.view-quiz .scene-kicker,
-.view-quiz .scene-book,
-.view-quiz .progress-label {
-  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.7);
-}
-
-.view-quiz .option-btn {
-  background: rgba(12, 9, 7, 0.72);
-  backdrop-filter: blur(8px);
-}
-
-.view-quiz .option-btn.is-selected {
-  background: linear-gradient(135deg, rgba(90, 60, 40, 0.95), rgba(40, 28, 20, 0.95));
-}
-
-.view-quiz .progress-row,
-.view-quiz .scene-quote {
-  background-color: rgba(12, 9, 7, 0.55);
-  border-radius: 16rpx;
-  padding: 12rpx 16rpx;
-}
-
-.view-quiz .progress-row {
-  margin-bottom: 28rpx;
-}
-
-.view-quiz .quiz-back {
-  background: rgba(12, 9, 7, 0.55);
 }
 
 .panel-start {

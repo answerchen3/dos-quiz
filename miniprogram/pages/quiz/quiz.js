@@ -13,7 +13,6 @@ const { exportShareImage } = require('../../utils/share')
 const {
   getBookComic,
   getSnowUrl,
-  getBookQuizBgUrl,
 } = require('../../utils/enrichment')
 const collection = require('../../utils/collection')
 const { toDisplayUrl, toDisplayUrls, safeDisplayUrl } = require('../../utils/cloud-url')
@@ -91,7 +90,6 @@ Page({
     sharing: false,
     startPortraitUrl: '',
     snowUrl: '',
-    quizBgUrl: '',
     comicVisible: false,
     comicPages: [],
     comicBookTitle: '',
@@ -165,7 +163,6 @@ Page({
       revealPhase: 0,
       resultNextStep: '',
       radarImage: '',
-      quizBgUrl: '',
     })
     this.renderQuestion(0)
   },
@@ -201,7 +198,6 @@ Page({
       currentScene: q.scene,
       currentQuote: q.quote || '',
       currentQuoteSource: quoteSource,
-      quizBgUrl: '',
       currentOptions: q.options.map(function (opt, i) {
         return {
           text: opt.text,
@@ -211,26 +207,6 @@ Page({
         }
       }),
     })
-    var bgCloud = getBookQuizBgUrl(q.bookHint || q.quoteSource || '')
-    if (!bgCloud) {
-      console.warn('[quiz] no book bg for', q.bookHint || q.quoteSource || '')
-      return
-    }
-    var that = this
-    var reqIndex = index
-    toDisplayUrl(bgCloud)
-      .then(function (url) {
-        var display = safeDisplayUrl(url)
-        if (that.data.index !== reqIndex || that.data.view !== 'quiz') return
-        if (!display) {
-          console.warn('[quiz] book bg resolve empty', bgCloud)
-          return
-        }
-        that.setData({ quizBgUrl: display })
-      })
-      .catch(function (err) {
-        console.error('[quiz] resolve quiz bg', bgCloud, err)
-      })
   },
 
   onSelectOption(e) {
@@ -390,7 +366,6 @@ Page({
         : shadow.tagline,
       shadowSummary: shadow.summary,
       sessionMeetItems: sessionMeetItems,
-      quizBgUrl: '',
     })
 
     var dropCloud = sessionMeetItems.map(function (item) {
