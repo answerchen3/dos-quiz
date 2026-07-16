@@ -1,15 +1,15 @@
 module.exports = [
   {
     id: "q01",
-    scene: "楼梯间潮热发粘。办成大事，却要踩过一个人——你？",
+    scene: "你认定自己能办成大事，但得伤害一个无辜的人。你会？",
     bookHint: "《罪与罚》",
     options: [
       {
-        text: "先跨过去，事后再解释",
+        text: "先做，事后再找理由解释",
         flash: {
           who: "拉斯柯尔尼科夫",
           characterId: "raskolnikov",
-          line: "楼梯间的空气发粘。他握紧想法——不是为钱，是为证明自己有权跨过去。",
+          line: "他握紧想法：不是为钱，是为证明自己有权跨过别人的血。",
           image: "/assets/scenes/q01-A.jpg",
           imageKind: "scene"
         },
@@ -20,18 +20,18 @@ module.exports = [
         flash: {
           who: "索尼娅",
           characterId: "sonya",
-          line: "她没有争辩对错。只是伸手，把那个人从黑暗边缘轻轻拉回来。",
+          line: "她不争对错。只是伸手，把那个人从边缘轻轻拉回来。",
           image: "/assets/scenes/q01-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 3 }
       },
       {
-        text: "笑着耸肩，认真不起来",
+        text: "无所谓，认真不起来",
         flash: {
           who: "斯维德里盖洛夫",
           characterId: "svidrigailov",
-          line: "他笑了一下，像在看一场乏味的戏。所谓界限，不过是别人吓自己的词。",
+          line: "他笑了一下：所谓界限，不过是别人吓自己的词。",
           image: "/assets/scenes/q01-C.jpg",
           imageKind: "scene"
         },
@@ -43,7 +43,7 @@ module.exports = [
   },
   {
     id: "q02",
-    scene: "朋友关在闷屋里，又病又倔。门外药水味——你？",
+    scene: "朋友把自己关在屋里，又病又倔，谁都不让进。你会？",
     bookHint: "《罪与罚》",
     options: [
       {
@@ -51,29 +51,29 @@ module.exports = [
         flash: {
           who: "拉祖米欣",
           characterId: "razumikhin",
-          line: "门被撞开。他骂着「你发什么疯」，一边把热汤和外套塞进那个人怀里。",
+          line: "门被撞开。他骂着「你发什么疯」，一边把热汤塞进对方怀里。",
           image: "/assets/scenes/q02-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: "先问清楚，再决定要不要逼",
+        text: "先问清楚，再决定逼不逼",
         flash: {
           who: "波尔菲里",
           characterId: "porfiry",
-          line: "他不急着破门。只是把椅子拉近一点，用闲聊把缝隙听出来。",
+          line: "他不急着破门。只是把椅子拉近，用闲聊把缝隙听出来。",
           image: "/assets/scenes/q02-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 3, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: "坐在门口陪着，不催也不走",
+        text: "坐门口陪着，不催也不走",
         flash: {
           who: "阿辽沙",
           characterId: "alyosha-karamazov",
-          line: "他靠着门框，不催破门。只让屋里的人知道：还有人在，不必一个人硬撑。",
+          line: "他靠着门框，不催破门。只让屋里的人知道：还有人在。",
           image: "/assets/scenes/q02-C.jpg",
           imageKind: "scene"
         },
@@ -85,22 +85,22 @@ module.exports = [
   },
   {
     id: "q03",
-    scene: "婚约文书摊开，墨未干；签字换安稳——你选？",
+    scene: "有人要你签一份婚约换全家安稳，但你会被当成筹码。你会？",
     bookHint: "《罪与罚》",
     options: [
       {
-        text: "抬下巴谈条件，一步不让",
+        text: "谈条件可以，被卖不行",
         flash: {
           who: "杜尼娅",
           characterId: "dunya",
-          line: "她抬起下巴。可以谈条件，被当成筹码谈判——一步都不让。",
+          line: "她抬起下巴：可以谈条件，被当成货物谈判——一步都不让。",
           image: "/assets/scenes/q03-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "为了在乎的人，我先吞下去",
+        text: "为了家人，我先吞下去",
         flash: {
           who: "索尼娅",
           characterId: "sonya",
@@ -111,11 +111,11 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: "笑着撕掉安排，嘲弄正经",
+        text: "笑着撕掉，顺便嘲讽正经",
         flash: {
           who: "斯维德里盖洛夫",
           characterId: "svidrigailov",
-          line: "他把纸推回去，像推开一场乏味的戏：安稳？不过是别人吓自己的词。",
+          line: "他把纸推回去：安稳？不过是别人吓自己的词。",
           image: "/assets/scenes/q03-C.jpg",
           imageKind: "scene"
         },
@@ -127,33 +127,33 @@ module.exports = [
   },
   {
     id: "q04",
-    scene: "街角有人无端挨打，孩子哭声很尖——你最先怎样？",
+    scene: "街角有人无端挨打，孩子哭得很惨。你最先怎样？",
     bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: "转头就走：这种世界我不进",
+        text: "走开：这种世界我不要",
         flash: {
           who: "伊万",
           characterId: "ivan-karamazov",
-          line: "眼泪在他眼前放大。他退回入场券：如果这是和谐的代价，我不进场。",
+          line: "孩子的眼泪在他眼前放大。若这是和谐的代价，他拒绝进入。",
           image: "/assets/scenes/q04-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 3, 激情: 2, 虚无: 3, 自尊: 4, 热忱: 1 }
       },
       {
-        text: "靠近，先接住他的疼痛",
+        text: "靠近，先安抚受伤的人",
         flash: {
           who: "阿辽沙",
           characterId: "alyosha-karamazov",
-          line: "他蹲在尘土里，不问宇宙是否公正——先把那个人的手握住。",
+          line: "他蹲在尘土里，不问世界公不公正——先握住那个人的手。",
           image: "/assets/scenes/q04-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 1, 热忱: 5 }
       },
       {
-        text: "冲上去，先做点什么再说",
+        text: "冲上去，先拦住打人的",
         flash: {
           who: "德米特里",
           characterId: "dmitry-karamazov",
@@ -169,7 +169,7 @@ module.exports = [
   },
   {
     id: "q05",
-    scene: "客厅酒气混着吼声：钱、欲望、面子搅成一团——你？",
+    scene: "家里为钱、面子和欲望大吵，场面又脏又乱。你会？",
     bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
@@ -195,7 +195,7 @@ module.exports = [
         axes: { 理性: 2, 怜悯: 2, 激情: 5, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "不吭声，把轻蔑听进影子里",
+        text: "不吭声，把羞辱记在心里",
         flash: {
           who: "斯麦尔佳科夫",
           characterId: "smerdyakov",
@@ -211,22 +211,22 @@ module.exports = [
   },
   {
     id: "q06",
-    scene: "桌上搁着入场券。屋里还在讲更高的和谐——你？",
+    scene: "有人说：最终幸福要用无辜孩子的痛苦换。你接受吗？",
     bookHint: "《卡拉马佐夫兄弟》",
     options: [
       {
-        text: "推开椅子就走：眼泪比解释重",
+        text: "拒绝：这种幸福我不要",
         flash: {
           who: "伊万",
           characterId: "ivan-karamazov",
-          line: "他推开椅子，指着桌上的入场券：眼泪比你们的和谐重。",
+          line: "他推开椅子：用孩子眼泪买来的和谐，票价他付不起。",
           image: "/assets/scenes/q06-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 4, 激情: 1, 虚无: 3, 自尊: 4, 热忱: 1 }
       },
       {
-        text: "站起来，去找还在哭的人",
+        text: "不争了，先去安慰哭的人",
         flash: {
           who: "阿辽沙",
           characterId: "alyosha-karamazov",
@@ -237,7 +237,7 @@ module.exports = [
         axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: "听完高论，把刺默默记在心里",
+        text: "听完，把话默默记在心里",
         flash: {
           who: "斯麦尔佳科夫",
           characterId: "smerdyakov",
@@ -253,15 +253,15 @@ module.exports = [
   },
   {
     id: "q07",
-    scene: "车站灯光刺眼。一边是濒临毁灭的人，一边是爱你的人——你？",
+    scene: "一边是快崩溃、需要你救的人，一边是真心爱你的人。你选？",
     bookHint: "《白痴》",
     options: [
       {
-        text: "去托住那个快毁灭的人",
+        text: "去托住那个快毁掉的人",
         flash: {
           who: "梅什金",
           characterId: "prince-myshkin",
-          line: "车站的灯光很白。他走向被议论的人，只说：我相信你——哪怕这会伤到另一个人。",
+          line: "他走向被议论的人，只说：我相信你——哪怕这会伤到另一个人。",
           image: "/assets/scenes/q07-A.jpg",
           imageKind: "scene"
         },
@@ -279,11 +279,11 @@ module.exports = [
         axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "抓不住就一起沉，谁也别想要",
+        text: "抓不住就一起沉，谁也别要",
         flash: {
           who: "罗戈任",
           characterId: "rogozhin",
-          line: "他的手指在桌沿捏白。他低声说：你是我的——不然谁都别想要。",
+          line: "他的手指捏白。他低声说：你是我的——不然谁都别想要。",
           image: "/assets/scenes/q07-C.jpg",
           imageKind: "scene"
         },
@@ -295,33 +295,33 @@ module.exports = [
   },
   {
     id: "q08",
-    scene: "走廊笑声砸过来：美？拯救？醒醒。你还往前吗？",
+    scene: "你想用善意帮一个人，旁人却笑你天真、说你是傻瓜。你会？",
     bookHint: "《白痴》",
     options: [
       {
-        text: "仍走进那个人，哪怕被当傻瓜",
+        text: "仍走近对方，不怕当傻瓜",
         flash: {
           who: "梅什金",
           characterId: "prince-myshkin",
-          line: "他红着脸，仍把那句话说完：美若不能托人，至少能让我不先变脏。",
+          line: "他红着脸，仍把话说完：善意若救不了人，至少让我不先变脏。",
           image: "/assets/scenes/q08-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 1, 热忱: 4 }
       },
       {
-        text: "停步先审：对方够不够真",
+        text: "先看清楚：对方是不是真心",
         flash: {
           who: "阿格拉娅",
           characterId: "aglaya",
-          line: "她抬眼看人，像在考试：你可以谈美，先证明你不是在哄我。",
+          line: "她抬眼看人：你可以谈美善，先证明你不是在哄我。",
           image: "/assets/scenes/q08-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 3, 怜悯: 2, 激情: 4, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "笑回去：美只会把人烧疼",
+        text: "冷笑：善意只会把人烧疼",
         flash: {
           who: "纳斯塔霞",
           characterId: "nastasya",
@@ -337,11 +337,11 @@ module.exports = [
   },
   {
     id: "q09",
-    scene: "客厅里一群人围着魅力人物谈理想。茶凉了——你？",
+    scene: "一群人围着魅力人物谈理想、起哄，都等他表态。你会？",
     bookHint: "《群魔》",
     options: [
       {
-        text: "坐正中喝茶，理想堆脚边也不表态",
+        text: "坐正中喝茶，什么也不表态",
         flash: {
           who: "斯塔夫罗金",
           characterId: "stavrogin",
@@ -352,7 +352,7 @@ module.exports = [
         axes: { 理性: 4, 怜悯: 1, 激情: 1, 虚无: 5, 自尊: 3, 热忱: 1 }
       },
       {
-        text: "推动局面，把人编进棋盘",
+        text: "推动局面，把人当棋子用",
         flash: {
           who: "彼得·韦尔霍文斯基",
           characterId: "pyotr-verkhovensky",
@@ -363,7 +363,7 @@ module.exports = [
         axes: { 理性: 4, 怜悯: 1, 激情: 4, 虚无: 5, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "先问谁受伤了，热闹值不值得",
+        text: "先问：这热闹谁会受伤",
         flash: {
           who: "沙托夫",
           characterId: "shatov",
@@ -379,11 +379,11 @@ module.exports = [
   },
   {
     id: "q10",
-    scene: "有人声音发紧：自由若只停在嘴上，就不存在——你？",
+    scene: "有人说：嘴上谈自由不算，要用极端行动证明。你会？",
     bookHint: "《群魔》",
     options: [
       {
-        text: "听完，把那句话听进心里",
+        text: "认同：半吊子自由更刺耳",
         flash: {
           who: "基里洛夫",
           characterId: "kirillov",
@@ -394,7 +394,7 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 2, 激情: 3, 虚无: 4, 自尊: 4, 热忱: 2 }
       },
       {
-        text: "转身找下一个人：这可编进棋盘",
+        text: "转身利用：这能编进计划",
         flash: {
           who: "彼得·韦尔霍文斯基",
           characterId: "pyotr-verkhovensky",
@@ -405,7 +405,7 @@ module.exports = [
         axes: { 理性: 4, 怜悯: 2, 激情: 3, 虚无: 4, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "去抓一件能跪下的具体事",
+        text: "去找一件还能真心相信的事",
         flash: {
           who: "沙托夫",
           characterId: "shatov",
@@ -421,11 +421,11 @@ module.exports = [
   },
   {
     id: "q11",
-    scene: "宴席还在算计利益。你偏想做件对自己有害的蠢事——你？",
+    scene: "别人劝你精明利己。你偏想做件对自己有害的蠢事——会吗？",
     bookHint: "《地下室手记》",
     options: [
       {
-        text: "偏做蠢事，证明我不是琴键",
+        text: "会，证明我不是算计机器",
         flash: {
           who: "地下室人",
           characterId: "underground-man",
@@ -436,7 +436,7 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 5, 热忱: 1 }
       },
       {
-        text: "不会。真正的自由要靠理性",
+        text: "不会。真正自由要靠理性",
         flash: {
           who: "波尔菲里",
           characterId: "porfiry",
@@ -447,7 +447,7 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 2, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 2 }
       },
       {
-        text: "想过，最终还是不敢，窝着恨",
+        text: "想过，最终不敢，窝着恨",
         flash: {
           who: "地下室人",
           characterId: "underground-man",
@@ -463,7 +463,7 @@ module.exports = [
   },
   {
     id: "q12",
-    scene: "桥栏冰凉，天边已白：这段相遇要散——你？",
+    scene: "一段短暂相遇快结束了。明知不会长久，你会？",
     bookHint: "《白夜》",
     options: [
       {
@@ -478,18 +478,18 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 3, 激情: 4, 虚无: 1, 自尊: 1, 热忱: 3 }
       },
       {
-        text: "说清去向，不把人留在幻象里",
+        text: "说清去向，不把人留在梦里",
         flash: {
           who: "娜斯简卡",
           characterId: "nastenka",
-          line: "她握住对方的手：谢谢你来过，我仍要往自己的光走。",
+          line: "她握住对方的手：谢谢你来过，我仍要往自己的路走。",
           image: "/assets/scenes/q12-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 4, 激情: 3, 虚无: 1, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "珍视这一夜，不要求它成一生",
+        text: "珍惜这一晚，不要求成一生",
         flash: {
           who: "娜斯简卡",
           characterId: "nastenka",
@@ -505,7 +505,7 @@ module.exports = [
   },
   {
     id: "q13",
-    scene: "钱很紧，窗缝灌风，还想守体面——你怎么过？",
+    scene: "钱很紧，还想守住体面。你会怎么过？",
     bookHint: "《穷人》",
     options: [
       {
@@ -520,18 +520,18 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 3, 热忱: 4 }
       },
       {
-        text: "领受善意，但不把命运交人安排",
+        text: "领受善意，但路要自己走",
         flash: {
           who: "瓦尔瓦拉",
           characterId: "varvara-dobroselova",
-          line: "她回信时写得很暖，也写得很清：感谢你，我的路要我自己走。",
+          line: "她回信写得很暖，也写得很清：感谢你，我的路要我自己走。",
           image: "/assets/scenes/q13-B.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 3, 激情: 2, 虚无: 1, 自尊: 5, 热忱: 3 }
       },
       {
-        text: "把苦写成礼貌，绝不在信里哭穷",
+        text: "把苦写成礼貌，绝不哭穷",
         flash: {
           who: "杰武什金",
           characterId: "makar-devushkin",
@@ -547,11 +547,11 @@ module.exports = [
   },
   {
     id: "q14",
-    scene: "镜子起雾，领结勒住喉：明天要见人——你靠什么站直？",
+    scene: "出身让你抬不起头。明天见人，你靠什么站直？",
     bookHint: "《少年》",
     options: [
       {
-        text: "先成为名片上的那种人",
+        text: "先变成别人看得起的那种人",
         flash: {
           who: "阿尔卡季",
           characterId: "arkady",
@@ -562,7 +562,7 @@ module.exports = [
         axes: { 理性: 3, 怜悯: 1, 激情: 3, 虚无: 1, 自尊: 5, 热忱: 5 }
       },
       {
-        text: "谈吐与视野，让人仰望",
+        text: "靠见识谈吐，让人仰望",
         flash: {
           who: "韦尔西洛夫",
           characterId: "versilov",
@@ -573,7 +573,7 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 2, 激情: 2, 虚无: 2, 自尊: 4, 热忱: 2 }
       },
       {
-        text: "被需要，关键时刻我安静地在",
+        text: "关键时刻安静地在，被人需要",
         flash: {
           who: "马卡尔",
           characterId: "makar",
@@ -589,11 +589,11 @@ module.exports = [
   },
   {
     id: "q15",
-    scene: "有人坐到你旁边，不讲话，只把热茶推过来——你？",
+    scene: "有人默默把热茶推到你手边，不讲话。你会？",
     bookHint: "《少年》",
     options: [
       {
-        text: "收下，改天把棉衣递出去也不解释",
+        text: "收下，改天默默帮回去",
         flash: {
           who: "马卡尔",
           characterId: "makar",
@@ -604,7 +604,7 @@ module.exports = [
         axes: { 理性: 2, 怜悯: 5, 激情: 1, 虚无: 1, 自尊: 2, 热忱: 5 }
       },
       {
-        text: "感激，却更急着证明自己配得上",
+        text: "感激，却更急着证明自己配",
         flash: {
           who: "阿尔卡季",
           characterId: "arkady",
@@ -615,7 +615,7 @@ module.exports = [
         axes: { 理性: 3, 怜悯: 2, 激情: 3, 虚无: 1, 自尊: 5, 热忱: 4 }
       },
       {
-        text: "感动，随后用更复杂的解释稀释它",
+        text: "感动，随即用大道理冲淡它",
         flash: {
           who: "韦尔西洛夫",
           characterId: "versilov",
@@ -631,15 +631,15 @@ module.exports = [
   },
   {
     id: "q16",
-    scene: "旧门在记忆里砰地关上，胸口发紧——你下意识会？",
+    scene: "旧伤忽然翻上来，胸口发紧。你下意识会？",
     bookHint: "《涅托奇卡·涅兹瓦诺娃》",
     options: [
       {
-        text: "把音量拧大，更死死抓住人",
+        text: "更用力抓住身边的人",
         flash: {
           who: "涅托奇卡",
           characterId: "netochka",
-          line: "她把音量拧到最大，抓住身边的人不放——像抓住自己还能被爱的证据。",
+          line: "她抓住身边的人不放——像抓住自己还能被爱的证据。",
           image: "/assets/scenes/q16-A.jpg",
           imageKind: "scene"
         },
@@ -661,7 +661,7 @@ module.exports = [
         flash: {
           who: "涅托奇卡",
           characterId: "netochka",
-          line: "她看见别人发抖，会先发抖。伤过的人，才能把别人的疼读出声。",
+          line: "她看见别人发抖，会先发抖。伤过的人，才能把别人的疼读出来。",
           image: "/assets/scenes/q16-C.jpg",
           imageKind: "scene"
         },
@@ -673,22 +673,22 @@ module.exports = [
   },
   {
     id: "q17",
-    scene: "你清醒知道对方空心。可一见面，狠话又碎掉——你？",
+    scene: "你清醒知道对方不值得，可一见面狠话又碎掉。你会？",
     bookHint: "《被侮辱与被损害的》",
     options: [
       {
-        text: "狠心止损，亲手斩断它",
+        text: "狠心止损，亲手斩断",
         flash: {
           who: "涅莉",
           characterId: "nelly",
-          line: "有人递来面包与同情。她退半步：穷可以，被可怜不行——爱也不行，若它再羞辱我一次。",
+          line: "有人递来面包与同情。她退半步：穷可以，被可怜不行。",
           image: "/assets/scenes/q17-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 4, 怜悯: 2, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: "继续燃烧，心甘情愿一无所有",
+        text: "继续爱，哪怕最后一无所有",
         flash: {
           who: "娜塔莎",
           characterId: "natasha",
@@ -715,11 +715,11 @@ module.exports = [
   },
   {
     id: "q18",
-    scene: "铁床、号子味、日子按铃响切段。你靠什么撑住？",
+    scene: "失去自由，日子被铃声切成段。你靠什么撑住？",
     bookHint: "《死屋手记》",
     options: [
       {
-        text: "把号子里的人写进本子",
+        text: "观察、记录身边的人",
         flash: {
           who: "亚历山大·彼得罗维奇",
           characterId: "alexander-petrovich",
@@ -730,7 +730,7 @@ module.exports = [
         axes: { 理性: 5, 怜悯: 3, 激情: 1, 虚无: 2, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "半块面包递出去，手还可以抖",
+        text: "把半块面包递出去",
         flash: {
           who: "阿列伊",
           characterId: "alei",
@@ -741,7 +741,7 @@ module.exports = [
         axes: { 理性: 1, 怜悯: 5, 激情: 2, 虚无: 1, 自尊: 2, 热忱: 4 }
       },
       {
-        text: "跟着学字，把明天也排进号子里",
+        text: "认真学点东西，给自己明天",
         flash: {
           who: "阿列伊",
           characterId: "alei",
@@ -757,7 +757,7 @@ module.exports = [
   },
   {
     id: "q19",
-    scene: "舞会灯下，另一个更会来事的你先寒暄——你？",
+    scene: "社交场上，一个更会来事的「你」抢先寒暄。你会？",
     bookHint: "《双重人格》",
     options: [
       {
@@ -772,7 +772,7 @@ module.exports = [
         axes: { 理性: 2, 怜悯: 2, 激情: 3, 虚无: 3, 自尊: 5, 热忱: 1 }
       },
       {
-        text: "让那个更会来事的自己先上场",
+        text: "让那个圆滑的自己先上场",
         flash: {
           who: "小戈利亚德金",
           characterId: "golyadkin-junior",
@@ -783,7 +783,7 @@ module.exports = [
         axes: { 理性: 4, 怜悯: 1, 激情: 3, 虚无: 4, 自尊: 3, 热忱: 3 }
       },
       {
-        text: "按住胸口：看清是怕还是拆台",
+        text: "先看清：是怕，还是真有人拆台",
         flash: {
           who: "戈利亚德金",
           characterId: "golyadkin-senior",
@@ -799,7 +799,7 @@ module.exports = [
   },
   {
     id: "q20",
-    scene: "过错还坐在房间角落。夜里你怎么跟它待着？",
+    scene: "你犯过错，夜里它还坐在房间角落。你会？",
     bookHint: "跨书",
     options: [
       {
@@ -807,14 +807,14 @@ module.exports = [
         flash: {
           who: "拉斯柯尔尼科夫",
           characterId: "raskolnikov",
-          line: "夜里更响的，是良心在狭小房间里的脚步声——理念已落地，人还醒着。",
+          line: "夜里更响的，是良心在狭小房间里的脚步声——事已做成，人还醒着。",
           image: "/assets/scenes/q20-A.jpg",
           imageKind: "scene"
         },
         axes: { 理性: 5, 怜悯: 2, 激情: 3, 虚无: 2, 自尊: 5, 热忱: 2 }
       },
       {
-        text: "伸手过去：路还长，我不让你一个人站着",
+        text: "陪着对方：路还长，你不孤单",
         flash: {
           who: "索尼娅",
           characterId: "sonya",
