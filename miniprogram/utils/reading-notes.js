@@ -3,7 +3,7 @@
  *
  * 只通过本模块读写，页面勿直接调 wx.setStorage。
  * key: dos.readingNotes.v1
- * 数组元素：{ id, date, quoteText, quoteBook, noteText, bgCharacterId, createdAt, imagePath? }
+ * 数组元素：{ id, date, noteText, bgCharacterId, createdAt, imagePath? }
  */
 var STORAGE_KEY = 'dos.readingNotes.v1'
 
@@ -43,8 +43,6 @@ function addNote(payload) {
   var note = {
     id: payload.id || genId(),
     date: payload.date || '',
-    quoteText: payload.quoteText || '',
-    quoteBook: payload.quoteBook || '',
     noteText: payload.noteText || '',
     bgCharacterId: payload.bgCharacterId || '',
     createdAt: Date.now(),

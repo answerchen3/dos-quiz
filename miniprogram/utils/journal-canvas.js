@@ -104,7 +104,6 @@ function todayStr(d) {
  * 测量阶段：返回总高度与绘制块列表
  */
 function buildLayout(ctx, options) {
-  var quote = options.quote || {}
   var noteText = options.noteText || ''
   var dateStr = options.dateStr || ''
   var brand = options.brand || 'fancy-world · 陀氏手帐'
@@ -120,27 +119,18 @@ function buildLayout(ctx, options) {
   push(function (c, top, bg) {
     c.fillStyle = COLOR_GOLD
     c.font = "22px 'Songti SC', 'STSong', serif"
-    c.fillText('今日金句 · 陀翁手帐', PAD, top + 70)
+    c.fillText('陀氏手帐', PAD, top + 70)
   }, 96)
 
-  // 金句正文（大字宋体）
-  ctx.font = "bold 40px 'Songti SC', 'STSong', serif"
-  var quoteH = measureWrapped(ctx, quote.text || '', CONTENT_W, 60)
+  // 感受正文（大字宋体，作为手帐主内容）
+  var bodyText = noteText || '（还没写下感受）'
+  ctx.font = "bold 38px 'Songti SC', 'STSong', serif"
+  var noteH = measureWrapped(ctx, bodyText, CONTENT_W, 58)
   push(function (c, top) {
-    c.fillStyle = COLOR_CREAM
-    c.font = "bold 40px 'Songti SC', 'STSong', serif"
-    drawWrapped(c, quote.text || '', PAD, top + 40, CONTENT_W, 60)
-  }, quoteH + 56)
-
-  // 出处：—— 《book》· character
-  var byLine = quote.book ? '—— 《' + quote.book + '》' : ''
-  if (quote.character) byLine += ' · ' + quote.character
-  push(function (c, top) {
-    if (!byLine) return
-    c.fillStyle = COLOR_GOLD
-    c.font = "24px 'Songti SC', 'STSong', serif"
-    c.fillText(byLine, PAD, top + 24)
-  }, byLine ? 56 : 16)
+    c.fillStyle = noteText ? COLOR_CREAM : 'rgba(168,148,120,0.6)'
+    c.font = "bold 38px 'Songti SC', 'STSong', serif"
+    drawWrapped(c, bodyText, PAD, top + 40, CONTENT_W, 58)
+  }, Math.max(noteH + 56, 120))
 
   // 金色分隔线
   push(function (c, top) {
@@ -159,23 +149,6 @@ function buildLayout(ctx, options) {
     c.textAlign = 'left'
     c.textBaseline = 'alphabetic'
   }, 40)
-
-  // 感受 label
-  push(function (c, top) {
-    c.fillStyle = COLOR_GOLD_SOFT
-    c.font = "22px 'PingFang SC', sans-serif"
-    c.fillText('我的感受', PAD, top + 24)
-  }, 48)
-
-  // 感受正文
-  var bodyText = noteText || '（还没写下感受）'
-  ctx.font = "26px 'PingFang SC', sans-serif"
-  var noteH = measureWrapped(ctx, bodyText, CONTENT_W, 40)
-  push(function (c, top) {
-    c.fillStyle = noteText ? COLOR_CREAM_DIM : 'rgba(168,148,120,0.6)'
-    c.font = "26px 'PingFang SC', sans-serif"
-    drawWrapped(c, bodyText, PAD, top + 28, CONTENT_W, 40)
-  }, Math.max(noteH + 24, 64))
 
   // 底部 footer：日期 + 小程序名
   push(function (c, top) {
@@ -258,7 +231,6 @@ function drawBackground(ctx, bg, w, h) {
 function exportJournalImage(options) {
   var canvas = options.canvas
   if (!canvas) return Promise.reject(new Error('canvas missing'))
-  var quote = options.quote || {}
   var noteText = options.noteText || ''
   var dateStr = options.dateStr || todayStr()
   var brand = options.brand || 'fancy-world · 陀氏手帐'
@@ -270,7 +242,6 @@ function exportJournalImage(options) {
   canvas.width = W
   canvas.height = 100
   var layout = buildLayout(measureCtx, {
-    quote: quote,
     noteText: noteText,
     dateStr: dateStr,
     brand: brand,

@@ -7,7 +7,7 @@
 
   <scroll-view class="shell" scroll-y="true" enhanced="{{true}}">
 
-    <!-- 今日金句 -->
+    <!-- 每日一句 -->
     <view class="panel quote-panel">
       <view class="ornament">
         <view class="ornament-rule"></view>
@@ -15,19 +15,19 @@
         <view class="ornament-rule"></view>
       </view>
       <view class="eyebrow">Daily Quote · {{dateStr}}</view>
-      <view class="title">今日一句</view>
+      <view class="title">每日一句</view>
       <view class="quote-text">{{todayQuote.text}}</view>
       <view class="quote-source" wx:if="{{todayQuote.book}}">
         ——《{{todayQuote.book}}》<text wx:if="{{todayQuote.character}}"> · {{todayQuote.character}}</text>
       </view>
     </view>
 
-    <!-- 写感受 -->
+    <!-- 分享感受 / 手帐 -->
     <view class="panel">
-      <view class="section-label">我的感受</view>
+      <view class="section-label">手帐 · 写下感受</view>
       <textarea
         class="note-input"
-        placeholder="把今天读到这句时的想法写下来…"
+        placeholder="此刻在想什么，写下来……"
         placeholder-class="note-placeholder"
         value="{{noteText}}"
         bindinput="onNoteInput"
@@ -115,8 +115,8 @@
           </view>
           <view class="history-meta">
             <view class="history-date">{{item.date}}</view>
-            <view class="history-quote">{{item.quoteText}}</view>
             <view class="history-note" wx:if="{{item.noteText}}">{{item.noteText}}</view>
+            <view class="history-note history-note-empty" wx:else>（那日未留字）</view>
           </view>
         </view>
       </view>
@@ -140,8 +140,6 @@
         <view class="ornament-rule"></view>
       </view>
       <view class="eyebrow">{{previewNote.date}}</view>
-      <view class="modal-quote">{{previewNote.quoteText}}</view>
-      <view class="modal-source" wx:if="{{previewNote.quoteBook}}">——《{{previewNote.quoteBook}}》</view>
       <view class="modal-note" wx:if="{{previewNote.noteText}}">{{previewNote.noteText}}</view>
       <view class="modal-note modal-note-empty" wx:else>（那日未留字）</view>
       <button class="btn btn-text" bindtap="onClosePreview">关闭</button>

@@ -165,9 +165,9 @@ Page({
   onGenerate() {
     if (this.data.generating) return
     var that = this
-    var quote = this.data.todayQuote
-    if (!quote || !quote.text) {
-      wx.showToast({ title: '金句加载中', icon: 'none' })
+    var noteText = (this.data.noteText || '').trim()
+    if (!noteText) {
+      wx.showToast({ title: '先写点什么吧', icon: 'none' })
       return
     }
     var selOpt = (this.data.bgOptions || []).find(function (o) {
@@ -196,23 +196,15 @@ Page({
           canvas: canvas,
           component: that,
           bgSrc: selOpt.bgSrc,
-          quote: {
-            text: quote.text,
-            book: quote.book,
-            character: quote.character || '',
-          },
-          noteText: that.data.noteText,
+          noteText: noteText,
           dateStr: that.data.dateStr,
         })
       })
       .then(function (tempPath) {
         that.setData({ previewImage: tempPath })
-        // 存一条手帐
         readingNotes.addNote({
           date: that.data.dateStr,
-          quoteText: quote.text,
-          quoteBook: quote.book,
-          noteText: that.data.noteText,
+          noteText: noteText,
           bgCharacterId: selOpt.characterId,
           imagePath: tempPath,
         })
@@ -293,10 +285,7 @@ Page({
   },
 
   onShareAppMessage() {
-    var q = this.data.todayQuote
-    var title = q && q.text
-      ? '今日金句 · 《' + q.book + '》'
-      : '陀氏手帐 · 每日一句'
+    var title = '陀氏手帐 · 写下你的感受'
     return {
       title: title,
       path: '/pages/community/community',
